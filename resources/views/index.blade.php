@@ -28,7 +28,7 @@
     <section class="home swiper" id="home">
         <div class="swiper-wrapper">
             <div class="swiper-slide container">
-                <img src="starwars.jpg">
+                <img src="/public/starwars.jpg">
                 <div class="home-text">
                     <span>Lucasfilm</span>
                     <h1>Star Wars</h1>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="swiper-slide container">
-                <img src="avatar.jpg">
+                <img src="/public/avatar.jpg">
                 <div class="home-text">
                     <span>20th Century Fox</span>
                     <h1>Avatar</h1>
@@ -48,15 +48,13 @@
                 </div>
             </div>
             <div class="swiper-slide container">
-                <img src="spirited.png">
+                <img src="/public/spirited.png">
                 <div class="home-text">
                     <span>Studio Ghibli</span>
                     <h1>Spirited Away</h1>
                     <a href="#" class="btn">BOOK NOW</a>
                     <a href="https://youtu.be/ByXuk9QqQkk?si=qYtpG3GYmT0xUZ_2" class="btn btn-primary"><i
                             class='bx bx-play'></i></a>
-                    <!-- <a href="#" class="btn">BOOK NOW</a>
-                    <a href="https://youtu.be/ByXuk9QqQkk?si=qYtpG3GYmT0xUZ_2" class="play"><i class='bx bx-play'></i></a> -->
                 </div>
             </div>
         </div>
@@ -68,7 +66,7 @@
         <div class="movies-container">
             <div class="box">
                 <div class="box-img">
-                    <img src="starwars.jpg">
+                    <img src="/public/starwars.jpg">
                     <div class="overlay">
                         <p class="movie-desc">The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -80,7 +78,7 @@
 
             <div class="box">
                 <div class="box-img">
-                    <img src="avatar.jpg">
+                    <img src="/public/avatar.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -91,7 +89,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="spirited.png">
+                    <img src="/public/spirited.png">
                     <div class="overlay">
                         <p class="movie-desc">10-year-old girl who wanders into a world ruled by witches and spirits, where humans are changed into animals</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -102,7 +100,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="before.jpg">
+                    <img src="/public/before.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A girl in a small town forms an unlikely bond with a recently-paralyzed man she's taking care of</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -113,7 +111,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="insidious.jpg">
+                    <img src="/public/insidious.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A gripping story of a family in search of help for their son, Dalton, who fell into a coma after a mysterious incident in the attic</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -124,7 +122,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="cinder.jpg">
+                    <img src="/public/cinder.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A live-action retelling of the classic fairytale about a servant stepdaughter who is abused by her jealous stepmother and stepsisters after her father died</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -135,7 +133,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="trans.jpg">
+                    <img src="/public/trans.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A deadly threat from Earth's history reappears and a hunt for a lost artifact takes place between Autobots and Decepticons</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -146,7 +144,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="pixel.jpg">
+                    <img src="/public/pixel.jpg">
                     <div class="overlay">
                         <p class="movie-desc">When aliens misinterpret video feeds of classic arcade games as a declaration of war, they attack the Earth in the form of the video games</p>
                         <a href="#" class="btn-mov">BOOK</a>
