@@ -9,6 +9,27 @@ menu.onclick = () => {
     menu.classList.toggle('bx-x');
 }
 
+var prevScrollpos = window.scrollY;
+
+window.onscroll = function() {
+  var currentScrollPos = window.scrollY;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("header").style.top = "0";
+  } else {
+    document.getElementById("header").style.top = "-70px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
+function myFunction() {
+    var x = document.getElementById("navbar");
+    if (x.className === "navbar") {
+      x.className += " responsive";
+    } else {
+      x.className = "navbar";
+    }
+  }
+
 var swiper = new Swiper(".home", {
     spaceBetween: 30,
     centeredSlides: true,
@@ -21,39 +42,3 @@ var swiper = new Swiper(".home", {
         clickable: true,
     },
 });
-
-// const arrows = document.querySelectorAll(".arrow");
-// const movieLists = document.querySelectorAll(".movie-list");
-
-// arrows.forEach((arrow, i) => {
-//   const itemNumber = movieLists[i].querySelectorAll("img").length;
-//   let clickCounter = 0;
-//   arrow.addEventListener("click", () => {
-//     const ratio = Math.floor(window.innerWidth / 270);
-//     clickCounter++;
-//     if (itemNumber - (4 + clickCounter) + (4 - ratio) >= 0) {
-//       movieLists[i].style.transform = `translateX(${
-//         movieLists[i].computedStyleMap().get("transform")[0].x.value - 300
-//       }px)`;
-//     } else {
-//       movieLists[i].style.transform = "translateX(0)";
-//       clickCounter = 0;
-//     }
-//   });
-
-//   console.log(Math.floor(window.innerWidth / 270));
-// });
-
-// //TOGGLE
-
-// const ball = document.querySelector(".toggle-ball");
-// const items = document.querySelectorAll(
-//   ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle"
-// );
-
-// ball.addEventListener("click", () => {
-//   items.forEach((item) => {
-//     item.classList.toggle("active");
-//   });
-//   ball.classList.toggle("active");
-// });

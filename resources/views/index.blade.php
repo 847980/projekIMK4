@@ -7,20 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Movie Website</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">
-            <li><a href="#home" class="home-active">HOME</li>
-            <li><a href="#movies">MOVIES</li>
-            <li><a href="#coming">COMING</li>
-            <li><a href="#newsletter">NEWSLETTER</li>
+            <li><a href="#home" class="home-active">HOME</a></li>
+            <li><a href="#movies">MOVIES</a></li>
+            <li><a href="#coming">COMING</a></li>
+            <li><a href="#newsletter">NEWSLETTER</a></li>
         </ul>
         <a href="#" class="btn">SIGN IN</a>
     </header>
@@ -28,7 +27,7 @@
     <section class="home swiper" id="home">
         <div class="swiper-wrapper">
             <div class="swiper-slide container">
-                <img src="/public/starwars.jpg">
+                <img src="starwars.jpg">
                 <div class="home-text">
                     <span>Lucasfilm</span>
                     <h1>Star Wars</h1>
@@ -38,7 +37,7 @@
                 </div>
             </div>
             <div class="swiper-slide container">
-                <img src="/public/avatar.jpg">
+                <img src="avatar.jpg">
                 <div class="home-text">
                     <span>20th Century Fox</span>
                     <h1>Avatar</h1>
@@ -48,13 +47,15 @@
                 </div>
             </div>
             <div class="swiper-slide container">
-                <img src="/public/spirited.png">
+                <img src="spirited.png">
                 <div class="home-text">
                     <span>Studio Ghibli</span>
                     <h1>Spirited Away</h1>
                     <a href="#" class="btn">BOOK NOW</a>
                     <a href="https://youtu.be/ByXuk9QqQkk?si=qYtpG3GYmT0xUZ_2" class="btn btn-primary"><i
                             class='bx bx-play'></i></a>
+                    <!-- <a href="#" class="btn">BOOK NOW</a>
+                    <a href="https://youtu.be/ByXuk9QqQkk?si=qYtpG3GYmT0xUZ_2" class="play"><i class='bx bx-play'></i></a> -->
                 </div>
             </div>
         </div>
@@ -66,7 +67,7 @@
         <div class="movies-container">
             <div class="box">
                 <div class="box-img">
-                    <img src="/public/starwars.jpg">
+                    <img src="starwars.jpg">
                     <div class="overlay">
                         <p class="movie-desc">The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -78,7 +79,7 @@
 
             <div class="box">
                 <div class="box-img">
-                    <img src="/public/avatar.jpg">
+                    <img src="avatar.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -89,7 +90,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="/public/spirited.png">
+                    <img src="spirited.png">
                     <div class="overlay">
                         <p class="movie-desc">10-year-old girl who wanders into a world ruled by witches and spirits, where humans are changed into animals</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -100,7 +101,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="/public/before.jpg">
+                    <img src="before.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A girl in a small town forms an unlikely bond with a recently-paralyzed man she's taking care of</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -111,7 +112,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="/public/insidious.jpg">
+                    <img src="insidious.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A gripping story of a family in search of help for their son, Dalton, who fell into a coma after a mysterious incident in the attic</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -122,7 +123,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="/public/cinder.jpg">
+                    <img src="cinder.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A live-action retelling of the classic fairytale about a servant stepdaughter who is abused by her jealous stepmother and stepsisters after her father died</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -133,7 +134,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="/public/trans.jpg">
+                    <img src="trans.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A deadly threat from Earth's history reappears and a hunt for a lost artifact takes place between Autobots and Decepticons</p>
                         <a href="#" class="btn-mov">BOOK</a>
@@ -144,7 +145,7 @@
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="/public/pixel.jpg">
+                    <img src="pixel.jpg">
                     <div class="overlay">
                         <p class="movie-desc">When aliens misinterpret video feeds of classic arcade games as a declaration of war, they attack the Earth in the form of the video games</p>
                         <a href="#" class="btn-mov">BOOK</a>
