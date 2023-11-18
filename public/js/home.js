@@ -9,6 +9,10 @@ menu.onclick = () => {
     menu.classList.toggle('bx-x');
 }
 
+document.getElementById('menu-icon').addEventListener('click', function () {
+  document.querySelector('.navbar').classList.toggle('show');
+});
+
 var prevScrollpos = window.scrollY;
 
 window.onscroll = function() {
@@ -16,7 +20,7 @@ window.onscroll = function() {
   if (prevScrollpos > currentScrollPos) {
     document.getElementById("header").style.top = "0";
   } else {
-    document.getElementById("header").style.top = "-70px";
+    document.getElementById("header").style.top = "-150px";
   }
   prevScrollpos = currentScrollPos;
 }
