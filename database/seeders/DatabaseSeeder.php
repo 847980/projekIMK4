@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Film;
+use App\Models\ShowTime;
 use Illuminate\Database\Seeder;
 // bycrpt
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +35,16 @@ class DatabaseSeeder extends Seeder
 
            $this->call([
                 AdminSeeder::class,
+                GenreSeeder::class,
+                CountrySeeder::class,
+                CitySeeder::class,
+                CinemaSeeder::class,
+                StudioSeeder::class,
+                FilmSeeder::class,
+                ShowTimeSeeder::class,
+                TransactionSeeder::class,
+                DetailTransactionSeeder::class,
+                
            ]);
 
             
