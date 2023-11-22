@@ -11,7 +11,7 @@ class Film extends Model
     use HasFactory,HasUuids;
 
     protected $fillable = [
-        'judul', 'release_date', 'duration', 'description', 'sutradara', 'trailer', 'genre_id', 'country_id', 
+        'judul', 'release_date', 'duration', 'description', 'sutradara', 'trailer', 'genre_id', 'country_id', 'cast', 'age_cat'
     ];
 
 

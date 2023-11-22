@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('show_times', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('film_id');
-            $table->foreign('film_id')->references('id')->on('films');
+            $table->foreign('film_id')->references('id')->on('films')->onDelete('cascade');
             $table->uuid('cinema_id');
-            $table->foreign('cinema_id')->references('id')->on('cinemas');
+            $table->foreign('cinema_id')->references('id')->on('cinemas')->onDelete('cascade');
             $table->uuid('studio_id');
-            $table->foreign('studio_id')->references('id')->on('studios');
+            $table->foreign('studio_id')->references('id')->on('studios')->onDelete('cascade');
             $table->date('show_date');
             $table->time('start_time');
             $table->time('end_time');

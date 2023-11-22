@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\FilmController;
+use App\Models\Film;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -56,5 +57,15 @@ Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'],
     })->name('dashboard');
 
     Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
-        
+
+
+    // CRUD Film
+    Route::get('/film', [FilmController::class, 'index'])->name('film.index');
+    Route::get('/film/create', [FilmController::class, 'create'])->name('film.create');
+    Route::post('/film/create', [FilmController::class, 'store'])->name('film.store');
+    Route::get('/film/{id}/edit', [FilmController::class, 'edit'])->name('film.edit');
+    Route::put('/film/{id}/edit', [FilmController::class, 'update'])->name('film.update');
+    Route::delete('/film/{id}/delete', [FilmController::class, 'destroy'])->name('film.destroy');
+    
 });
+
