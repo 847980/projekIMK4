@@ -33,5 +33,18 @@ class AdminAuthController extends Controller{
         ->back()
         ->with('error', 'Email atau password salah');
     }
+
+    public function logout(Request $request){
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+     
+        $request->session()->regenerateToken();
+     
+
+        return redirect()
+        ->route('admin.login.index')
+        ->with('success', 'Logout berhasil');
+    }
     
 }
