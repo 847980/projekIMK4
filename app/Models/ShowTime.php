@@ -11,4 +11,18 @@ class ShowTime extends Model
     use HasFactory,HasUuids;
 
     protected $guarded = ['id'];
+
+    // orm
+    public function DetailTransaction()
+    {
+        return $this->hasMany(DetailTransaction::class);
+    }
+
+    public function Film(){
+        return $this->belongsTo(Film::class);
+    }
+
+    public function Studio(){
+        return $this->belongsTo(Studio::class);
+    }
 }

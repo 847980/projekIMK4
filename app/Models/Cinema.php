@@ -12,4 +12,10 @@ class cinema extends Model
     protected $fillable = [
         'name', 'address', 'city_id'
     ];
+
+    // orm
+    public function City()
+    {
+        return $this->belongsTo(City::class);
+    }
 }

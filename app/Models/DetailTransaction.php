@@ -10,4 +10,15 @@ class DetailTransaction extends Model
 {
     use HasFactory, HasUuids;
     protected $guarded = ['id'];
+
+    // orm
+    public function Transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
+
+    public function ShowTime()
+    {
+        return $this->belongsTo(ShowTime::class);
+    }
 }

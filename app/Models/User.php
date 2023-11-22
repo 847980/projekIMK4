@@ -46,5 +46,8 @@ class User extends Authenticatable
 
 
     // orm
-    
+    public function Transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

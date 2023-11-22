@@ -11,4 +11,15 @@ class Transaction extends Model
     use HasFactory,HasUuids;
 
     protected $guarded = ['id'];
+
+    // orm
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function DetailTransaction()
+    {
+        return $this->hasMany(DetailTransaction::class);
+    }
 }

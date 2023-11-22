@@ -14,4 +14,13 @@ class country extends Model
     protected $fillable = [
         'name',
     ];
+
+    // orm
+    public function Film(){
+        return $this->hasMany(Film::class);
+    }
+
+    public function City(){
+        return $this->hasMany(City::class);
+    }
 }

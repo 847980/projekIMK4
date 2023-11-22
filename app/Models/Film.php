@@ -13,4 +13,21 @@ class Film extends Model
     protected $fillable = [
         'judul', 'release_date', 'duration', 'description', 'sutradara', 'trailer', 'genre_id', 'country_id', 
     ];
+
+
+    // orm
+    public function Genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
+
+    public function Country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function ShowTime()
+    {
+        return $this->hasMany(ShowTime::class);
+    }
 }

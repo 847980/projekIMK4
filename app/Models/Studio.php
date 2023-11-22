@@ -13,5 +13,16 @@ class Studio extends Model
         'name', 'cinema_id'
     ];
 
+
+    // orm
+    public function Cinema()
+    {
+        return $this->belongsTo(Cinema::class);
+    }
+
+    public function ShowTime()
+    {
+        return $this->hasMany(ShowTime::class);
+    }
     
 }

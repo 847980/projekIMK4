@@ -15,4 +15,15 @@ class city extends Model
     protected $fillable=[
         'name', 'country_id'
     ];
+
+    // orm
+    public function Country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function Cinema()
+    {
+        return $this->hasMany(Cinema::class);
+    }
 }
