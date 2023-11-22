@@ -43,9 +43,11 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
 
 // admin
     // login admin
-    Route::get('/login', [AdminAuthController::class, 'loginView'])->name('admin.login.index');
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.send');
-
+    Route::middleware('guest:admin')->group(function(){
+        Route::get('admin/login', [AdminAuthController::class, 'loginView'])->name('admin.login.index');
+        Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.send');
+    });
+  
 // admin sudah login
 Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'], function(){
     Route::get('/dashboard', function () {

@@ -21,6 +21,15 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                // kalau null = session web 
+                // kalau admin = session admin
+                if($guard == 'admin'){
+                    return redirect()->route('admin.dashboard');
+                }
+
+                if($guard == null){
+                    return redirect()->route('user.dashboard');
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }
