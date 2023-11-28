@@ -18,5 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/detail', function () {
+    return view('detail');
+});
+
+Route::get('/index', function () {
     return view('index');
 });
