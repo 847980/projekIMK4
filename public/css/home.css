@@ -38,7 +38,6 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 20px 100px;
-    transition: 0.5s;
     background-color: transparent;
 }
 
@@ -50,6 +49,8 @@ header.shadow {
     display: flex;
     column-gap: 5rem;
     overflow: hidden;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbar li {
@@ -60,6 +61,10 @@ header.shadow {
     font-size: 1rem;
     font-weight: 500;
     color: var(--bg-color);
+
+    padding: 5px 0;
+    margin: 0px 30px;
+    transition: all .50s ease;
 }
 
 .navbar a::after {
@@ -80,9 +85,16 @@ header.shadow {
 
 #menu-icon {
     font-size: 24px;
+    color: var(--bg-color);
     cursor: pointer;
     z-index: 1000001;
     display: none;
+}
+
+.main_btn {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
 }
 
 .btn {
@@ -472,12 +484,33 @@ footer {
 
 
 /* RESPONSIVE */
+@media screen and (max-width: 1030px) {
+    .flex-container {
+        height: 130px;
+        flex-direction: row;
+    }
+
+    .flex-container .wrapper {
+        margin-left: 10px; 
+    }
+}
+
 @media screen and (max-width: 768px) {
     .navbar {
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        right: 0;
+        display: none;
         flex-direction: column;
         align-items: center;
         text-align: center;
         display: none;
+        justify-content: flex-start;
+        transition: all .50s ease;
+        display: none;
+        font-size: 70%;
+        background-color: transparent;
     }
 
     .navbar.show {
@@ -490,13 +523,69 @@ footer {
 
     .navbar a {
         font-size: 0.8rem;
+        display: block;
+        transition: all .50s ease;
     }
 
-    .btn {
-        padding: 0.3rem 0.6rem;
+    .navbar.open {
+        display: flex;
     }
 
     #menu-icon {
-        display: block;
+        font-size: 24px;
+        color: var(--bg-color);
+        cursor: pointer;
+        z-index: 1000001;
+        display: block; 
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+
+    .main_btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;   
+        flex-direction: column;     
+    }
+
+    .main_btn .btn {
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        
+    }
+
+    .btn {
+        padding: 0.3rem 0.6rem;      
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    .flex-container {
+        margin-right: 15px;
+    }
+    
+    .main a {
+        font-size: 0.8rem;
+    }
+
+    #menu-icon {
+        font-size: 28px;
+    }
+
+    .navbar a {
+        font-size: 0.8rem;
+    }
+
+    .navbar {
+        width: 180px;
+    }
+
+    .main_btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
 }

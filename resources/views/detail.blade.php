@@ -12,15 +12,18 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="bx bx-menu" id="menu-icon"></div>
+    <header>
+        <div class="main_btn">
+            <a href="#" class="btn">SIGN IN</a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
         <ul class="navbar">
-            <li><a href="/home#home" class="home-active">HOME</a></li>
-            <li><a href="/home#movies">MOVIES</a></li>
-            <li><a href="/home#coming">COMING</a></li>
-            <li><a href="/home#newsletter">NEWSLETTER</a></li>
-        </ul>
-    </header>    
+            <li><a href="#home" class="home-active">HOME</a></li>
+            <li><a href="#movies">MOVIES</a></li>
+            <li><a href="#coming">COMING</a></li>
+            <li><a href="#newsletter">NEWSLETTER</a></li>
+        </ul>       
+    </header> 
     <div class="book-wrapper">
         <div class="book container">
             <img src="assets/spirited.png">

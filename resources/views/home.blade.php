@@ -12,17 +12,19 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="bx bx-menu" id="menu-icon"></div>
+    <header>
+        <div class="main_btn">
+            <a href="#" class="btn">SIGN IN</a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
         <ul class="navbar">
             <li><a href="#home" class="home-active">HOME</a></li>
             <li><a href="#movies">MOVIES</a></li>
             <li><a href="#coming">COMING</a></li>
             <li><a href="#newsletter">NEWSLETTER</a></li>
-        </ul>
-        <a href="#" class="btn">SIGN IN</a>
+        </ul>       
     </header>
-
+    
     <section class="home swiper" id="home">
         <div class="swiper-wrapper">
             <div class="swiper-slide container">
@@ -92,7 +94,7 @@
                     <img src="assets/starwars.jpg">
                     <div class="overlay">
                         <p class="movie-desc">The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia</p>
-                        <a href="/booking" class="btn-mov">BOOK</a>
+                        <a href="/detail" class="btn-mov">BOOK</a>
                     </div>
                 </div>
                 <h3>Star Wars</h3>
@@ -104,7 +106,7 @@
                     <img src="assets/avatar.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home</p>
-                        <a href="/booking" class="btn-mov">BOOK</a>
+                        <a href="/detail" class="btn-mov">BOOK</a>
                     </div>                    
                 </div>
                 <h3>Avatar</h3>
@@ -115,7 +117,7 @@
                     <img src="assets/spirited.png">
                     <div class="overlay">
                         <p class="movie-desc">10-year-old girl who wanders into a world ruled by witches and spirits, where humans are changed into animals</p>
-                        <a href="/booking" class="btn-mov">BOOK</a>
+                        <a href="/detail" class="btn-mov">BOOK</a>
                     </div>
                 </div>
                 <h3>Spirited Away</h3>
@@ -126,7 +128,7 @@
                     <img src="assets/before.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A girl in a small town forms an unlikely bond with a recently-paralyzed man she's taking care of</p>
-                        <a href="/booking" class="btn-mov">BOOK</a>
+                        <a href="/detail" class="btn-mov">BOOK</a>
                     </div>
                 </div>
                 <h3>Me Before You</h3>
@@ -137,7 +139,7 @@
                     <img src="assets/insidious.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A gripping story of a family in search of help for their son, Dalton, who fell into a coma after a mysterious incident in the attic</p>
-                        <a href="/booking" class="btn-mov">BOOK</a>
+                        <a href="/detail" class="btn-mov">BOOK</a>
                     </div>                    
                 </div>
                 <h3>Insidious</h3>
@@ -148,7 +150,7 @@
                     <img src="assets/cinder.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A live-action retelling of the classic fairytale about a servant stepdaughter who is abused by her jealous stepmother and stepsisters after her father died</p>
-                        <a href="/booking" class="btn-mov">BOOK</a>
+                        <a href="/detail" class="btn-mov">BOOK</a>
                     </div>                    
                 </div>
                 <h3>Cinderella</h3>
@@ -159,7 +161,7 @@
                     <img src="assets/trans.jpg">
                     <div class="overlay">
                         <p class="movie-desc">A deadly threat from Earth's history reappears and a hunt for a lost artifact takes place between Autobots and Decepticons</p>
-                        <a href="/booking" class="btn-mov">BOOK</a>
+                        <a href="/detail" class="btn-mov">BOOK</a>
                     </div>
                 </div>
                 <h3>Transformer: The Last Knight</h3>
@@ -170,7 +172,7 @@
                     <img src="assets/pixel.jpg">
                     <div class="overlay">
                         <p class="movie-desc">When aliens misinterpret video feeds of classic arcade games as a declaration of war, they attack the Earth in the form of the video games</p>
-                        <a href="/booking" class="btn-mov">BOOK</a>
+                        <a href="/detail" class="btn-mov">BOOK</a>
                     </div>    
                 </div>
                 <h3>Pixels</h3>
