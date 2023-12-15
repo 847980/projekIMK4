@@ -95,14 +95,14 @@ class CinemaController extends Controller
     }
 
     // get cinema by city
-    // public function getCinemaByCity(Request $request)
-    // {
-    //     // validate
-    //     $request->validate([
-    //         'city_id' => 'required'
-    //     ]);
-    //     $cinemas = Cinema::where('city_id', $request->city_id)->get();
-    //     return response()->json($cinemas);
-    // }
+    public function getCinemaByCity(Request $request)
+    {
+        // // validate
+        $data = $request->validate([
+            'city_id' => 'required'
+        ]);
+        $cinemas = Cinema::where('city_id', $request->city_id)->get();
+        return response()->json($cinemas);
+    }
 
 }

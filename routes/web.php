@@ -27,9 +27,7 @@ Route::get('/', function () {
 });
 
 
-    // for ajax
-    // Route::post('/cinema/byCity', [CinemaController::class, 'getCinemaByCity'])->name('getCinema.byCity');
-    // Route::post('/studio/byCinema', [StudioController::class, 'getStudioByCinema'])->name('getStudio.byCinema');
+ 
 
 
 // user login dan register
@@ -118,10 +116,15 @@ Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'],
     Route::get('/city/{id}/edit', [CityController::class, 'edit'])->name('city.edit');
     Route::put('/city/{id}/edit', [CityController::class, 'update'])->name('city.update');
     Route::delete('/city/{id}/delete', [CityController::class, 'destroy'])->name('city.destroy');
+
+
+       // for ajax
+    Route::post('/cinema/byCity', [CinemaController::class, 'getCinemaByCity'])->name('getCinema.byCity');
+    Route::post('/studio/byCinema', [StudioController::class, 'getStudioByCinema'])->name('getStudio.byCinema');
 });
 
 Route::get('/payment', function () {
-    return view('payment');
+    return view('payment'); 
 });
 
 Route::post('paypal', [PaypalController::class, 'paypal'])->name('paypal');

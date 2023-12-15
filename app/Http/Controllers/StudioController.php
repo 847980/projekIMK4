@@ -7,13 +7,6 @@ use Illuminate\Http\Request;
 
 class StudioController extends Controller
 {
-    //
-    //get studio by cinema
-    public function getStudioByCinema($id)
-    {
-        $data = Studio::where('cinema_id', $id)->get();
-        return response()->json($data);
-    }
      /**
      * Display a listing of the resource.
      */
@@ -102,5 +95,15 @@ class StudioController extends Controller
         Studio::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Studio berhasil dihapus');
     }
+
     
+    //get studio by cinema
+    public function getStudioByCinema(Request $request)
+    {
+        $data= $request->validate([
+            'cinema_id' => 'required'
+        ]);
+        $data = Studio::where('cinema_id', $data['cinema_id'])->get();
+        return response()->json($data);
+    }
 }

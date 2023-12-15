@@ -8,11 +8,16 @@
     <form action="{{ route('admin.cinema.store') }}" method="post">
         @csrf
         <div class="form-group">
-            <label for="cinema">Cinema</label>
-            <input type="text" name="name" id="cinema" class="form-control" placeholder="Cinema" aria-describedby="helpId">
+            <label for="name">Cinema</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Cinema" aria-describedby="helpId">
             <label for="address">Address</label>
             <input type="text" name="address" id="address" class="form-control" placeholder="Address" aria-describedby="helpId">
-
+            <label for="country_id">Country</label>
+            <select class="form-control" name="country_id" id="country_id">
+                @foreach ($countries as $country)
+                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                @endforeach
+            </select>
             <label for="city_id">City</label>
             <select class="form-control" name="city_id" id="city_id">
                 @foreach ($cities as $city)
