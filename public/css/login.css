@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,33 +12,33 @@ body{
     font-family: 'Chivo';
 }
 
-.main{
+.main {
     width: 350px;
     height: 500px;
     overflow: hidden;
     background: url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=') no-repeat center / cover;
     border-radius: 10px;
-    box-shadow: 20px 20px 100px 20px rgba(0,0,0,1);
+    box-shadow: 20px 20px 100px 20px rgba(0, 0, 0, 1);
     margin-left: 10px;
     margin-right: 10px;
 }
 
-#check{
+#check {
     display: none;
 }
 
-.signup{
+.signup {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.signup label{
+.signup label {
     margin-top: 30px !important;
     margin-bottom: 20px !important;
 }
 
-label{
+label {
     color: #FFD369;
     font-size: 2.3em;
     justify-content: center;
@@ -49,7 +49,7 @@ label{
     transition: .5s ease-in-out;
 }
 
-input{
+input {
     width: 60%;
     height: 40px;
     background: #EEEEEE;
@@ -63,7 +63,7 @@ input{
     border-radius: 5px;
 }
 
-button{
+button {
     width: 60%;
     height: 40px;
     margin: 10px auto;
@@ -81,11 +81,11 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background: #585f6b;
 }
 
-.login{
+.login {
     height: 460px;
     background: #FFD369;
     border-radius: 60% / 10%;
@@ -93,34 +93,108 @@ button:hover{
     transition: .8s ease-in-out;
 }
 
-.login label{
+.login label {
     padding-top: 15px;
     color: #393E46;
     transform: scale(.6);
 }
 
-#check:checked ~ .login{
+#check:checked~.login {
     transform: translateY(-500px);
 }
 
-#check:checked ~ .login label{
+#check:checked~.login label {
     transform: scale(1);
 }
 
-#check:checked ~ .signup label{
+#check:checked~.signup label {
     transform: scale(.6);
 }
 
-.signup span{
+.signup span {
     color: #EEEEEE;
     margin-left: 70px;
     padding: 0;
 }
 
-.login span{
+.login span {
     color: #585f6b;
     margin-left: 70px;
     padding: 0;
 }
 
+.Btn{
+    margin: 0;
+}
 
+.Btn:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+}
+
+/* hover effect button's text */
+.Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+}
+
+/* button click effect*/
+.Btn:active {
+    transform: translate(2px, 2px);
+}
+
+.Btn {
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    left: 3vw;
+    top: 2vh;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: #585f6b;
+}
+
+/* plus sign */
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign svg {
+    width: 17px;
+}
+
+.sign svg path {
+    fill: #FFD369;
+}
+
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: #FFD369;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+}

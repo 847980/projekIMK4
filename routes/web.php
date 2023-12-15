@@ -28,3 +28,7 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('login');
 });
+
+Route::get('/book', function () {
+    return view('book');
+});
