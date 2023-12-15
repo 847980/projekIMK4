@@ -10,6 +10,7 @@ use App\Models\Film;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\PaypalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,4 +120,10 @@ Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'],
     Route::delete('/city/{id}/delete', [CityController::class, 'destroy'])->name('city.destroy');
 });
 
+Route::get('/payment', function () {
+    return view('payment');
+});
 
+Route::post('paypal', [PaypalController::class, 'paypal'])->name('paypal');
+Route::get('success', [PaypalController::class, 'success'])->name('success');
+Route::get('cancel', [PaypalController::class, 'cancel'])->name('cancel');

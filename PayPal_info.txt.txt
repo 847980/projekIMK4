@@ -1,0 +1,21 @@
+devAccount: dev@tim.com
+
+personal: buyer1@newbuyer.com
+
+bussiness: film@bioskop.id
+
+App info:
+name: FilmBioskop
+clientID: AY7HCxmZseAFbgGQ3wSrLE2_Er8OW4Rok6lWk_wNLmrpK4Y6l3h50g6T8fACvyESQBqQBgWWhN-eDxr-
+Secret: EOABsj0vA__lMEElmluqbMqGMupcOy_EWODL6cE_oht5hFY8RCb5QO4TB3avS7AT6xtlNY2-rO3k49AS
+
+
+--------------------------------------------------------------------------
+.env configuration (copy this):
+#PayPal API Mode
+# Values: sandbox or live (Default: live)
+PAYPAL_MODE=sandbox
+
+#PayPal Setting & API Credentials - sandbox
+PAYPAL_SANDBOX_CLIENT_ID=AY7HCxmZseAFbgGQ3wSrLE2_Er8OW4Rok6lWk_wNLmrpK4Y6l3h50g6T8fACvyESQBqQBgWWhN-eDxr-
+PAYPAL_SANDBOX_CLIENT_SECRET=EOABsj0vA__lMEElmluqbMqGMupcOy_EWODL6cE_oht5hFY8RCb5QO4TB3avS7AT6xtlNY2-rO3k49AS
