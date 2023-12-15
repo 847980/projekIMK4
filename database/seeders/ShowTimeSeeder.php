@@ -31,22 +31,13 @@ class ShowTimeSeeder extends Seeder
                     'start_time' => '10:00:00',
                     'end_time' => '12:00:00',
                     'price' => 10000,
-                    'chair_number' => 1,
-                    'chair_status' => 0,
+
                 ]
             ];
 
         foreach($data as $value){
-            for($i=1;$i<=30;$i++){
-                if($i==1 || $i==2 || $i==3){
-                    $value['chair_status']= 1;
-                }
-                else{
-                    $value['chair_status']= 0;
-                }
-                ShowTime::create($value);
-                $value['chair_number']++;
-            }
+            ShowTime::create($value);
+            
             
         }
     }

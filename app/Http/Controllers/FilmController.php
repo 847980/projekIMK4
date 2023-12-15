@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\Genre;
 use App\Models\Country;
-
+use Illuminate\Support\Facades\Storage;
 
 class FilmController extends Controller
 {
@@ -38,18 +38,31 @@ class FilmController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'judul' => 'required|min:3|max:50',
+            'judul' => 'required|unique:films,judul|min:3|max:50',
             'release_date' => 'required|date',
             'duration' => 'required|integer',
             'description' => 'required|min:10|max:1000',
             'sutradara' => 'required|min:3|max:50',
             'cast' => 'required|min:3|max:100',
             'age_cat' => 'required|min:3|max:50',
-            'trailer' => 'required|url',
+            'trailer' => 'required|url|max:255',
             'genre_id' => 'required',
             'country_id' => 'required',
+            'poster_potrait' => 'required|image|mimes:jpg,jpeg,png',
+            'poster_landscape' => 'required|image|mimes:jpg,jpeg,png',
         ]);
+
+         
+        $filename_potrait = $request->judul . '_potrait'. '-' . time() . '.' . $request->poster_potrait->extension();
+        $request->poster_potrait->storeAs('public/poster', $filename_potrait);
+        // Storage::putFileAs('public', $request->file('poster_potrait'), $filename_potrait);
+
+        $filename_landscape = $request->judul . '_landscape'. '-' . time() . '.' . $request->poster_landscape->extension();
+        $request->poster_landscape->storeAs('public/poster', $filename_landscape);
         
+        $data['poster_potrait'] = $filename_potrait;
+        $data['poster_landscape'] = $filename_landscape;
+
         Film::create($data);
         return redirect()->back()->with('success', 'Film berhasil ditambahkan');
     }
@@ -92,9 +105,33 @@ class FilmController extends Controller
             'trailer' => 'required|url',
             'genre_id' => 'required',
             'country_id' => 'required',
+            'poster_potrait' => 'nullable|image|mimes:jpg,jpeg,png',
+            'poster_landscape' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
+
+        $film = Film::findOrFail($id);
+        $data['poster_potrait'] = $film->poster_potrait;
+        $data['poster_landscape'] = $film->poster_landscape;
+
+        if($request->poster_potrait){
+            // hapus file lama
+            Storage::delete('public/poster/' . $data['poster_potrait'] );
+
+            $filename_potrait = $request->judul . '_potrait'. '-' . time() . '.' . $request->poster_potrait->extension();
+            $request->poster_potrait->storeAs('public/poster', $filename_potrait);
+            $data['poster_potrait'] = $filename_potrait;
+        }
+
+        if($request->poster_landscape){
+            // hapus file lama
+            Storage::delete('public/poster/' . $data['poster_landscape'] );
+
+            $filename_landscape = $request->judul . '_landscape'. '-' . time() . '.' . $request->poster_landscape->extension();
+            $request->poster_landscape->storeAs('public/poster', $filename_landscape);
+            $data['poster_landscape'] = $filename_landscape;
+        }
         
-        Film::findOrFail($id)->update($data);
+        $film->update($data);
         return redirect()->back()->with('success', 'Film berhasil diupdate');
     }
 
@@ -103,7 +140,11 @@ class FilmController extends Controller
      */
     public function destroy(string $id)
     {
-        Film::findOrFail($id)->delete();
+        $film = Film::findOrFail($id);
+        // hapus file lama
+        Storage::delete('public/poster/' . $film->poster_potrait );
+        Storage::delete('public/poster/' . $film->poster_landscape );
+        $film->delete();
         return redirect()->back()->with('success', 'Film berhasil dihapus');
     }
     

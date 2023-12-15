@@ -23,8 +23,6 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->integer('price');
-            $table->integer('chair_number');
-            $table->integer('chair_status')->comment('0: available, 1: booked');
             $table->timestamps();
         });
     }

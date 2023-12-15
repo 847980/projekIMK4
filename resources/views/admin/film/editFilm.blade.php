@@ -8,14 +8,32 @@
         </div>
     @endif
 
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <h1>Edit Film</h1>
-    <form action="{{ route('admin.film.update', $film->id) }}" method="post">
+    <form action="{{ route('admin.film.update', $film->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">
             <label for="judul">Judul</label>
             <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" aria-describedby="helpId" value="{{ $film->judul }}">
-            
+            {{-- upload poster landscape dan potrait --}}
+
+            <img src="{{ asset('storage/poster/'.$film->poster_landscape) }}" alt="{{ $film->judul }}" width="100px">
+            <label for="poster_landscape">Poster Landscape</label>
+            <input type="file" name="poster_landscape" id="poster_landscape" class="form-control" placeholder="Poster Landscape" aria-describedby="helpId">
+            <img src="{{ asset('storage/poster/'.$film->poster_potrait) }}" alt="{{ $film->judul }}" width="100px">
+            <label for="poster_potrait">Poster Potrait</label>
+            <input type="file" name="poster_potrait" id="poster_potrait" class="form-control" placeholder="Poster Potrait" aria-describedby="helpId">
+
             {{-- buatkan form untuk create film, field: release_date, duration, description, sutradara, cast, trailer, age_cat,country --}}
             <label for="release_date">Release Date</label>
             <input type="date" name="release_date" id="release_date" class="form-control" placeholder="Release Date" aria-describedby="helpId" value="{{ $film->release_date }}">

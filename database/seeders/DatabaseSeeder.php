@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
                 StudioSeeder::class,
                 FilmSeeder::class,
                 ShowTimeSeeder::class,
+                ShowSeatSeeder::class,
                 TransactionSeeder::class,
                 DetailTransactionSeeder::class,
                 

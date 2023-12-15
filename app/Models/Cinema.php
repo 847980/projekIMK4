@@ -18,4 +18,14 @@ class cinema extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function Studio()
+    {
+        return $this->hasMany(Studio::class);
+    }
+
+    public function ShowTime()
+    {
+        return $this->hasMany(ShowTime::class);
+    }
 }

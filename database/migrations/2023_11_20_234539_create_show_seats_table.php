@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detail_transactions', function (Blueprint $table) {
+        Schema::create('show_seats', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('transaction_id');
-            $table->foreign('transaction_id')->references('id')->on('transactions');
-            $table->uuid('showseat_id');
-            $table->foreign('showseat_id')->references('id')->on('show_seats');
-
+            $table->uuid('showtime_id');
+            $table->foreign('showtime_id')->references('id')->on('show_times')->onDelete('cascade');
+            $table->integer('chair_number');
+            $table->integer('chair_status')->comment('0: available, 1: booked');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detail_transactions');
+        Schema::dropIfExists('show_seats');
     }
 };

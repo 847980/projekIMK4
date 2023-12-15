@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('judul');
+            $table->string('poster_potrait')->nullable();
+            $table->string('poster_landscape')->nullable();
             $table->string('sutradara');
             $table->text('description');
             $table->integer('duration');
-            $table->string('trailer');
+            $table->text('trailer');
             $table->string('cast');
             $table->string('age_cat');
             $table->date('release_date');

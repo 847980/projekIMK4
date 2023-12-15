@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Poster</th>
                         <th>Judul</th>
                         <th>Release_date</th>
                         <th>Duration(minute)</th>
@@ -28,6 +29,13 @@
                         <tr>
                             {{-- no  --}}
                             <td>{{ $loop->iteration }} </td>
+                            <td>
+                                @if($film->poster_potrait)
+                                    <img src="{{ asset('storage/poster/'.$film->poster_potrait) }}" alt="{{ $film->judul }}" width="100px">
+                                @else
+                                    <span>No Image Yet</span>
+                                @endif
+                            </td>
                             <td>{{ $film->judul }}</td>
                             <td>{{ $film->release_date }}</td>
                             <td>{{ $film->duration }}</td>

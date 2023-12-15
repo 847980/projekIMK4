@@ -26,6 +26,11 @@ class CinemaSeeder extends Seeder
                 'city_id' => City::where('name','surabaya')->first()->id,
             ],
             [
+                'name'=> "Bukan cinemaku",
+                'address' => "jalan raya surabaya",
+                'city_id' => City::where('name','surabaya')->first()->id,
+            ],
+            [
                 'name'=> "Bukan Cinema",
                 'address' => "jalan raya Jakarta",
                 'city_id' => City::where('name','jakarta')->first()->id,

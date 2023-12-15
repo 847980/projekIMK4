@@ -13,10 +13,10 @@ class ShowTime extends Model
     protected $guarded = ['id'];
 
     // orm
-    public function DetailTransaction()
-    {
-        return $this->hasMany(DetailTransaction::class);
-    }
+    // public function DetailTransaction()
+    // {
+    //     return $this->hasMany(DetailTransaction::class);
+    // }
 
     public function Film(){
         return $this->belongsTo(Film::class);
@@ -25,4 +25,14 @@ class ShowTime extends Model
     public function Studio(){
         return $this->belongsTo(Studio::class);
     }
+
+    public function Cinema(){
+        return $this->belongsTo(Cinema::class);
+    }
+
+    public function ShowSeat(){
+        return $this->hasMany(ShowSeat::class);
+    }
+
+    
 }

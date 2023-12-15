@@ -24,6 +24,8 @@ class FilmSeeder extends Seeder
         $data = [
             [
                 'judul' => 'film1',
+                'poster_potrait' => 'film1_potrait.jpg',
+                // 'poster_landscape' => 'film1_landscape.jpg',
                 'sutradara' => 'sutradara1',
                 'description' => 'film ini adalah film yang sangat menarik mengenai perjuangan anak muda dalam mencapai cita-citanya',
                 'duration' => '120',
@@ -36,6 +38,8 @@ class FilmSeeder extends Seeder
             ],
             [
                 'judul' => 'film2',
+                'poster_potrait' => 'film2_potrait.jpg',
+                // 'poster_landscape' => 'film2_landscape.jpg',
                 'sutradara' => 'sutradara2',
                 'description' => 'film ini adalah film yang sangat menarik mengenai perjuangan anak muda dalam mencapai cita-citanya',
                 'duration' => '120',

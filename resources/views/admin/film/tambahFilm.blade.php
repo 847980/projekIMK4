@@ -2,14 +2,27 @@
 
 
 @section('body')
-
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="container">
     <h1>Create film</h1>
-    <form action="{{ route('admin.film.store') }}" method="post">
+    <form action="{{ route('admin.film.store') }}" method="post"  enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="judul">Judul</label>
-            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" aria-describedby="helpId">
+            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" aria-describedby="helpId" value="{{ old('judul') }}" >
+            {{-- upload poster landscape dan potrait --}}
+            <label for="poster_landscape">Poster Landscape</label>
+            <input type="file" name="poster_landscape" id="poster_landscape" class="form-control" placeholder="Poster Landscape" aria-describedby="helpId">
+            <label for="poster_potrait">Poster Potrait</label>
+            <input type="file" name="poster_potrait" id="poster_potrait" class="form-control" placeholder="Poster Potrait" aria-describedby="helpId">
             
             {{-- buatkan form untuk create film, field: release_date, duration, description, sutradara, cast, trailer, age_cat,country --}}
             <label for="release_date">Release Date</label>

@@ -17,8 +17,13 @@ class DetailTransaction extends Model
         return $this->belongsTo(Transaction::class);
     }
 
-    public function ShowTime()
+    // public function ShowTime()
+    // {
+    //     return $this->belongsTo(ShowTime::class);
+    // }
+
+    public function ShowSeat()
     {
-        return $this->belongsTo(ShowTime::class);
+        return $this->belongsTo(ShowSeat::class);
     }
 }

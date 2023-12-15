@@ -24,5 +24,7 @@ class Studio extends Model
     {
         return $this->hasMany(ShowTime::class);
     }
+
+    
     
 }

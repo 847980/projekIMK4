@@ -33,18 +33,18 @@ class CitySeeder extends Seeder
                 'name'=>'bandung',
                 'country_id'=>Country::where('name','indonesia')->first()->id
             ],
-            [
-                'name'=>'seoul',
-                'country_id'=>Country::where('name','korea')->first()->id
-            ],
-            [
-                'name'=>'tokyo',
-                'country_id'=>Country::where('name','jepang')->first()->id
-            ],
-            [
-                'name'=>'new york',
-                'country_id'=>Country::where('name','amerika')->first()->id
-            ],
+            // [
+            //     'name'=>'seoul',
+            //     'country_id'=>Country::where('name','korea')->first()->id
+            // ],
+            // [
+            //     'name'=>'tokyo',
+            //     'country_id'=>Country::where('name','jepang')->first()->id
+            // ],
+            // [
+            //     'name'=>'new york',
+            //     'country_id'=>Country::where('name','amerika')->first()->id
+            // ],
         ];
 
         foreach($data as $value){
