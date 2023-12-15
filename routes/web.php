@@ -24,7 +24,3 @@ Route::get('/home', function () {
 Route::get('/detail', function () {
     return view('detail');
 });
-
-Route::get('/index', function () {
-    return view('index');
-});

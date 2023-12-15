@@ -53,43 +53,15 @@ var swiper = new Swiper(".home", {
     },
 });
 
-const wrapper = document.querySelector(".wrapper"),
-selectBtn = wrapper.querySelector(".select-btn"),
-searchInp = wrapper.querySelector("input"),
-options = wrapper.querySelector(".options");
-
-let countries = ["Jakarta", "Semarang", "Sidoarjo", "Situbondo", "Surabaya", "Probolinggo"];
-
-function addCountry(selectedCountry) {
-    options.innerHTML = "";
-    countries.forEach(country => {
-        let isSelected = country == selectedCountry ? "selected" : "";
-        let li = `<li onclick="updateName(this)" class="${isSelected}">${country}</li>`;
-        options.insertAdjacentHTML("beforeend", li);
-    });
-}
-addCountry();
-
-function updateName(selectedLi) {
-    searchInp.value = "";
-    options.querySelectorAll('li').forEach(li => {
-        li.classList.remove('selected');
-    });
-    selectedLi.classList.add('selected');
-    selectBtn.firstElementChild.innerText = selectedLi.innerText;
-    wrapper.classList.remove("active");
+function openVideoPopup(videoUrl) {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('modalVideo');
+    video.src = videoUrl;
+    modal.style.display = 'block';
 }
 
-searchInp.addEventListener("keyup", () => {
-    let arr = [];
-    let searchWord = searchInp.value.toLowerCase();
-    arr = countries.filter(data => {
-        return data.toLowerCase().startsWith(searchWord);
-    }).map(data => {
-        let isSelected = data == selectBtn.firstElementChild.innerText ? "selected" : "";
-        return `<li onclick="updateName(this)" class="${isSelected}">${data}</li>`;
-    }).join("");
-    options.innerHTML = arr ? arr : `<p style="margin-top: 10px;">City not found</p>`;
+document.addEventListener("DOMContentLoaded", function () {
+    AOS.init();
 });
 
 selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));

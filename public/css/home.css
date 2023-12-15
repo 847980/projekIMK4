@@ -21,6 +21,7 @@
 body {
     background: var(--text-color);
     color: var(--bg-color);
+    max-width: 100%;
 }
 
 section {
@@ -61,10 +62,8 @@ header.shadow {
     font-size: 1rem;
     font-weight: 500;
     color: var(--bg-color);
-
     padding: 5px 0;
     margin: 0px 30px;
-    transition: all .50s ease;
 }
 
 .navbar a::after {
@@ -89,12 +88,6 @@ header.shadow {
     cursor: pointer;
     z-index: 1000001;
     display: none;
-}
-
-.main_btn {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
 }
 
 .btn {
@@ -141,13 +134,13 @@ header.shadow {
     position: relative;
 }
 
-.select-btn, li{
+.dropdown, li{
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.select-btn{
+.dropdown{
     height: 35px;
     padding: 0 20px;
     font-size: 17px;
@@ -158,12 +151,12 @@ header.shadow {
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.select-btn i{
+.dropdown i{
     font-size: 17px;
     transition: transform 0.3s linear;
 }
 
-.wrapper.active .select-btn .bx-chevron-down {
+.wrapper.active .dropdown .bx-chevron-down {
     transform: rotate(-180deg);
 }
 
@@ -484,7 +477,7 @@ footer {
 
 
 /* RESPONSIVE */
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1156px) {
     .flex-container {
         height: 130px;
         flex-direction: row;
@@ -493,9 +486,25 @@ footer {
     .flex-container .wrapper {
         margin-left: 10px; 
     }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar a {
+        margin: 0 20px; 
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1076px) {
+    .navbar a {
+        margin: 0 15px; 
+    }
+}
+
+@media screen and (max-width: 1024px) {
     .navbar {
         position: absolute;
         top: 100%;
@@ -507,9 +516,8 @@ footer {
         text-align: center;
         display: none;
         justify-content: flex-start;
-        transition: all .50s ease;
         display: none;
-        font-size: 70%;
+        font-size: 60%;
         background-color: transparent;
     }
 
@@ -539,26 +547,11 @@ footer {
         display: block; 
         position: absolute;
         right: 20px;
-        top: 20px;
-    }
-
-    .main_btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;   
-        flex-direction: column;     
-    }
-
-    .main_btn .btn {
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
         
     }
 
     .btn {
-        padding: 0.3rem 0.6rem;      
-        text-align: center;
+        flex-direction: column;
     }
 }
 
@@ -581,11 +574,5 @@ footer {
 
     .navbar {
         width: 180px;
-    }
-
-    .main_btn {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
     }
 }
