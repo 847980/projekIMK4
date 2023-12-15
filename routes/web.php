@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\Auth\AdminAuthController;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\FilmController;
 use App\Models\Film;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\CinemaController;
+use App\Http\Controllers\StudioController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,5 +71,33 @@ Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'],
     Route::put('/film/{id}/edit', [FilmController::class, 'update'])->name('film.update');
     Route::delete('/film/{id}/delete', [FilmController::class, 'destroy'])->name('film.destroy');
     
+    // CRUD Genre
+    Route::get('/genre', [GenreController::class, 'index'])->name('genre.index');
+    Route::post('/genre/create', [GenreController::class, 'store'])->name('genre.store');
+    Route::put('/genre/{id}/edit', [GenreController::class, 'update'])->name('genre.update');
+    Route::delete('/genre/{id}/delete', [GenreController::class, 'destroy'])->name('genre.destroy');
+
+    // CRUD Studio
+    Route::get('/studio', [StudioController::class, 'index'])->name('studio.index');
+    Route::get('/studio/create', [StudioController::class, 'create'])->name('studio.create');
+    Route::post('/studio/create', [StudioController::class, 'store'])->name('studio.store');
+    Route::put('/studio/{id}/edit', [StudioController::class, 'update'])->name('studio.update');
+    Route::delete('/studio/{id}/delete', [StudioController::class, 'destroy'])->name('studio.destroy');
+
+    // CRUD Cinema
+    Route::get('/cinema', [CinemaController::class, 'index'])->name('cinema.index');
+    Route::get('/cinema/create', [CinemaController::class, 'create'])->name('cinema.create');
+    Route::post('/cinema/create', [CinemaController::class, 'store'])->name('cinema.store');
+    Route::get('/cinema/{id}/edit', [CinemaController::class, 'edit'])->name('cinema.edit');
+    Route::put('/cinema/{id}/edit', [CinemaController::class, 'update'])->name('cinema.update');
+    Route::delete('/cinema/{id}/delete', [CinemaController::class, 'destroy'])->name('cinema.destroy');
+
+    // CRUD City
+    Route::get('/city', [CityController::class, 'index'])->name('city.index');
+    Route::get('/city/create', [CityController::class, 'create'])->name('city.create');
+    Route::post('/city/create', [CityController::class, 'store'])->name('city.store');
+    Route::get('/city/{id}/edit', [CityController::class, 'edit'])->name('city.edit');
+    Route::put('/city/{id}/edit', [CityController::class, 'update'])->name('city.update');
+    Route::delete('/city/{id}/delete', [CityController::class, 'destroy'])->name('city.destroy');
 });
 

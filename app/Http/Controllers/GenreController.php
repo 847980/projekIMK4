@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\City;
-use App\Models\Country;
+use App\Models\Genre;
 
-class CityController extends Controller
+
+class GenreController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data['title'] = 'City';
-        $data['cities'] = City::with(['country'])->get();
-        $data['countries'] = Country::all();
-        return view('admin.city.index', $data);
+        $data['title'] = 'Genre';
+        $data['genres'] = Genre::all();
+        return view('admin.genre.index', $data);
     }
 
     /**
@@ -24,9 +23,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah City';
-        $data['countries'] = Country::all();
-        return view('admin.city.tambahFilm', $data);
+        $data['title'] = 'Tambah Genre';
+        $data['genres'] = Genre::all();
+        return view('admin.genre.tambahGenre', $data);
     }
 
     /**
@@ -36,11 +35,10 @@ class CityController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
-            'country_id' => 'required',
         ]);
         
-        City::create($data);
-        return redirect()->back()->with('success', 'City berhasil ditambahkan');
+        Genre::create($data);
+        return redirect()->back()->with('success', 'Genre berhasil ditambahkan');
     }
 
     /**
@@ -48,7 +46,7 @@ class CityController extends Controller
      */
     public function show(string $id)
     {
-        //nampilin 1 film
+        //
     }
 
     /**
@@ -56,12 +54,10 @@ class CityController extends Controller
      */
     public function edit(string $id)
     {
-        $data['title'] = 'Edit City';
-        $data['city'] = City::findOrFail($id);
-        $data['countries'] = Country::all();
+        // $data['title'] = 'Edit Film';
+        // $data['genre'] = Genre::findOrFail($id);
 
-        return view('admin.city.editFilm', $data);
-
+        // return view('admin.genre.index', $data);
     }
 
     /**
@@ -71,11 +67,10 @@ class CityController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
-            'country_id' => 'required',
         ]);
         
-        City::findOrFail($id)->update($data);
-        return redirect()->back()->with('success', 'City berhasil diupdate');
+        Genre::findOrFail($id)->update($data);
+        return redirect()->back()->with('success', 'Genre berhasil diubah');
     }
 
     /**
@@ -83,8 +78,7 @@ class CityController extends Controller
      */
     public function destroy(string $id)
     {
-        City::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'City berhasil dihapus');
+        Genre::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Genre berhasil dihapus');
     }
-    
 }
