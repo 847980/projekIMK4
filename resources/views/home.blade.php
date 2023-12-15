@@ -109,7 +109,8 @@
             <li><a href="#movies">MOVIES</a></li>
             <li><a href="#coming">COMING</a></li>
             <li><a href="#newsletter">NEWSLETTER</a></li>
-            <li><a href="#newsletter"></i>SIGN IN</a></li>
+            <li><a href="/profile" id="profile" style="display: none;">PROFILE</a></li>
+            <li><a href="#" id="signin" style="display: inline;">SIGN IN</a></li>
         </ul>
     </header>
 

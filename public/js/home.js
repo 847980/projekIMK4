@@ -22,6 +22,19 @@ window.addEventListener('scroll', () => {
     prevScrollpos = currentScrollPos;
 });
 
+//tmbhi pengecekan kpn false (user blm login) dan true (user udh login)
+const userValid = true;
+const signIn= document.getElementById('signin');
+const userProfile = document.getElementById('profile');
+
+if (userValid) {
+    signIn.style.display = 'none';
+    userProfile.style.display = 'inline';
+} else {
+    signIn.style.display = 'inline';
+    userProfile.style.display = 'none';
+}
+
 menu.onclick = () => {
     menu.classList.toggle('bx-x');
     navbar.classList.toggle('open');
@@ -52,13 +65,6 @@ var swiper = new Swiper(".home", {
         clickable: true,
     },
 });
-
-function openVideoPopup(videoUrl) {
-    const modal = document.getElementById('videoModal');
-    const video = document.getElementById('modalVideo');
-    video.src = videoUrl;
-    modal.style.display = 'block';
-}
 
 document.addEventListener("DOMContentLoaded", function () {
     AOS.init();

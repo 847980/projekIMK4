@@ -19,7 +19,7 @@
             <li><a href="/home#movies">MOVIES</a></li>
             <li><a href="/home#coming">COMING</a></li>
             <li><a href="/home#newsletter">NEWSLETTER</a></li>
-            <li><a href="/home#newsletter"></i>SIGN IN</a></li>
+            <li><a href="/profile"></i>SIGN IN</a></li>
         </ul>       
     </header>
     <img src="assets/spirited.png" class="background">
