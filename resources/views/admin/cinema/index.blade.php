@@ -22,7 +22,7 @@
                             {{-- no  --}}
                             <td>{{ $loop->iteration }} </td>
                             <td>{{ $cinema->name }}</td>
-                            <td>{{ $cinema->adrress }}</td>
+                            <td>{{ $cinema->address }}</td>
                             <td>{{ $cinema->city->name }}</td>
                             <td>{{ $cinema->city->country->name }}</td>
                             <td>

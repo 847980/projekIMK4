@@ -36,10 +36,11 @@
             <input type="text" name="sutradara" id="sutradara" class="form-control" placeholder="Sutradara" aria-describedby="helpId">
             <label for="cast">Cast</label>
             <input type="text" name="cast" id="cast" class="form-control" placeholder="Cast" aria-describedby="helpId">
-            <label for="trailer">Trailer</label>
-            <input type="text" name="trailer" id="trailer" class="form-control" placeholder="Trailer" aria-describedby="helpId">
             <label for="age_cat">Age Category</label>
             <input type="text" name="age_cat" id="age_cat" class="form-control" placeholder="Age Category" aria-describedby="helpId">
+            <label for="trailer">Trailer</label>
+            <input type="text" name="trailer" id="trailer" class="form-control" placeholder="Trailer" aria-describedby="helpId">
+            
             <label for="genre_id">Genre</label>
             <select class="form-control" name="genre_id" id="genre_id">
                 @foreach ($genres as $genre)

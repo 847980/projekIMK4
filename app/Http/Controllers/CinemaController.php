@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cinema;
 use App\Models\City;
+use App\Models\Country;
 
 class CinemaController extends Controller
 {
@@ -25,6 +26,8 @@ class CinemaController extends Controller
     {
         $data['title'] = 'Tambah Cinema';
         $data['cities'] = City::all();
+        $data['countries'] = Country::all();
+        //cek
         return view('admin.cinema.tambahCinema', $data);
     }
 
@@ -33,8 +36,6 @@ class CinemaController extends Controller
      */
     public function store(Request $request)
     {
-
-        
         $data = $request->validate([
             'name' => 'required',
             'address' => 'required',
@@ -59,12 +60,13 @@ class CinemaController extends Controller
      */
     public function edit(string $id)
     {
-        // $data['title'] = 'Edit Film';
-        // $data['film'] = Film::findOrFail($id);
-        // $data['genres'] = Genre::all();
-        // $data['countries'] = Country::all();
-
-        // return view('admin.film.editFilm', $data);
+      
+        $data['title'] = 'Edit Cinema';
+        $data['cinema'] = Cinema::findOrFail($id);
+        $data['cinemas'] = Cinema::with(['city' => ['country']])->get();
+        $data['cities'] = City::all();
+        $data['countries'] = Country::all();
+        return view('admin.cinema.editCinema', $data);
 
     }
 
@@ -73,21 +75,14 @@ class CinemaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // $data = $request->validate([
-        //     'judul' => 'required|min:3|max:50',
-        //     'release_date' => 'required|date',
-        //     'duration' => 'required|integer',
-        //     'description' => 'required|min:10|max:1000',
-        //     'sutradara' => 'required|min:3|max:50',
-        //     'cast' => 'required|min:3|max:100',
-        //     'age_cat' => 'required|min:3|max:50',
-        //     'trailer' => 'required|url',
-        //     'genre_id' => 'required',
-        //     'country_id' => 'required',
-        // ]);
+        $data = $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'city_id' => 'required'
+        ]);
         
-        // Film::findOrFail($id)->update($data);
-        // return redirect()->back()->with('success', 'Film berhasil diupdate');
+        Cinema::findOrFail($id)->update($data);
+        return redirect()->back()->with('success', 'Cinema berhasil diupdate');
     }
 
     /**
