@@ -56,12 +56,53 @@
                 <li class="movie_place">Cinema: ${item.cinema}</li>
                 `;
             }
-
-        // Append the ul to the box
             box.appendChild(ul);
-
-        // Append the box to the container
             container.appendChild(box);
+
+            if (type === 'ongoing') {
+                const modalOverlay = document.createElement('div');
+                modalOverlay.className = 'overlay';
+                modalOverlay.id = `modalOverlay${index + 1}`;
+                modalOverlay.style.display = 'none';
+
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <div class="cardWrap">
+                        <div class="card cardLeft">
+                            <h1>Ivan <span>Cinema</span></h1>
+                            <div class="title">
+                                <h2>${item.title}</h2>
+                                <span>movie</span>
+                            </div>
+                            <div class="date">
+                                <h2>${item.date}</h2>
+                                <span>date</span>
+                            </div>
+                            <div class="seat">
+                                <h2>${item.seat}</h2>
+                                <span>seat</span>
+                            </div>
+                            <div class="time">
+                                <h2>${item.time}</h2>
+                                <span>time</span>
+                            </div>
+                        </div>
+                        <div class="card cardRight">
+                            <div class="number">
+                                <h1>${item.cinema}</h1>
+                                <!-- Assuming you have a property for the studio -->
+                                <h3>${item.studio}</h3>
+                                <span>studio</span>
+                            </div>
+                            <div class="barcode"></div>
+                        </div>
+                    </div>
+                `;
+                modalOverlay.appendChild(modal);
+                document.body.appendChild(modalOverlay);
+            }
         });
     }
 </script>
