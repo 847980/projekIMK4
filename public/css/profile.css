@@ -16,6 +16,9 @@
     --text-color: rgb(34, 40, 49);
     --text-color-light: rgb(57, 62, 70);
     --bg-color: rgb(238, 238, 238);
+    --red: #e84c3d;
+    --grey: #ecedef;
+    --black: #343434;
 }
 
 body {
@@ -147,48 +150,65 @@ header.shadow {
     width: 27em;
     text-align: left;
     position: relative;
+    margin-top: 100px;
 }
 
-/* Style for close button in ticket modal */
 .ticket-modal .close {
-    cursor: pointer;
+    cursor: pointer; /* Add this line */
+    font-size: 20px;
+    color: #555;
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 20px;
-    color: #555;
+}
+
+.openModalBtn {
+    background-color: rgb(221, 201, 155);
+    color: var(--text-color-light);
+    padding: 7px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    max-width: 100px;
+}
+
+.openModalBtn:hover {
+    background-color: var(--main-color);
 }
 
 /* TICKET */
 .cardWrap {
-    width: 100%; /* Adjusted to take full width of the modal */
-    margin: 0 auto; /* Center the content */
-    color: var(--bg-color);
-    font-family: sans-serif;
+    max-width: 500px; 
+    margin: 0 auto; 
+    color: rgb(195, 200, 209);
     display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap; /* Added to allow content to wrap on smaller screens */
-}
-
-.card {
-    background: #fff;
-    height: 11em;
-    position: relative;
-    padding: 1em;
-    margin-top: 30px;
-    border-radius: 10px;
-    flex: 1 1 100%; /* Adjusted to take full width on smaller screens */
+    flex-wrap: wrap;     
 }
 
 .cardLeft {
     border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    width: 12em;
+    border-bottom-left-radius: 8px; 
+    width: 15em;
+} 
+.card {
+    background: #fff;
+    flex: 1; 
+    position: relative;
+    padding: 1em;
+    margin-top: 30px;
+}
+
+.cardLeft, .cardRight {
+    flex: 1; 
+    border-radius: 10px; 
 }
 
 .cardRight {
     width: 6.5em;
-    border-left: .18em dashed #fff;
+    border-left: .18em dashed var(--text-color);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     &:before,
@@ -218,6 +238,7 @@ header.shadow {
 h1 {
     font-size: 1.1em;
     margin-top: 0;
+    color: var(--text-color);
     span {
         font-weight: normal;
     }
@@ -264,7 +285,7 @@ h1 {
     span {
         display: block;
         color: #a2aeae;
-    }
+    }    
 }
 
 .barcode {

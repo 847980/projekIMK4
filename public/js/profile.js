@@ -22,14 +22,35 @@ window.addEventListener('scroll', () => {
     prevScrollpos = currentScrollPos;
 });
 
-function openModal() {
-    document.getElementById('modalOverlay').style.display = 'flex';
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const detailButtons = document.querySelectorAll('.box-ongoing button');
 
-// Function to close the modal
-function closeModal() {
-    document.getElementById('modalOverlay').style.display = 'none';
-}
+    detailButtons.forEach((button, index) => {
+        button.addEventListener('click', function () {
+            const modalOverlay = document.getElementById(`modalOverlay${index + 1}`);
+            modalOverlay.style.display = 'flex';
+            const modal = modalOverlay.querySelector('.ticket-modal');
+        });
+    });
 
-// Attach click event to the button
-document.getElementById('openModalBtn').addEventListener('click', openModal);
+    const closeButtons = document.querySelectorAll('.modal .close');
+
+    closeButtons.forEach((closeButton) => {
+        closeButton.addEventListener('click', function () {
+            const modalOverlay = this.closest('.overlay');
+            modalOverlay.style.display = 'none';
+        });
+    });
+});
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const editProfileBtn = document.getElementById('editProfileBtn');
+//     editProfileBtn.addEventListener('click', function () {
+//         const editProfileModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+//         editProfileModal.show();
+//     });
+// });
+
+// function closeEditProfileModal() {
+//     document.getElementById('editProfileModal').style.display = 'none';
+// }
