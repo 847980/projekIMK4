@@ -16,8 +16,8 @@
         const userData = {
             name: "John Doe",
             ongoing: [
-                { title: "Spirited Away", date: "01-01-2024", seat: "A1", time: "12:00", cinema: "Pakuwon City" },
-                { title: "Avatar", date: "02-02-2024", seat: "H13", time: "20:30", cinema: "Tunjungan Plaza" }
+                { title: "Spirited Away", date: "01-01-2024", seat: "A1", time: "12:00", cinema: "Pakuwon City", studio: "3" },
+                { title: "Avatar", date: "02-02-2024", seat: "H13", time: "20:30", cinema: "Tunjungan Plaza", studio: "1" }
             ],
             history: [
                 { title: "Star wars", date: "01-01-2023", cinema: "Pakuwon City, Surabaya" },
@@ -92,7 +92,6 @@
                         <div class="card cardRight">
                             <div class="number">
                                 <h1>${item.cinema}</h1>
-                                <!-- Assuming you have a property for the studio -->
                                 <h3>${item.studio}</h3>
                                 <span>studio</span>
                             </div>
@@ -143,109 +142,14 @@
     <section class="ongoing" id="ongoing">
         <h3 class="subhead">ONGOING</h3>
         <div class="ongoing-container">
-            <div class="box-ongoing">                
-                <ul class="desc">
-                    <li class="movie_title">Spirited Away</li>
-                    <li class="movie_date">Date: 01-01-2024</li>     
-                    <li><button class="openModalBtn" id="openModalBtn1">Detail</button></li>
-                </ul>                  
-                <div class="overlay" id="modalOverlay1">
-                    <div class="modal">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <div class="cardWrap">
-                            <div class="card cardLeft">
-                                <h1>Ivan <span>Cinema</span></h1>
-                                <div class="title">
-                                    <h2>Spirited Away</h2>
-                                    <span>movie</span>
-                                </div>
-                                <div class="date">
-                                    <h2>01-01-2024</h2>
-                                    <span>date</span>
-                                </div>
-                                <div class="seat">
-                                    <h2>A1</h2>
-                                    <span>seat</span>
-                                </div>
-                                <div class="time">
-                                    <h2>12:00</h2>
-                                    <span>time</span>
-                                </div>                                        
-                            </div>
-                            <div class="card cardRight">
-                                <div class="number">
-                                    <h1>Pakuwon City</h1>
-                                    <h3>3</h3>
-                                    <span>studio</span>
-                                </div>
-                                <div class="barcode"></div>
-                            </div>
-                        </div>  
-                    </div>
-                </div>                 
-            </div>   
-            <div class="box-ongoing">                
-                <ul class="desc">
-                    <li class="movie_title">Avatar</li>
-                    <li class="movie_date">Date: 02-02-2024</li>  
-                    <li><button class="openModalBtn" id="openModalBtn2">Detail</button></li>   
-                </ul>    
-                <div class="overlay" id="modalOverlay2">
-                    <div class="modal">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <div class="cardWrap">
-                            <div class="card cardLeft">
-                                <h1>Ivan <span>Cinema</span></h1>
-                                <div class="title">
-                                    <h2>Avatar</h2>
-                                    <span>movie</span>
-                                </div>
-                                <div class="date">
-                                    <h2>02-02-2024</h2>
-                                    <span>date</span>
-                                </div>
-                                <div class="seat">
-                                    <h2>H13</h2>
-                                    <span>seat</span>
-                                </div>
-                                <div class="time">
-                                    <h2>20:30</h2>
-                                    <span>time</span>
-                                </div>                                        
-                            </div>
-                            <div class="card cardRight">
-                                
-                                <div class="number">
-                                    <h1>Tunjungan Plaza</h1>
-                                    <h3>1</h3>
-                                    <span>studio</span>
-                                </div>
-                                <div class="barcode"></div>
-                            </div>
-                        </div>  
-                    </div>
-                </div>                                 
-            </div> 
+            
         </div>         
     </section>
 
     <section class="history" id="history">
         <h3 class="subhead">HISTORY</h3>
         <div class="history-container">
-            <div class="box-history">                
-                <ul class="desc">
-                    <li class="movie_title">Star wars</li>
-                    <li class="movie_date">Date: 01-01-2023</li> 
-                    <li class="movie_place">Cinema: Pakuwon City, Surabaya</li>    
-                </ul>                    
-            </div>   
-            <div class="box-history">                
-                <ul class="desc">
-                    <li class="movie_title">Cinderella</li>
-                    <li class="movie_date">Date: 02-02-2023</li>
-                    <li class="movie_place">Cinema: Pakuwon City, Surabaya</li>      
-                </ul>                    
-            </div> 
+            
         </div>    
        
     </section>
