@@ -26,7 +26,7 @@
         };
 
         const profile = document.querySelector('.subhead');
-        profile.textContent = `${userData.name} \u2003\u2003\u2003\u2003 \u270E`; 
+        profile.textContent = `${userData.name}`; 
 
         const ongoingContainer = document.querySelector('.ongoing-container');
         updateSection(ongoingContainer, userData.ongoing, 'ongoing');
@@ -82,7 +82,9 @@
 
     <section class="profile" id="profile">
         <h3 class="heading">Welcome,</h3></br>   
-        <h3 class="subhead">Name &emsp;<i class='bx bxs-pencil' id="editProfileBtn"></i></h3>
+        <h3 class="subhead">Name &emsp;
+            <!-- <i class='bx bxs-pencil' id="editProfileBtn"></i> -->
+        </h3>
     </section>
 
     <!-- <div class="overlay" id="editProfileModal">
