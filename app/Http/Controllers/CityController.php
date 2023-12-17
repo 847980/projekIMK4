@@ -16,7 +16,7 @@ class CityController extends Controller
         $data['title'] = 'City';
         $data['cities'] = City::with(['country'])->get();
         $data['countries'] = Country::all();
-        return view('admin.city.index', $data);
+        return view('admin.city.city', $data);
     }
 
     /**
@@ -35,7 +35,7 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:city,name',
             'country_id' => 'required',
         ]);
         
@@ -83,7 +83,11 @@ class CityController extends Controller
      */
     public function destroy(string $id)
     {
-        City::findOrFail($id)->delete();
+        try{
+            City::findOrFail($id)->delete();
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'City gagal dihapus');
+        }
         return redirect()->back()->with('success', 'City berhasil dihapus');
     }
 

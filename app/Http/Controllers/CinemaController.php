@@ -16,7 +16,7 @@ class CinemaController extends Controller
     {
         $data['title'] = 'Cinema';
         $data['cinemas'] = Cinema::with(['city' => ['country']])->get();
-        return view('admin.cinema.index', $data);
+        return view('admin.cinema.cinema', $data);
     }
 
     /**
@@ -28,7 +28,7 @@ class CinemaController extends Controller
         $data['cities'] = City::all();
         $data['countries'] = Country::all();
         //cek
-        return view('admin.cinema.tambahCinema', $data);
+        return view('admin.cinema.cinema-add', $data);
     }
 
     /**
@@ -39,6 +39,7 @@ class CinemaController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'address' => 'required',
+            'country_id' => 'required',
             'city_id' => 'required'
         ]);
 
@@ -66,7 +67,7 @@ class CinemaController extends Controller
         $data['cinemas'] = Cinema::with(['city' => ['country']])->get();
         $data['cities'] = City::all();
         $data['countries'] = Country::all();
-        return view('admin.cinema.editCinema', $data);
+        return view('admin.cinema.cinema-edit', $data);
 
     }
 
@@ -90,19 +91,23 @@ class CinemaController extends Controller
      */
     public function destroy(string $id)
     {
-        Cinema::findOrFail($id)->delete();
+        try {
+            Cinema::findOrFail($id)->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Cinema tidak boleh dihapus');
+        }
         return redirect()->back()->with('success', 'Cinema berhasil dihapus');
     }
 
     // get cinema by city
-    // public function getCinemaByCity(Request $request)
-    // {
-    //     // validate
-    //     $request->validate([
-    //         'city_id' => 'required'
-    //     ]);
-    //     $cinemas = Cinema::where('city_id', $request->city_id)->get();
-    //     return response()->json($cinemas);
-    // }
+    public function getCinemaByCity(Request $request)
+    {
+        // // validate
+        $data = $request->validate([
+            'city_id' => 'required'
+        ]);
+        $cinemas = Cinema::where('city_id', $request->city_id)->get();
+        return response()->json($cinemas);
+    }
 
 }

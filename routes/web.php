@@ -30,11 +30,6 @@ Route::get('/', function () {
 });
 
 
-    // for ajax
-    // Route::post('/cinema/byCity', [CinemaController::class, 'getCinemaByCity'])->name('getCinema.byCity');
-    // Route::post('/studio/byCinema', [StudioController::class, 'getStudioByCinema'])->name('getStudio.byCinema');
-
-
 // user login dan register
 Route::middleware('guest')->group(function(){
     Route::get('/login', [AuthController::class, 'loginIndex'])->name('login.index');
@@ -80,8 +75,8 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
 Route::middleware('guest:admin')->group(function(){
     Route::get('admin/login', [AdminAuthController::class, 'loginView'])->name('admin.login.index');
     Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.send');
-});
-
+}); 
+  
 // admin sudah login
 Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'], function(){
     Route::get('/dashboard', function () {
@@ -137,12 +132,40 @@ Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'],
     Route::get('/city/{id}/edit', [CityController::class, 'edit'])->name('city.edit');
     Route::put('/city/{id}/edit', [CityController::class, 'update'])->name('city.update');
     Route::delete('/city/{id}/delete', [CityController::class, 'destroy'])->name('city.destroy');
+
+
+       // for ajax
+    Route::post('/cinema/byCity', [CinemaController::class, 'getCinemaByCity'])->name('getCinema.byCity');
+    Route::post('/studio/byCinema', [StudioController::class, 'getStudioByCinema'])->name('getStudio.byCinema');
 });
 
 Route::get('/payment', function () {
-    return view('payment');
+    return view('payment'); 
 });
 
 Route::post('paypal', [PaypalController::class, 'paypal'])->name('paypal');
 Route::get('success', [PaypalController::class, 'success'])->name('success');
 Route::get('cancel', [PaypalController::class, 'cancel'])->name('cancel');
+
+
+// punya jev
+
+Route::get('/book', function () {
+    return view('book');
+});
+
+// punya ali
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/detail', function () {
+    return view('detail');
+});
+Route::get('/profile', function () {
+    return view('profile');
+});
+
+Route::get('/checkout', function() {
+    return view('checkout');
+});

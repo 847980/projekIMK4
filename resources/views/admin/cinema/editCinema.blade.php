@@ -21,7 +21,7 @@
             <label for="country_id">Country</label>
             <select class="form-control" name="country_id" id="country_id">
                 @foreach ($countries as $country)
-                    <option value="{{ $country->id }}" {{ $country->city_id == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
+                    <option value="{{ $country->id }}" {{ $cinema->city->country_id == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                 @endforeach
             </select>
             

@@ -10,7 +10,7 @@ class Studio extends Model
 {
     use HasFactory, HasUuids;
     protected $fillable = [
-        'name', 'cinema_id'
+        'name', 'cinema_id', 'total_chair'
     ];
 
 

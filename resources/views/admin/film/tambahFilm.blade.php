@@ -2,7 +2,7 @@
 
 
 @section('body')
-@if($errors->any())
+{{-- @if($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach($errors->all() as $error)
@@ -10,7 +10,7 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}
 <div class="container">
     <h1>Create film</h1>
     <form action="{{ route('admin.film.store') }}" method="post"  enctype="multipart/form-data">
@@ -18,6 +18,11 @@
         <div class="form-group">
             <label for="judul">Judul</label>
             <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" aria-describedby="helpId" value="{{ old('judul') }}" >
+            @error('judul')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+            @enderror
             {{-- upload poster landscape dan potrait --}}
             <label for="poster_landscape">Poster Landscape</label>
             <input type="file" name="poster_landscape" id="poster_landscape" class="form-control" placeholder="Poster Landscape" aria-describedby="helpId">

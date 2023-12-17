@@ -80,6 +80,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         $(".button-group").click(function() {

@@ -26,7 +26,7 @@
                             <td>{{ $cinema->city->name }}</td>
                             <td>{{ $cinema->city->country->name }}</td>
                             <td>
-                                <a href="{{ route('admin.cinema.edit', $cinema->id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.cinema.edit', $cinema->id) }}" class="btn btn-warning my-2">Edit</a>
                                 <form action="{{ route('admin.cinema.destroy', $cinema->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')

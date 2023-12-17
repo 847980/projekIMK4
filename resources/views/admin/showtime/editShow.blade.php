@@ -21,54 +21,61 @@
 
 <div class="container">
     <h1>Create Show Time</h1>
-    <form action="{{ route('admin.showtime.store') }}" method="post"  enctype="multipart/form-data">
+    <form action="{{ route('admin.showtime.update',$showtime->id) }}" method="post"  enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="form-group">
             <label for="film_id">Film</label>
             <select class="form-control" name="film_id" id="film_id">
-                <option hidden disabled selected value="">--Silahkan Pilih Film--</option>
                 @foreach ($films as $film)
-                    <option value="{{ $film->id }}">{{ $film->judul }}</option>
+                    <option value="{{ $film->id }}" {{ $showtime->film_id == $film->id ? 'selected' : ''}} >{{ $film->judul }}</option>
                 @endforeach
             </select>
-            
             {{-- city --}}
             <label for="city_id">City</label>
             <select class="form-control" name="city_id" id="city_id">
-                <option hidden disabled selected value="">--Silahkan Pilih Kota--</option>
-            
                 
                 @foreach ($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    <option value="{{ $city->id }}" {{ $showtime->cinema->city_id == $city->id ? 'selected' : ''}} >{{ $city->name }}</option>
+
                 @endforeach
             </select>
 
             {{-- cinema --}}
             <label for="cinema_id">Cinema</label>
             <select class="form-control" name="cinema_id" id="cinema_id">
-                <option hidden disabled selected value="">--isi kota dulu--</option>
+
+                @foreach ($cinemas as $cinema)
+                <option value="{{ $cinema->id }}" {{ $showtime->cinema_id == $cinema->id ? 'selected' : ''}} >{{ $cinema->name }}</option>
+
+                @endforeach
             </select>
             
             <label for="studio_id">Studio</label>
             <select class="form-control" name="studio_id" id="studio_id">
-                <option hidden disabled selected value="">--isi Cinema dulu--</option>
+                @foreach ($studios as $studio)
+                <option value="{{ $studio->id }}" {{ $showtime->studio_id == $studio->id ? 'selected' : ''}} >{{ $studio->name }}</option>
+
+                @endforeach
                 
             </select>
             <label for="show_date">Show Date</label>
-            <input type="date" name="show_date" id="show_date" class="form-control" placeholder="Show Date" aria-describedby="helpId">
+            <input type="date" name="show_date" id="show_date" class="form-control" placeholder="Show Date" aria-describedby="helpId" value="{{ $showtime->show_date }}">
+            
             
             {{-- dropdown --}}
             <label for="show_time">Time</label>
             <select class="form-control" name="show_time" id="show_time">
-                <option value="10:00:00-12:00:00">10.00-12.00</option>
-                <option value="12:00:00-14:00:00">12.00-14.00</option>
-                <option value="14:00:00-16:00:00">14.00-16.00</option>
-                <option value="16:00:00-18:00:00">16.00-18.00</option>
-                <option value="18:00:00-20:00:00">18.00-20.00</option>
+                <option value="10:00:00-12:00:00" {{ $showtime->start_time == '10:00:00' ? 'selected' : ''}}>10.00-12.00</option>
+                <option value="12:00:00-14:00:00" {{ $showtime->start_time == '12:00:00' ? 'selected' : ''}}>12.00-14.00</option>
+                <option value="14:00:00-16:00:00" {{ $showtime->start_time == '14:00:00' ? 'selected' : ''}}>14.00-16.00</option>
+                <option value="16:00:00-18:00:00" {{ $showtime->start_time == '16:00:00' ? 'selected' : ''}}>16.00-18.00</option>
+                <option value="18:00:00-20:00:00" {{ $showtime->start_time == '18:00:00' ? 'selected' : ''}}>18.00-20.00</option>
+
             </select>
             
             <label for="price">Price</label>
-            <input type="number" name="price" id="price" class="form-control" placeholder="Price" aria-describedby="helpId">
+            <input type="number" name="price" id="price" class="form-control" placeholder="Price" aria-describedby="helpId" value="{{ $showtime->price }}">
             {{-- submit --}}
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -82,7 +89,6 @@
 </div>
 
 @endsection
-
 
 @section('script')
 <script>

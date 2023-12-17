@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('transaction_id');
             $table->foreign('transaction_id')->references('id')->on('transactions');
             $table->uuid('showseat_id');
-            $table->foreign('showseat_id')->references('id')->on('show_seats');
+            $table->foreign('showseat_id')->references('id')->on('show_seats')->restrictOnDelete();
 
             $table->timestamps();
         });

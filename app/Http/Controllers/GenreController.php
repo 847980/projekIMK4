@@ -15,7 +15,7 @@ class GenreController extends Controller
     {
         $data['title'] = 'Genre';
         $data['genres'] = Genre::all();
-        return view('admin.genre.index', $data);
+        return view('admin.genre.genre', $data);
     }
 
     /**
@@ -23,9 +23,9 @@ class GenreController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Tambah Genre';
-        $data['genres'] = Genre::all();
-        return view('admin.genre.tambahGenre', $data);
+        // $data['title'] = 'Tambah Genre';
+        // $data['genres'] = Genre::all();
+        // return view('admin.genre.tambahGenre', $data);
     }
 
     /**
@@ -78,7 +78,11 @@ class GenreController extends Controller
      */
     public function destroy(string $id)
     {
-        Genre::findOrFail($id)->delete();
+        try {
+            Genre::findOrFail($id)->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Genre tidak boleh dihapus');
+        }
         return redirect()->back()->with('success', 'Genre berhasil dihapus');
     }
 }

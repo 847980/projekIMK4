@@ -18,7 +18,7 @@ class FilmController extends Controller
     {
         $data['title'] = 'Film';
         $data['films'] = Film::with(['genre','country'])->get();
-        return view('admin.film.index', $data);
+        return view('admin.film.film', $data);
     }
 
     /**
@@ -29,7 +29,7 @@ class FilmController extends Controller
         $data['title'] = 'Tambah Film';
         $data['genres'] = Genre::all();
         $data['countries'] = Country::all();
-        return view('admin.film.tambahFilm', $data);
+        return view('admin.film.film-add', $data);
     }
 
     /**
@@ -85,7 +85,7 @@ class FilmController extends Controller
         $data['genres'] = Genre::all();
         $data['countries'] = Country::all();
 
-        return view('admin.film.editFilm', $data);
+        return view('admin.film.film-edit', $data);
 
     }
 
@@ -141,10 +141,15 @@ class FilmController extends Controller
     public function destroy(string $id)
     {
         $film = Film::findOrFail($id);
+        try{
+            $film->delete();
+        }catch(\Exception $e){
+            return redirect()->back()->with('error', 'Film gagal dihapus karena terhubung ke tabel lain');
+        }
+
         // hapus file lama
         Storage::delete('public/poster/' . $film->poster_potrait );
         Storage::delete('public/poster/' . $film->poster_landscape );
-        $film->delete();
         return redirect()->back()->with('success', 'Film berhasil dihapus');
     }
     

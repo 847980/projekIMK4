@@ -14,18 +14,31 @@ class AuthController extends Controller
     //Register
     public function registerIndex()
     {
-        $data['title'] = 'Register';
-        return view('register', $data);
+        return redirect()->route('login.index');
     }
 
     public function register(Request $request){
         // validasi form peserta
         $request = $request->only('username', 'email', 'password');
         $validated = Validator::make($request, [
-            'username' => 'required|min:3|max:50|unique:users',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:8|max:50',
-        ])->validate(); 
+            'username' => 'required|min:3|max:50|unique:users,username',
+            'email' => 'required|email:dns|unique:users,email',
+            'password' => 'required|min:5|max:50',
+        ],
+        // validation response
+        [
+            'username.required' => 'harus diisi',
+            'username.min' => 'minimal 3 karakter',
+            'username.max' => 'maksimal 50 karakter',
+            'username.unique' => 'sudah terdaftar',
+            'email.required' => 'harus diisi',
+            'email.email' => 'harus email valid',
+            'email.unique' => 'sudah terdaftar',
+            'password.required' => 'harus diisi',
+            'password.min' => 'minimal 5 karakter',
+            'password.max' => 'maksimal 50 karakter',
+        ]
+        )->validate(); 
 
         // sama aja kayak hash::make("llalal")
         $validated['password'] = bcrypt($validated['password']);
@@ -51,11 +64,15 @@ class AuthController extends Controller
 
     public function login(Request $request){
         // validasi form peserta
-        $data = $request->only('email', 'password');
+        $data = $request->only('username', 'password');
         $credentials = Validator::make($data, [
-            'email' => 'required|email:dns',
+            // 'email' => 'required|email:dns',
+            'username' => 'required',
             'password' => 'required',
-        ])->validate(); 
+            ])->validate(); 
+
+
+
 
         // cek apakah email dan password benar
         if(Auth::attempt($credentials)){
@@ -70,8 +87,7 @@ class AuthController extends Controller
 
         // jika salah, redirect ke halaman login
         return back()
-        ->with('error','email atau password salah')
-        ->onlyInput('email');
+        ->with('error','email atau password salah');
 
     }
 
