@@ -32,7 +32,7 @@ class DetailTransactionSeeder extends Seeder
                     'showtime_id', ShowTime::where('studio_id', Studio::where('name','studio1')->first()->id)
                     ->where('cinema_id',Cinema::where('name','cinemaku')->first()->id)
                     ->where('film_id', Film::where('judul', 'film1')->first()->id)
-                    ->where('show_date', '2024-01-01')
+                    ->where('show_date', '2023-12-18')
                     ->where('start_time', '10:00:00')
                     ->first()->id
                     )
@@ -44,7 +44,7 @@ class DetailTransactionSeeder extends Seeder
                     'showtime_id', ShowTime::where('studio_id', Studio::where('name','studio1')->first()->id)
                     ->where('cinema_id',Cinema::where('name','cinemaku')->first()->id)
                     ->where('film_id', Film::where('judul', 'film1')->first()->id)
-                    ->where('show_date', '2024-01-01')
+                    ->where('show_date', '2023-12-18')
                     ->where('start_time', '10:00:00')
                     ->first()->id
                     )
@@ -56,7 +56,7 @@ class DetailTransactionSeeder extends Seeder
                     'showtime_id', ShowTime::where('studio_id', Studio::where('name','studio1')->first()->id)
                     ->where('cinema_id',Cinema::where('name','cinemaku')->first()->id)
                     ->where('film_id', Film::where('judul', 'film1')->first()->id)
-                    ->where('show_date', '2024-01-01')
+                    ->where('show_date', '2023-12-18')
                     ->where('start_time', '10:00:00')
                     ->first()->id
                     )
