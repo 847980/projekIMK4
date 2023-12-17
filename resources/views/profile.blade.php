@@ -109,7 +109,6 @@
 </head>
 
 <body>
-    <div class="background-layer"></div>
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
