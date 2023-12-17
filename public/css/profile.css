@@ -397,25 +397,3 @@ h1 {
         flex-direction: column;
     }
 }
-
-@media screen and (max-width: 310px) {
-    .flex-container {
-        margin-right: 15px;
-    }
-    
-    .main a {
-        font-size: 0.8rem;
-    }
-
-    #menu-icon {
-        font-size: 28px;
-    }
-
-    .navbar a {
-        font-size: 0.8rem;
-    }
-
-    .navbar {
-        width: 180px;
-    }
-}

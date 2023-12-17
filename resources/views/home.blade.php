@@ -13,92 +13,124 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        const cities = ["Select City", "City 1", "City 2", "City 3"];
-        const cinemas = {
-            "Select City": ["Select Cinema"],
-            "City 1": ["Cinema 1A", "Cinema 1B"],
-            "City 2": ["Cinema 2A", "Cinema 2B", "Cinema 2C"],
-            "City 3": ["Cinema 3A", "Cinema 3B", "Cinema 3C", "Cinema 3D"]
-        };
+        // const cities = ["Select City", "City 1", "City 2", "City 3"];
+        // const cinemas = {
+        //     "Select City": {
+        //         "Select Cinema": []
+        //         //kasi select all
+        //     },
+        //     "City 1": {
+        //         "Cinema 1A": [
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" }
+        //         ],
+        //         "Cinema 1B": [
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" }
+        //         ]
+        //     },
+        //     "City 2": {
+        //         "Cinema 2A": [
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" }
+        //         ]
+        //     },
+        //     "City 3": {
+        //         "Cinema 3A": [
+        //                 { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //                 { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" }
+        //         ],
+        //         "Cinema 3B": [
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" }
+        //         ],
+        //         "Cinema 3C": [
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" },
+        //             { title: "Star Wars", duration: "136 min", genre: "Action", img: "assets/starwars.jpg", desc: "The heroic development of Luke Skywalker as a Jedi and his fight against Palpatine's Galactic Empire alongside his sister, Leia" }
+        //         ]
+        //     }
+        // };
 
-        function populateCities() {
-            const cityDropdown = document.getElementById("cityDropdown");
-            const cinemaDropdown = document.getElementById("cinemaDropdown");
-            const selectedCity = cityDropdown.value;
-            cinemaDropdown.innerHTML = '';
-            const cinemaOptions = cinemas[selectedCity] || [];
-            cinemaOptions.forEach(cinema => {
-                const option = document.createElement("option");
-                option.text = cinema;
-                cinemaDropdown.add(option);
-            });
-        }
+        // function populateCities() {
+        //     const cityDropdown = document.getElementById("cityDropdown");
+        //     if (!cityDropdown) {
+        //         console.error("City dropdown not found");
+        //         return;
+        //     }
 
-        function showMovies() {
-            const selectedCity = document.getElementById("cityDropdown").value;
-            const selectedCinema = document.getElementById("cinemaDropdown").value;
-            const moviesContainer = document.querySelector(".movies-container");
+        //     const cinemaDropdown = document.getElementById("cinemaDropdown");
+        //     const selectedCity = cityDropdown.value;
+        //     const cinemaOptions = Object.keys(cinemas[selectedCity] || {});
 
-            moviesContainer.innerHTML = '';
+        //     cinemaDropdown.innerHTML = '';
+        //     cinemaOptions.forEach(cinema => {
+        //         const option = document.createElement("option");
+        //         option.text = cinema;
+        //         cinemaDropdown.add(option);
+        //     });
+        //     showMovies();
+        // }
+        
+        // function showMovies() {
+        //     const selectedCity = document.getElementById("cityDropdown").value;
+        //     const selectedCinema = document.getElementById("cinemaDropdown").value;
+        //     const moviesContainer = document.querySelector(".movies-container");
 
-            const movies = getMoviesForCityAndCinema(selectedCity, selectedCinema);
+        //     moviesContainer.innerHTML = '';
 
-            movies.forEach(movie => {
-                const movieElement = createMovieElement(movie);
-                moviesContainer.appendChild(movieElement);
-            });
-        }
+        //     if (selectedCity === "Select City" || selectedCinema === "Select Cinema") {
+        //         const initialCinemaMovies = getMoviesForCityAndCinema("City 1", "Cinema 1A");
+        //         updateMovie(moviesContainer, initialCinemaMovies);
+        //     } else {
+        //         const cinemaMovies = getMoviesForCityAndCinema(selectedCity, selectedCinema);
+        //         updateMovie(moviesContainer, cinemaMovies);
+        //     }
+        // }
 
+        // function getMoviesForCityAndCinema(city, cinema) {
+        //     return cinemas[city][cinema];
+        // }
 
-        //fungsi ini aku krg tau soale liak gpt :(
-        function getMoviesForCityAndCinema(city, cinema) {
-            const cityCinemas = cinemas[city] || [];
-            if (cityCinemas.includes(cinema)) {
-                switch (cinema) {
-                    case "Cinema 1A":
-                        return [
-                            { title: "Movie A1", duration: "120 min", genre: "Action" },
-                            { title: "Movie A2", duration: "110 min", genre: "Drama" },
-                            // Add more movies as needed
-                        ];
-                    // Add cases for other cinemas
-                    // ...
-                }
-            } else {
-                return [];
-            }
-        }
+        // function updateMovie(container, data) {
+        //     container.innerHTML = '';
+        //     data.forEach((item, index) => {
+        //         const movieElement = document.createElement("div");
+        //         movieElement.className = "box";
+        //         movieElement.innerHTML =
+        //             `<div data-aos="fade-up" data-aos-duration="2500">
+        //                 <div class="box-img">
+        //                     <img src="${item.img}">
+        //                     <div class="overlay">
+        //                         <p class="movie-desc">${item.desc}</p>
+        //                         <a href="/detail" class="btn-mov">BOOK</a>
+        //                     </div>
+        //                 </div>
+        //                 <h3>${item.title}</h3>
+        //                 <span>${item.duration} | ${item.genre}</span>
+        //             </div>`;
+        //         container.appendChild(movieElement);
+        //     });
+        // }
 
-        function createMovieElement(movie) {
-            const movieElement = document.createElement("div");
-            movieElement.className = "box";
-            movieElement.innerHTML = 
-                `<div data-aos="fade-up" data-aos-duration="2500">
-                    <div class="box-img">
-                        <img src="assets/insidious.jpg"> //POSTER
-                        <div class="overlay">
-                            <p class="movie-desc">DESKRIPSI</p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>JUDUL FILM</h3>
-                    <span>DURASI | GENRE</span>
-                </div>`;                
-            return movieElement;
-        }
+        // const moviesContainer = document.querySelector('.movies-container');
 
-        if (cityDropdown && cinemaDropdown) {
-            cityDropdown.addEventListener("change", () => {
-                populateCities();
-                showMovies(); 
-            });
+        // const initialCity = "City 1";
+        // const initialCinema = "Cinema 1A";
+        // const initialCinemaMovies = getMoviesForCityAndCinema(initialCity, initialCinema);
+        // updateMovie(moviesContainer, initialCinemaMovies);
 
-            cinemaDropdown.addEventListener("change", () => {
-                populateCities();
-                showMovies(); 
-            });
-        }
-    </script>    
+        // const cityDropdown = document.getElementById("cityDropdown");
+        // const cinemaDropdown = document.getElementById("cinemaDropdown");
+
+        // if (cityDropdown && cinemaDropdown) {
+        //     cityDropdown.addEventListener("change", populateCities);
+        //     cinemaDropdown.addEventListener("change", showMovies);
+        // }
+        // populateCities();
+    </script>
 </head>
 
 <body>
@@ -156,6 +188,7 @@
                 <label for="cityDropdown">City&emsp;</label>
                 <select id="cityDropdown" onchange="populateCities()">
                     <script>
+                        const cities = ["Select City", "City 1", "City 2", "City 3"];
                         cities.forEach(city => {
                             document.write(`<option value="${city}">${city}</option>`);
                         });
@@ -176,127 +209,7 @@
         <h2 class="heading">Playing Now</h2>
 
         <div class="movies-container">
-            <div class="box">
-                <div data-aos="fade-up" data-aos-duration="2500">                
-                    <div class="box-img">
-                        <img src="assets/starwars.jpg">
-                        <div class="overlay">
-                            <p class="movie-desc">The heroic development of Luke Skywalker as a Jedi and his fight
-                                against Palpatine's Galactic Empire alongside his sister, Leia</p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>Star Wars</h3>
-                    <span>136 min | Action</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div data-aos="fade-up" data-aos-duration="2500">                
-                    <div class="box-img">
-                        <img src="assets/avatar.jpg">
-                        <div class="overlay">
-                            <p class="movie-desc">A paraplegic Marine dispatched to the moon Pandora on a unique mission
-                                becomes torn between following his orders and protecting the world he feels is his home
-                            </p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>Avatar</h3>
-                    <span>162 min | Adventure</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div data-aos="fade-up" data-aos-duration="2500">
-                    <div class="box-img">
-                        <img src="assets/spirited.png">
-                        <div class="overlay">
-                            <p class="movie-desc">10-year-old girl who wanders into a world ruled by witches and
-                                spirits, where humans are changed into animals</p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>Spirited Away</h3>
-                    <span>125 min | Drama</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div data-aos="fade-up" data-aos-duration="2500">
-                    <div class="box-img">
-                        <img src="assets/before.jpg">
-                        <div class="overlay">
-                            <p class="movie-desc">A girl in a small town forms an unlikely bond with a
-                                recently-paralyzed man she's taking care of</p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>Me Before You</h3>
-                    <span>110 min | Romance</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div data-aos="fade-up" data-aos-duration="2500">
-                    <div class="box-img">
-                        <img src="assets/insidious.jpg">
-                        <div class="overlay">
-                            <p class="movie-desc">A gripping story of a family in search of help for their son, Dalton,
-                                who fell into a coma after a mysterious incident in the attic</p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>Insidious</h3>
-                    <span>103 min | Horror</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div data-aos="fade-up" data-aos-duration="2500">
-                    <div class="box-img">
-                        <img src="assets/cinder.jpg">
-                        <div class="overlay">
-                            <p class="movie-desc">A live-action retelling of the classic fairytale about a servant
-                                stepdaughter who is abused by her jealous stepmother and stepsisters after her father
-                                died</p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>Cinderella</h3>
-                    <span>105 min | Romance</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div data-aos="fade-up" data-aos-duration="2500">
-                    <div class="box-img">
-                        <img src="assets/trans.jpg">
-                        <div class="overlay">
-                            <p class="movie-desc">A deadly threat from Earth's history reappears and a hunt for a lost
-                                artifact takes place between Autobots and Decepticons</p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>Transformer: The Last Knight</h3>
-                    <span>148 min | Action</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div data-aos="fade-up" data-aos-duration="2500">
-                    <div class="box-img">
-                        <img src="assets/pixel.jpg">
-                        <div class="overlay">
-                            <p class="movie-desc">When aliens misinterpret video feeds of classic arcade games as a
-                                declaration of war, they attack the Earth in the form of the video games</p>
-                            <a href="/detail" class="btn-mov">BOOK</a>
-                        </div>
-                    </div>
-                    <h3>Pixels</h3>
-                    <span>105 min | Comedy</span>
-                </div>
-            </div>
+            
         </div>
     </section>
 

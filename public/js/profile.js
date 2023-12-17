@@ -22,6 +22,28 @@ window.addEventListener('scroll', () => {
     prevScrollpos = currentScrollPos;
 });
 
+menu.onclick = () => {
+    menu.classList.toggle('bx-x');
+    navbar.classList.toggle('open');
+    if (navbar.classList.contains('open')) {
+        header.style.display = 'flex';
+        header.style.alignItems = 'center';
+        header.style.justifyContent = 'center';
+        header.style.backgroundColor = 'var(--text-color-light)';
+        navbar.style.backgroundColor = 'var(--text-color-light)';
+    } else {
+        header.style.display = '';
+        header.style.alignItems = '';
+        header.style.justifyContent = '';
+        header.style.backgroundColor = 'transparent';
+        navbar.style.backgroundColor = 'transparent';
+    }
+};
+
+document.getElementById('menu-icon').addEventListener('click', function () {
+    document.querySelector('.navbar').classList.toggle('show');
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     const detailButtons = document.querySelectorAll('.box-ongoing button');
 
@@ -42,15 +64,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     const editProfileBtn = document.getElementById('editProfileBtn');
-//     editProfileBtn.addEventListener('click', function () {
-//         const editProfileModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
-//         editProfileModal.show();
-//     });
-// });
-
-// function closeEditProfileModal() {
-//     document.getElementById('editProfileModal').style.display = 'none';
-// }

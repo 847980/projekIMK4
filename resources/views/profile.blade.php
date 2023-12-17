@@ -108,7 +108,7 @@
 
 </head>
 
-<body>
+<body style="height: 100%; background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);">
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
