@@ -151,7 +151,7 @@
                         <!-- chairs  -->
                         <div class="chair" id="chair">
                             <div class="row">
-                                <span>F</span>
+                                <span id="6">F</span>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
@@ -179,7 +179,7 @@
                                 <span>F</span>
                             </div>
                             <div class="row">
-                                <span>E</span>
+                                <span id="5">E</span>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>

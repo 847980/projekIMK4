@@ -122,7 +122,7 @@
 
     <div class="profile-layer">
         <section class="profile" id="profile">
-            <h3 class="heading">Welcome,</h3></br>   
+            <h3 class="heading">Welcome,</h3><br>   
             <h3 class="subhead">Name &emsp;</h3>
         </section>
 
