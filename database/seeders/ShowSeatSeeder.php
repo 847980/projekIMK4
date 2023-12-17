@@ -32,7 +32,7 @@ class ShowSeatSeeder extends Seeder
         ];
 
     foreach($data as $value){
-        for($i=1;$i<=30;$i++){
+        for($i=1;$i<=144;$i++){
             if($i==1 || $i==2 || $i==3){
                 $value['chair_status']= 1;
             }

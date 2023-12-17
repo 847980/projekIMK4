@@ -12,9 +12,11 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailTransaction;
 use App\Models\Genre;
 use App\Models\Transaction;
+use Carbon\Carbon;
 
 class FilmUserController extends Controller
 {
+
     public function getFilm($cinema)
     {
         $data['films'] = ShowTime::where('cinema_id', $cinema)->distinct()->get();
@@ -31,17 +33,31 @@ class FilmUserController extends Controller
         }
         return response()->json($result);
     }
-    public function getDetail()
-    {
-        $data['title'] = "detail";
-        return view('detailFilm', $data);
+    
+    // book
+    public function getDetail(Request $request)
+    {   
+        $request->validate([
+            'film_id' => 'required',
+            'cinema_id' => 'required',
+        ]);
+        // set session
+        $request->session()->put('film_id', $request->film_id);
+        $request->session()->put('cinema_id', $request->cinema_id);
+        $data['title'] = "book";
+        $data['date'] = Carbon::now();
+        $data['end_date'] = Carbon::now()->addDays(13);
+        $data['film'] = Film::where('id', $request->film_id)->first();
+
+
+        return view('book', $data);
     }
     public function getDate($cinemaId, $filmId){
         $data['dates'] = ShowTime::where('film_id', $filmId)->where('cinema_id', $cinemaId)->distinct()->pluck('show_date')->toArray();
         return response()->json($data);
     }
     public function getStudioTime($id, $date){
-        $data['studioTimes'] = ShowTime::with('studio')->where('film_id', $id)->where('show_date', $date)->get();
+        $data['studioTimes'] = ShowTime::with('studio')->where('film_id', $id)->where('show_date', $date)->where('cinema_id',session('cinema_id'))->get();
         return response()->json($data);
     }
     public function getChair($id){
