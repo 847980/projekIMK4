@@ -24,6 +24,7 @@ body {
 .book {
     width: 92%;
     height: 90%;
+    border: 1px solid #fff; 
     display: flex;
 }
 
@@ -32,7 +33,7 @@ body {
     position: relative;
     height: 100%;
     /* border: 1px solid #fff; */
-    padding: 1.5vh 6vw;
+    padding: 10px 40px;
     background: unset;
 }
 
@@ -52,6 +53,7 @@ body {
     content: '';
     width: 95%;
     height: 200px;
+    /* border: 1px solid #fff; */
     top: 0;
     background: linear-gradient(0deg , transparent, #1f2025);
     z-index: -10;
@@ -96,7 +98,7 @@ body {
     align-items: center;
 }
 .book .right .head_time .time h6 {
-    font-size: 13px;
+    font-size: 15px;
     margin-right: 15px;
 }
 .book .right .head_time .time h6 i {
@@ -137,11 +139,11 @@ body {
     border-top: 1px solid rgb(184, 184, 184, .2);
     padding: 5px 0;
 }
-.book .right  .crd::-webkit-scrollbar {
+.book .right .crd::-webkit-scrollbar {
     height: 3px;
     background: rgb(184, 184, 184, .2);
 }
-.book .right  .crd::-webkit-scrollbar-thumb {
+.book .right .crd::-webkit-scrollbar-thumb {
     height: 3px;
     background: rgb(184, 184, 184, .5);
 }
@@ -182,21 +184,25 @@ body {
 }
 
 /* JS Active Date Class  */
-.h6_active {
+.active {
     background: #FFD369 !important;
     color: #1f2025 !important;
 }
 
+.book_scroll_parent {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 /* Screen Start  */
 .book .right .book_scroll {
-    width: 100%;
-    overflow: auto;
+    width: 1170px;
     white-space: nowrap;
     padding-bottom: 20px;
 }
 .screen {
     position: relative;
-    width: 1300px; /* PANJANG BELUM RESPONSIVE */
+    width: 1170px; /* PANJANG BELUM RESPONSIVE */
     height: 100px;
     border-top: 3px solid #FFD369;
     margin-top: 50px;
@@ -223,15 +229,11 @@ body {
 }
 
 .book .right .book_scroll .chair {
-    width: 95%;
-    /* border: 1px solid #fff; */
-    margin: auto;
-    /* display: none; */
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
 }
 .book .right .book_scroll .chair .row {
-    width: 1245px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -350,9 +352,9 @@ body {
 }
 
 .book .right .book_tic {
-    position: absolute;
-    right: 5%;
+    position: fixed;
     bottom: 40px;
+    right: 40px;
     padding: 8px 9.5px;
     border-radius: 50%;
     border: none;
@@ -362,20 +364,12 @@ body {
     font-size: 18px;
     cursor: pointer;
     transition: .3s linear;
-    display: none;
+    z-index: 100;
 }
 .book .right .book_tic:hover {
     color: #000;
 }
 
-.book .right .ticket {
-    width: 100%;
-    height: 75%;
-    /* border: 1px solid #fff; */
-    margin-top: 20px;
-    overflow-y: auto;
-    display: none;
-}
 .book .right .ticket::-webkit-scrollbar {
     display: none;
 }
@@ -384,7 +378,7 @@ body {
     width: 100%;
     height: 215px;
     display: flex;
-    overflow: hidden;
+    overflow: auto;
     /* border: 1px solid #fff; */
     margin-top: 15px;
 }
@@ -522,27 +516,26 @@ nav a span {
     transition: .3s linear;
     margin-top: 10px;
 }
-.cards .card  img{
-    width: 100%;
-    height: 100%;
-}
 
 /* 4k */
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 1368px) {
+    body{
+        overflow: hidden;
+    }
     /* judul film */
     .book .right .head_time h1 {
         font-size: 70px;
         font-weight: 600;
     }
     .book .right .head_time .time h6 {
-        font-size: 25px;
+        font-size: 16px;
     }
     /* jadwal */
     .book .right .title {
-        font-size: 28px;
+        font-size: 16px;
     }
     .book .right .crd {
-        font-size: 28px;
+        font-size: 16px;
     }
 
     /* tanggal dan showtime */
@@ -563,6 +556,9 @@ nav a span {
         width: 2250px;
         height: 150px;
         font-size: 30px;
+    }
+    .book_scroll {
+        width: 2250px;
     }
     .book .right .chair .row li {
         width: 50px;
@@ -591,7 +587,7 @@ nav a span {
 }
 
 /* galaxy fold */
-@media screen and (max-width: 280px) {
+@media screen and (max-width: 350px) {
     /* jadwal */
     .book .right .title {
         font-size: 8px;
@@ -628,7 +624,7 @@ nav a span {
         font-size: 25px;
     }
     .book .right .details .details_chair li {
-        font-size: 25px;
+        font-size: 8px;
     }
     .book .right .book_tic {
         right: 10%;
