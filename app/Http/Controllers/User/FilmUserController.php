@@ -10,6 +10,7 @@ use App\Models\ShowTime;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DetailTransaction;
+use App\Models\Genre;
 use App\Models\Transaction;
 
 class FilmUserController extends Controller
@@ -19,6 +20,14 @@ class FilmUserController extends Controller
         $data['films'] = ShowTime::where('cinema_id', $cinema)->distinct()->get();
         foreach ($data['films'] as $film) {
             $result['films'][] = Film::where('id', $film['film_id'])->get();
+        }
+        return response()->json($result);
+    }
+    public function getFilmAgeGenre($cinema)
+    {
+        $data['films'] = ShowTime::where('cinema_id', $cinema)->distinct()->get();
+        foreach ($data['films'] as $film) {
+            $result['films'][] = Film::select('films.*', 'genres.name as name')->where('films.id', $film['film_id'])->join('genres', 'films.genre_id', '=', 'genres.id')->get();
         }
         return response()->json($result);
     }
@@ -58,6 +67,11 @@ class FilmUserController extends Controller
         $data = Cinema::where('id', $cinema)->get();
         return response()->json($data);
     }
+    public function getGenreName($id)
+    {
+        $data = Genre::where('id', $id)->get();
+        return response()->json($data);
+    }
     public function getPrice($id)
     {
         $data = ShowTime::where('id', $id)->get();
@@ -90,10 +104,9 @@ class FilmUserController extends Controller
     {
         $request = ['transaction_id'=>$trans_id, 'showseat_id'=>$show_id];
         $validator = validator($request, [
-            'transaction_id' => 'required',
-            'showseat_id' => 'required'
+            'transaction_id'=>'required', 'showseat_id'=>'required'
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json(['success' => false, 'message' => 'Validation failed', 'errors' => $validator->errors()], 422);
         }
@@ -103,6 +116,8 @@ class FilmUserController extends Controller
             return response()->json(['success' => true, 'message' => 'Transaction created successfully', 'detailTransaction_id'=>$transaction->id]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error creating detail transaction']);
+
+            return response()->json(['success' => false, 'message' => 'Error creating transaction']);
         }
     }
     public function seatUpdate($id)

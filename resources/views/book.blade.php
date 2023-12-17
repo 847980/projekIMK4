@@ -164,18 +164,6 @@
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
                                 <span>F</span>
                             </div>
                             <div class="row">
@@ -192,34 +180,10 @@
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
                                 <span>E</span>
                             </div>
                             <div class="row">
-                                <span>D</span>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
+                                <span id="4">D</span>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
@@ -235,19 +199,7 @@
                                 <span>D</span>
                             </div>
                             <div class="row">
-                                <span>C</span>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
+                                <span id="3">C</span>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
@@ -263,19 +215,7 @@
                                 <span>C</span>
                             </div>
                             <div class="row">
-                                <span>B</span>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
+                                <span id="2">B</span>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
@@ -291,19 +231,7 @@
                                 <span>B</span>
                             </div>
                             <div class="row">
-                                <span>A</span>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
-                                <li class="seat">560</li>
+                                <span id="1">A</span>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>
                                 <li class="seat">560</li>

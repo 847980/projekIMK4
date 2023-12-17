@@ -46,7 +46,7 @@ class PaypalController extends Controller
         if (isset($response['status']) && $response['status']=="COMPLETED") {
             //add to db
             $data['title'] = 'Success';
-            return view('paymentResult', $data);
+            return view('dashboard');
         } else {
             return redirect()->route('cancel');
         }

@@ -1,6 +1,184 @@
 @extends('layouts.basic')
-
 @section('body')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        .checkout-container {
+            max-width: 70%;
+        }
+        .checkout-title {
+            display: flex;
+            align-items: center;
+        }
+        .poster img {
+            max-width: 9em;
+            max-height: 15em;
+        }
+
+        .checkout-card {
+            background-color: rgb(57, 62, 70);
+            padding: 1.7em 2em;
+            border-radius: 10px;
+            margin: 1em;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-flow: row wrap;
+        }
+
+        .row .checkout-card {
+            width: 10em;
+            padding: 1.5em;
+            padding-bottom: 1.2em;
+            padding-top: 1.2em;
+        }
+
+        .row .checkout-card h2 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .row .checkout-card p {
+            margin-top: 1.5em;
+            font-size: 0.8rem;
+            color: rgb(255, 211, 105);
+            font-weight: bold;
+        }
+        .border-bottom {
+            border-bottom: 1.5px solid #EEEEEE;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .row .checkout-card {
+                flex: 0 0 calc(50% - 2em);
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .row .checkout-card {
+                flex: 0 0 calc(100% - 2em);
+            }
+        }
+        .seat-card {
+            background-color: rgb(255, 211, 105);
+            width: 5em;
+            padding: 1.3em;
+            border-radius: 10px;
+            margin: 1em;
+            display: flex;
+            justify-content: center;
+        }
+        .seat-card p {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .pay-btn {
+            background-color: rgb(255, 211, 105);
+            color: #EEEEEE;
+            border-radius: 10px;
+            padding: 1em;
+            text-align: center;
+            font-size: 1.3rem;
+            border-style: none;
+        }
+    </style>
+</head>
+<body>
+<a class="btn btn-danger" href="{{ route('user.dashboard') }}">Cancel</a>
+
+    <div class="flex-container">
+        <div class="checkout-container">
+            <div class="checkout-title checkout-card">
+                <div class="poster">
+                    
+                    <img src="{{ asset('storage/assets/spirit_poster.jpg') }}">
+                </div>
+                <div class="home-text">
+                    <div class="title-container">
+                        <h1><span id="judul"></span></h1>
+                    </div>
+                    <span id="keterangan"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="checkout-card ">
+                        <h2><span id="tanggal"></span></h2>
+                        <p>Date</p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="checkout-card">
+                        <h2><span id="jam"></span></h2>
+                        <p>Time</p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="checkout-card">
+                        <h2><span id="studioName"></span></h2>
+                        <p>Studio</p>
+                    </div>
+                </div>
+            </div>
+            <div class="transaction-details">
+                <div class="checkout-card">
+                    <div class="row">
+                        <div class="col-6"><h3>Cinema Name</h3></div>
+                        <div class="col-6"><p><span id="cinemaName"></span></p></div>
+                    </div>
+                    <div class="border-bottom"></div>
+                    <div class="row">
+                        <div class="col-6"><h3>Studio</h3></div>
+                        <div class="col-6"><p><span id="studioName2"></span></p></div>
+                    </div>
+                    <div class="border-bottom"></div>
+                    <div class="row">
+                        <div class="col-6"><h3>Date</h3></div>
+                        <div class="col-6"><p><span id="tanggal2"></span></p></div>
+                    </div>
+                    <div class="border-bottom"></div>
+                    <div class="row">
+                        <div class="col-6"><h3>Start time</h3></div>
+                        <div class="col-6"><p><span id="jam2"></span> WIB</p></div>
+                    </div>
+
+                    <div class="border-bottom"></div>
+                    <div class="row">
+                        <div class="col-6"><h3>Seat Booked</h3></div>
+                    </div>
+                    <div id="seat"></div>
+                    <div class="border-bottom"></div>
+                    <div class="row">
+                        <div class="col-6"><h3>TOTAL</h3></div>
+                        <div class="col-6"><h1>$<span id="totalBayar"></span></h1></div>
+                    </div>
+                    <div class="border-bottom"></div>
+                    <div class="row" style="display: flex; justify-content: center;">
+                        <div class="col">
+                            <button class="pay-btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">PAYMENT</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 <?php
 // In your Blade view (dashboard.blade.php) or controller
 $allSessionData = session()->all();
@@ -59,10 +237,6 @@ foreach ($_POST as $key => $value) {
 <input type="hidden" name='user_id' id="user_id" value="{{ $sessionId }}">
 <input type="hidden" name='transaction_id' id="transaction_id" value="">
 
-<div id="description">
-    
-</div>
-<a class="btn btn-danger" href="{{ route('user.dashboard') }}">Cancel</a>
 <form action="{{ route('paypal') }}" method="post">
     @csrf
     <input type="hidden" name="price" id="price" value="-1">
@@ -74,10 +248,10 @@ foreach ($_POST as $key => $value) {
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+          <h1 class="modal-title fs-5 text-dark" id="exampleModalToggleLabel">Confirm</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-dark">
             The order cannot be canceled. Are you sure?
         </div>
         <div class="modal-footer">
@@ -86,7 +260,6 @@ foreach ($_POST as $key => $value) {
       </div>
     </div>
   </div>
-  <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Payment</button>
 
 @endsection
 
@@ -100,8 +273,28 @@ foreach ($_POST as $key => $value) {
     var cinemaName = "";
     var price = -1;
     var totalPrice = -1;
+    var genre_id = "";
+    var genreName = "";
+    var ageCat = "";
+    var duration = -1;
 
     $(document).ready(function(){
+        var dateString = $('#date').val();
+        var dateObject = new Date(dateString);
+        var day = dateObject.getDate();
+        var month = dateObject.toLocaleString('en-us', { month: 'short' });
+        var formattedDate = day + " " + month;
+        console.log(formattedDate);
+        $('#tanggal').html(formattedDate);
+        $('#tanggal2').html($('#date').val());
+        var timeString = $('#time').val();
+        var dateObject = new Date("1970-01-01 " + timeString);
+        var formattedTime = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        console.log(formattedTime);
+
+        $('#jam').html(formattedTime);
+        $('#jam2').html($('#time').val());
+
         runAsyncOperations();
         
 
@@ -118,7 +311,22 @@ foreach ($_POST as $key => $value) {
         console.error("Error:", error);
         }
     };
-
+    function getGenre(){
+        $.ajax({
+            url: 'get-genre/'+genre_id,
+            type: 'get',
+            success: function (response) {
+                console.log(response[0]['name']);
+                genreName = response[0]['name'];
+                $('#keterangan').append(
+                    '<h2>'+ageCat+'&emsp;|&emsp;'+duration+' min&emsp;|&emsp;'+genreName+'</h2><br>'
+                );
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    };
     function getSeats(){
         $('.seats').each(function(index, seat){
             seats.push($(this).val());
@@ -136,6 +344,11 @@ foreach ($_POST as $key => $value) {
                 filmName = response[0]['judul'];
                 console.log(filmName);
                 $('#description').append("<p>"+filmName+"</p>");
+                $('#judul').html(filmName);
+                ageCat = response[0]['age_cat'];
+                duration = response[0]['duration'];
+                genre_id=response[0]['genre_id'];
+                getGenre();
             },
             error: function (error) {
                 console.log(error);
@@ -152,6 +365,8 @@ foreach ($_POST as $key => $value) {
                 studioName = response[0]['name'];
                 console.log(studioName);
                 $('#description').append("<p>"+studioName+"</p>");
+                $('#studioName').html(studioName);
+                $('#studioName2').html(studioName);
 
             },
             error: function (error) {
@@ -169,6 +384,7 @@ foreach ($_POST as $key => $value) {
                 cinemaName = response[0]['name'];
                 console.log(cinemaName);
                 $('#description').append("<p>"+cinemaName+"</p>");
+                $('#cinemaName').html(cinemaName);
 
             },
             error: function (error) {
@@ -189,6 +405,11 @@ foreach ($_POST as $key => $value) {
                 totalPrice = totalSeat * price;
                 $('#description').append("<p>Total: "+totalPrice+"</p>");
                 $('#price').val(totalPrice);
+                
+                var currencyValue = totalPrice;
+                var formattedCurrency = currencyValue.toLocaleString('en-US');
+                console.log(formattedCurrency);
+                $('#totalBayar').html(formattedCurrency);
             },
             error: function (error) {
                 console.log(error);
@@ -208,11 +429,13 @@ foreach ($_POST as $key => $value) {
                 console.log(response[0]['chair_number']);
                 var temp = $("#seatNums").val();
                 $("#seatNums").val(temp + "," +response[0]['chair_number']);
+                $("#seat").append("<div class=\"seat-card\"><p>"+response[0]['chair_number']+"</p></div>")
                 if (index === seats.length - 1) {
-                    // Perform actions specific to the last iteration
                     var tempSeatNumber = $("#seatNums").val().substring(1);
                     console.log(tempSeatNumber);
                     $('#description').append("<p> Seat Number: "+tempSeatNumber+"</p>");
+                    
+
                 }
             },
             error: function (error) {
@@ -220,8 +443,6 @@ foreach ($_POST as $key => $value) {
             }
             });
         });
-        
-        // $('#description').append("<p> seats: "+chairNumbers+"</p>");
     }
     function paypal(){
         var userId = $('#user_id').val();
