@@ -142,30 +142,9 @@ header.shadow {
 }
 
 .dropdown {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 35px;
-    padding: 0 20px;
-    font-size: 17px;
-    background: var(--bg-color); /* Set background color */
-    color: var(--text-color);
-    border: none; /* Remove border */
-    border-radius: 7px;
-    justify-content: space-between;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown i {
-    font-size: 17px;
-    transition: transform 0.3s linear;
-    color: var(--text-color);
-    border: none;
-}
-
-.wrapper.active .dropdown .bx-chevron-down {
-    transform: rotate(-180deg);
-}
+    position: relative;
+    display: inline-block;
+  }
 
 .content {
     display: none;
@@ -254,7 +233,6 @@ li.selected {
 }
 
 
-
 /* HOME SECTION */
 .container {
     width: 100%;
@@ -339,6 +317,7 @@ li.selected {
     color: var(--bg-color);
     transition: 0.2s all linear;
 }
+
 
 /* PLAYING NOW */
 .heading {
