@@ -24,24 +24,24 @@ class StudioSeeder extends Seeder
             [
                 'name' => 'studio1',
                 'cinema_id' => Cinema::where('name','cinemaku')->first()->id,
-                'total_chair' => 30,
+                'total_chair' => 144,
             ],
             [
                 'name' => 'studio2',
                 'cinema_id' => Cinema::where('name','cinemaku')->first()->id,
-                'total_chair' => 30,
+                'total_chair' => 144,
 
             ],
             [
                 'name' => 'studio1',
                 'cinema_id' => Cinema::where('name','Bukan Cinema')->first()->id,
-                'total_chair' => 30,
+                'total_chair' => 144,
 
             ],
             [
                 'name' => 'studio2',
                 'cinema_id' => Cinema::where('name','Bukan Cinema')->first()->id,
-                'total_chair' => 30,
+                'total_chair' => 144,
 
             ],
         ];
