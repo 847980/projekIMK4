@@ -207,9 +207,8 @@
 
     <section class="movies" id="movies">
         <h2 class="heading">Playing Now</h2>
-
         <div class="movies-container">
-            
+            {{-- Playing Now --}}
         </div>
     </section>
 
