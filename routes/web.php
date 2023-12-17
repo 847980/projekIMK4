@@ -28,7 +28,3 @@ Route::get('/detail', function () {
 Route::get('/profile', function () {
     return view('profile');
 });
-
-Route::get('/checkout', function() {
-    return view('checkout');
-});
