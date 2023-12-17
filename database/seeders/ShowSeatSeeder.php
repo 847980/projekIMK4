@@ -22,7 +22,7 @@ class ShowSeatSeeder extends Seeder
         $data=[
             [
                 'showtime_id' => ShowTime::where('film_id',Film::where('judul','film1')->first()->id)
-                ->where('show_date','2024-01-01')
+                ->where('show_date','2023-12-18')
                 ->where('start_time','10:00:00')
                 ->where('end_time','12:00:00')
                 ->first()->id,
