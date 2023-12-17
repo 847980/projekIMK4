@@ -121,12 +121,15 @@
             }
         });
     }
+
     function setChair(id){
         var chairId =  id;
-        var classBefore = $('#'+chairId).attr('class');
+        var classBefore = $('#'+chairId).attr('class'); //btn btn-success
         console.log(classBefore);
         var splitter = classBefore.split('-');
         var firstClass = splitter[0] + "-";
+        console.log('firstClass: '+firstClass) //btn btn-   
+        console.log("splitter: "+splitter[1]) //success
         var color = "";
         if (splitter[1] === 'success') {
             seats.push(chairId);
@@ -138,15 +141,22 @@
             console.log(seats);
         }
         splitter = firstClass + color;
-        console.log(splitter);
+        console.log("new class: "+splitter)
         $('#'+chairId).attr('class', splitter);
         console.log($('#'+chairId).attr('class'));
         console.log(seats.length);
+
+        console.log("array seats: "+seats);
+
     }
+
     function deleteSeatById(idToDelete) {
-        seats = seats.filter(function(seat) {
-            return seat.id !== idToDelete;
-    });
+        console.log("idToDelete: "+idToDelete);
+        for (let i = 0; i < seats.length; i++) {
+            if (seats[i] === idToDelete) {
+                seats.splice(i, 1);
+            }
+        }
 }
 function next(){
         $.each(seats, function(index, seat){

@@ -205,6 +205,8 @@ foreach ($_POST as $key => $value) {
             url: 'get-seats-number/'+seat,
             type: 'get',
             success: function (response) {
+                console.log('show seat: ')
+                console.log(response)
                 console.log(response[0]['chair_number']);
                 var temp = $("#seatNums").val();
                 $("#seatNums").val(temp + "," +response[0]['chair_number']);
@@ -219,47 +221,52 @@ foreach ($_POST as $key => $value) {
     }
     function paypal(){
         var userId = $('#user_id').val();
+        var transId;
         $.ajax({
             url: 'create-transaction/'+userId +"/"+totalPrice,
             type: 'get',
+            datatype: 'json',
             success: function (response) {
                 console.log(response);
                 $('#transaction_id').val(response['transaction_id']);
                 console.log($('#transaction_id').val());
+                transId = response['transaction_id'];
+                console.log("transID: " + transId);
+
+                // membuat detail transaksi dan mengupdate status kursi
+                $.each(seats, function(index, seat) {
+                    // First AJAX request to 'create-detail'
+                    $.ajax({
+                        url: 'create-detail/' + transId + '/' + seat,
+                        type: 'get',
+                        success: function(response) {
+                            console.log('detail transaksi')
+                            console.log(response);
+                        },
+                        error: function(error) {
+                            console.log('error detail transaksi')
+                            console.log(error);
+                        }
+                    });
+
+                    // Second AJAX request to 'update-seat'
+                    $.ajax({
+                        url: 'update-seat/' + seat,
+                        type: 'get',
+                        success: function(response) {
+                            console.log('update seat')
+                            console.log(response);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    }); 
+                });
             },
             error: function (error) {
                 console.log(error);
             }
         });
-        var transId = $('#transaction_id').val();
-        $.each(seats, function(index, seat) {
-    // First AJAX request to 'create-detail'
-    $.ajax({
-        url: 'create-detail/' + transId + '/' + seat,
-        type: 'get',
-        success: function(response) {
-            console.log(response);
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
-
-    // Second AJAX request to 'update-seat'
-    $.ajax({
-        url: 'update-seat/' + seat,
-        type: 'get',
-        success: function(response) {
-            console.log(response);
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
-});
-
-       
-        
         // $('#pay').click();
     }
 </script>

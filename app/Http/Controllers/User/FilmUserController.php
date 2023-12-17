@@ -93,6 +93,7 @@ class FilmUserController extends Controller
             'transaction_id' => 'required',
             'showseat_id' => 'required'
         ]);
+
         if ($validator->fails()) {
             return response()->json(['success' => false, 'message' => 'Validation failed', 'errors' => $validator->errors()], 422);
         }
@@ -101,7 +102,7 @@ class FilmUserController extends Controller
             $transaction = DetailTransaction::create($request);
             return response()->json(['success' => true, 'message' => 'Transaction created successfully', 'detailTransaction_id'=>$transaction->id]);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Error creating transaction']);
+            return response()->json(['success' => false, 'message' => 'Error creating detail transaction']);
         }
     }
     public function seatUpdate($id)

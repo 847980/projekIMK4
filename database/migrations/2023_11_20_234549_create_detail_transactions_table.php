@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_transactions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('transaction_id');
-            $table->foreign('transaction_id')->references('id')->on('transactions');
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
             $table->uuid('showseat_id');
             $table->foreign('showseat_id')->references('id')->on('show_seats')->restrictOnDelete();
 
