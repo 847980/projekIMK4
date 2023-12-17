@@ -94,15 +94,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div id="menu-icon" class='bx bx-menu'></div>
-        <ul class="navbar">
-            <li><a href="/home" class="home-active">HOME</a></li>
-            <li><a href="/home#movies">MOVIES</a></li>
-            <li><a href="/home#coming">COMING</a></li>
-            <li><a href="/home#newsletter">NEWSLETTER</a></li>
-        </ul>       
-    </header>
     <div class="flex-container">
         <div class="checkout-container">
             <div class="checkout-title checkout-card">
@@ -114,11 +105,6 @@
                         <h1>Spirited Away</h1>
                     </div>
                     <h2>R-13&emsp;|&emsp;125 min&emsp;|&emsp;Drama</h2><br>
-                    <ul class="desc-movie">
-                        <li class="movie_genre">
-                            <p>Comedy, Drama, Action</p>
-                        </li>
-                    </ul>
                 </div>
             </div>
             <div class="row">
@@ -180,11 +166,6 @@
                     </div>
                 </div>
             </div>
-
-
-            
-
-
         </div>
     </div>
     <script>

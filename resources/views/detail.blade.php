@@ -19,7 +19,7 @@
                 trailer: "https://youtu.be/ByXuk9QqQkk?si=qYtpG3GYmT0xUZ_2",
                 rating: "R-13",
                 duration: "125 min",
-                genre: "drama",
+                genre: "Drama",
                 release: "20 July 2001",
                 director: "Hayao Miyazaki",
                 stars: "Daveigh Chase, Suzanne Pleshette, Miyu Irino",
