@@ -27,9 +27,6 @@ Route::get('/', function () {
 });
 
 
- 
-
-
 // user login dan register
 Route::middleware('guest')->group(function(){
     Route::get('/login', [AuthController::class, 'loginIndex'])->name('login.index');
@@ -59,8 +56,8 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
 Route::middleware('guest:admin')->group(function(){
     Route::get('admin/login', [AdminAuthController::class, 'loginView'])->name('admin.login.index');
     Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.send');
-});
-
+}); 
+  
 // admin sudah login
 Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'], function(){
     Route::get('/dashboard', function () {
@@ -130,3 +127,4 @@ Route::get('/payment', function () {
 Route::post('paypal', [PaypalController::class, 'paypal'])->name('paypal');
 Route::get('success', [PaypalController::class, 'success'])->name('success');
 Route::get('cancel', [PaypalController::class, 'cancel'])->name('cancel');
+

@@ -23,7 +23,7 @@ class ShowTimeController extends Controller
     {
         $data['title'] = 'ShowTime';
         $data['showtimes'] = ShowTime::with(['film','studio'])->get();
-        return view('admin.showtime.index', $data);
+        return view('admin.showtime.show', $data);
         
     }
 
@@ -39,7 +39,7 @@ class ShowTimeController extends Controller
         // city
         $data['cities'] = City::all();
         
-        return view('admin.showtime.tambahShow', $data);
+        return view('admin.showtime.show-add', $data);
     }
 
     /**
@@ -119,7 +119,7 @@ class ShowTimeController extends Controller
         $data['cinemas'] = Cinema::where('city_id', $city_id)->get();
         $data['studios'] = Studio::where('cinema_id', $data['showtime']->cinema_id)->get();
 
-        return view('admin.showtime.editShow', $data);
+        return view('admin.showtime.show-edit', $data);
     }
 
     /**
@@ -163,7 +163,11 @@ class ShowTimeController extends Controller
      */
     public function destroy(string $id)
     {
-        $film = ShowTime::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Film berhasil dihapus');
+        try {
+            ShowTime::findOrFail($id)->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Showtime gagal dihapus karena sudah ada pembeli tiket');
+        }
+        return redirect()->back()->with('success', 'Showtime berhasil dihapus');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cinema;
 use App\Models\Studio;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class StudioController extends Controller
         $data['studios'] = Studio::with([
             'cinema' => ['city' => ['country']]
         ])->get();
-        return view('admin.studio.index', $data);
+        return view('admin.studio.studio', $data);
     }
 
     /**
@@ -24,10 +25,9 @@ class StudioController extends Controller
      */
     public function create()
     {
-        // $data['title'] = 'Tambah Film';
-        // $data['cities'] = City::all();
-        // $data['countries'] = Country::all();
-        // return view('admin.film.tambahFilm', $data);
+        $data['title'] = 'Tambah Studio';
+        $data['cinemas'] = cinema::with(['city'])->get();
+        return view('admin.studio.studio-add', $data);
     }
 
     /**
@@ -81,7 +81,10 @@ class StudioController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
+            'total_chair' => 'required|integer',
         ]);
+
+        // dd($data);
         
         Studio::findOrFail($id)->update($data);
         return redirect()->back()->with('success', 'Studio berhasil diuabh');

@@ -21,8 +21,9 @@
         <div class="form-group">
             <label for="name">City</label>
             <input class="form-control" name="name" id="name" placeholder="City">
-            <select class="form-control" name="country_id" id="country_id">
+            <select class="form-control" name="country_id" id="country_id"> 
                 @foreach ($countries as $country)
+                
                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                 @endforeach
             </select>
@@ -41,6 +42,7 @@
                         <th>No</th>
                         <th>City</th>
                         <th>Country</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -100,6 +102,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         $(".button-group").click(function() {

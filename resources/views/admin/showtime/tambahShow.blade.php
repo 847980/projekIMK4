@@ -31,6 +31,7 @@
                     <option value="{{ $film->id }}">{{ $film->judul }}</option>
                 @endforeach
             </select>
+            
             {{-- city --}}
             <label for="city_id">City</label>
             <select class="form-control" name="city_id" id="city_id">

@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Chivo', sans-serif;
+}
+
+#wrapper {
+    background-color: #222831;
+}
+
+nav {
+    margin: 0.5em
+}
+
+nav h2 {
+    color: #F7F7F7;
+    margin: 0 0.1em;
+}
+
+nav button {
+    background-color:#F7F7F7;
+    border-style: none;
+    border-radius: 25%;
+    text-align: center;
+    padding: 0.4em 0.55em;
+}
+
+nav span {
+    font-weight: 1000;
+}
+
+.stats {
+    background-color: #393E46;
+    font-weight: bold;
+    color: #FFD369;
+    margin: 1em;
+    padding: 1em;
+    padding-bottom: 0.2em;
+}
+
+.stats p {
+    font-size: 2.2rem;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.title h2 {
+    margin-left: 0.6em;
+}
+
+.add-item-btn {
+    background-color: #FFD369;
+    color: #222831;
+    border: none;
+    padding: 0.4em 1em;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 1em;
+    margin-left: 1em;
+    border-radius: 5px; /* Add this line for rounded corners */
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+
+}
+
+.add-item-btn:hover {
+    background-color: #FDBE3B;
+    color: #222831;
+}
+
+.dashbox {
+    background-color: #393E46;
+    padding: 1.5em;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.dashbox__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.dashbox__title h3 {
+    color: #FFD369;
+}
+
+.dashbox__wrap {
+    display: flex;
+}
+
+.dashbox__refresh,
+.dashbox__more {
+    text-decoration: none;
+    color: #FFD369;
+    padding: 0.5em 1em;
+    margin-right: 10px;
+    border: 1px solid #FFD369;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashbox__refresh:hover,
+.dashbox__more:hover {
+    background-color: #FFD369;
+    color: #393E46;
+}
+
+.dashbox__table-wrap {
+    overflow-x: auto;
+}
+
+.main__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.main__table th,
+.main__table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #222831;
+    color: #F7F7F7;
+}
+
+.main__table th {
+    background-color: #FFD369;
+}
+
+.main__table-text a {
+    color: #FFD369;
+    text-decoration: none;
+}
+
+.main__table-text--rate {
+    display: flex;
+    align-items: center;
+    color: #FFD369;
+}
+
+.main__table-text--rate svg {
+    margin-right: 5px;
+    fill: #FFD369;
+}
+
+
+#sidebar-wrapper {
+    background-color: #222831;
+    border-right: 1px solid #393E46;
+    width: 241px;
+}
+
+.sidebar-heading {
+    background-color: #393E46;
+    color: #FFD369;
+    padding: 0.75em;
+    font-weight: bold;
+}
+
+.list-group {
+    padding: 0;
+}
+
+.sidebar-link {
+    display: block;
+    color: #F7F7F7;
+    text-decoration: none;
+    padding: 0.75em;
+    border-bottom: 1px solid #222831;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-link:hover {
+    background-color: #FFD369;
+    color: #222831;
+}
+
+.toggle-button {
+    background-color: #FFD369;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.toggle-button span {
+    color: #222831;
+}
+
+.toggle-button.active {
+    background-color: #FFD369;
+}
+
+.stats {
+    border-radius: 10px;
+}
+
+h2 {
+    color: #EEEEEE;
+}
+
+.content-with-margin {
+    margin: auto 2em;
+}
