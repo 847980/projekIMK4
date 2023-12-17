@@ -128,3 +128,17 @@ Route::post('paypal', [PaypalController::class, 'paypal'])->name('paypal');
 Route::get('success', [PaypalController::class, 'success'])->name('success');
 Route::get('cancel', [PaypalController::class, 'cancel'])->name('cancel');
 
+
+// punya jev
+// Route::get('/home', function () {
+//     return view('home');
+// });
+
+
+// Route::get('/signup', function () {
+//     return view('login');
+// });
+
+// Route::get('/book', function () {
+//     return view('book');
+// });
