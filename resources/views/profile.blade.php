@@ -108,7 +108,7 @@
 
 </head>
 
-<body style="height: 100%; background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);">
+<body>
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
@@ -120,39 +120,27 @@
         </ul>
     </header>    
 
-    <section class="profile" id="profile">
-        <h3 class="heading">Welcome,</h3></br>   
-        <h3 class="subhead">Name &emsp;
-            <!-- <i class='bx bxs-pencil' id="editProfileBtn"></i> -->
-        </h3>
-    </section>
+    <div class="profile-layer">
+        <section class="profile" id="profile">
+            <h3 class="heading">Welcome,</h3></br>   
+            <h3 class="subhead">Name &emsp;</h3>
+        </section>
 
-    <!-- <div class="overlay" id="editProfileModal">
-        <div class="modal">
-            <span class="close" onclick="closeEditProfileModal()">&times;</span>
-            <h2>Edit Profile</h2>
-            <form id="editProfileForm">
-                <input type="text" id="newName" name="newName" placeholder="Username">
-                <input type="text" id="newName" name="newpass" placeholder="Password">
-                <button type="submit">Save Changes</button>
-            </form>
-        </div>
-    </div> -->
+        <section class="ongoing" id="ongoing">
+            <h3 class="subhead">ONGOING</h3>
+            <div class="ongoing-container">
+                
+            </div>         
+        </section>
 
-    <section class="ongoing" id="ongoing">
-        <h3 class="subhead">ONGOING</h3>
-        <div class="ongoing-container">
-            
-        </div>         
-    </section>
-
-    <section class="history" id="history">
-        <h3 class="subhead">HISTORY</h3>
-        <div class="history-container">
-            
-        </div>    
-       
-    </section>
+        <section class="history" id="history">
+            <h3 class="subhead">HISTORY</h3>
+            <div class="history-container">
+                
+            </div>    
+        </section>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/profile.js" defer></script>
 </body>
