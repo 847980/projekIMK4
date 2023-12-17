@@ -198,3 +198,17 @@ button:hover {
     font-weight: 600;
     transition-duration: .3s;
 }
+
+.invalid-feedback {
+    margin-left: 70px;
+    padding: 0;
+    margin-top:0;
+}
+
+.is-invalid {
+    margin-bottom: 1px;
+}
+
+.btn-invalid{
+    margin-top: 2px;
+}

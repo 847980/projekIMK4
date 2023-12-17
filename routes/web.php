@@ -130,15 +130,12 @@ Route::get('cancel', [PaypalController::class, 'cancel'])->name('cancel');
 
 
 // punya jev
-// Route::get('/home', function () {
-//     return view('home');
-// });
+Route::get('/home', function () {
+    return view('home');
+});
 
 
-// Route::get('/signup', function () {
-//     return view('login');
-// });
 
-// Route::get('/book', function () {
-//     return view('book');
-// });
+Route::get('/book', function () {
+    return view('book');
+});
