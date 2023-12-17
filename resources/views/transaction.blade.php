@@ -103,9 +103,7 @@ foreach ($_POST as $key => $value) {
 
     $(document).ready(function(){
         runAsyncOperations();
-        var tempSeatNumber = $("#seatNums").val().substring(1);
-        console.log(tempSeatNumber);
-        $('#description').append("<p> Seat Number: "+tempSeatNumber+"</p>");
+        
 
     });
     
@@ -210,6 +208,12 @@ foreach ($_POST as $key => $value) {
                 console.log(response[0]['chair_number']);
                 var temp = $("#seatNums").val();
                 $("#seatNums").val(temp + "," +response[0]['chair_number']);
+                if (index === seats.length - 1) {
+                    // Perform actions specific to the last iteration
+                    var tempSeatNumber = $("#seatNums").val().substring(1);
+                    console.log(tempSeatNumber);
+                    $('#description').append("<p> Seat Number: "+tempSeatNumber+"</p>");
+                }
             },
             error: function (error) {
                 console.log(error);
@@ -242,6 +246,10 @@ foreach ($_POST as $key => $value) {
                         success: function(response) {
                             console.log('detail transaksi')
                             console.log(response);
+                            if (index === seats.length - 1) {
+                                // Perform actions specific to the last iteration
+                                $('#pay').click();
+                            }
                         },
                         error: function(error) {
                             console.log('error detail transaksi')
@@ -256,6 +264,10 @@ foreach ($_POST as $key => $value) {
                         success: function(response) {
                             console.log('update seat')
                             console.log(response);
+                            if (index === seats.length - 1) {
+                                // Perform actions specific to the last iteration
+                                $('#pay').click();
+                            }
                         },
                         error: function(error) {
                             console.log(error);
@@ -267,7 +279,6 @@ foreach ($_POST as $key => $value) {
                 console.log(error);
             }
         });
-        // $('#pay').click();
     }
 </script>
 @endsection
