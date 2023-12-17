@@ -34,7 +34,7 @@ class PaypalController extends Controller
                 }
             }
         } else {
-            return redirect()->route('cansel');
+            return redirect()->route('cancel');
         }
     }
     public function success(Request $request){

@@ -1,16 +1,19 @@
 <?php
 
-use App\Http\Controllers\Auth\AdminAuthController;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\FilmController;
-use App\Http\Controllers\CinemaController;
-use App\Http\Controllers\ShowTimeController;
-use App\Http\Controllers\StudioController;
 use App\Models\Film;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\FilmController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\PaypalController;
+use App\Http\Controllers\StudioController;
+use App\Http\Controllers\ShowTimeController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\CityUserController;
+use App\Http\Controllers\User\FilmUserController;
+use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\User\CinemaUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +53,23 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
         return view('dashboard', $data);
     })->name('dashboard');
     
-        
+    Route::get('/get-cities', [CityUserController::class, 'getCity']);
+    Route::get('/get-cinemas/{id}', [CinemaUserController::class, 'getCinema']);
+    Route::get('/get-films/{filmId}', [FilmUserController::class, 'getFilm']);
+    Route::post('/get-detail', [FilmUserController::class, 'getDetail'])->name('get-detail');
+    Route::get('/get-date/{cinemaId}/{filmId}', [FilmUserController::class, 'getDate']);
+    Route::get('/get-studio-time/{filmId}/{date}', [FilmUserController::class, 'getStudioTime']);
+    Route::get('/get-chair/{showtimeId}', [FilmUserController::class, 'getChair']);
+    Route::post('/transaction', [FilmUserController::class, 'transaction'])->name('transaction');
+    Route::get('/get-film-title/{filmId}', [FilmUserController::class, 'getFilmName']);
+    Route::get('/get-studio/{studioId}', [FilmUserController::class, 'getStudioName']);
+    Route::get('/get-cinema/{cinemaId}', [FilmUserController::class, 'getCinemaName']);
+    Route::get('/get-price/{stId}', [FilmUserController::class, 'getPrice']);
+    Route::get('/get-seats-number/{seatId}', [FilmUserController::class, 'getSeatNumber']);
+    Route::get('/create-transaction/{Id}/{total}', [FilmUserController::class, 'createTransaction']);
+    Route::get('/create-detail/{Id1}/{id2}', [FilmUserController::class, 'createDetailTransaction']);
+    Route::get('/update-seat/{id}', [FilmUserController::class, 'seatUpdate']);
+
 });
 
 

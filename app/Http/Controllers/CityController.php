@@ -86,5 +86,5 @@ class CityController extends Controller
         City::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'City berhasil dihapus');
     }
-    
+
 }
