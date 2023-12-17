@@ -90,5 +90,5 @@ class CityController extends Controller
         }
         return redirect()->back()->with('success', 'City berhasil dihapus');
     }
-    
+
 }
