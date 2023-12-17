@@ -27,7 +27,7 @@ class ShowTimeSeeder extends Seeder
                     'film_id' => Film::where('judul','film1')->first()->id,
                     'cinema_id' => Cinema::where('name','cinemaku')->first()->id,
                     'studio_id' => Studio::where('name','studio1')->where('cinema_id',Cinema::where('name','cinemaku')->first()->id)->first()->id,
-                    'show_date' => '2024-01-01',
+                    'show_date' => '2023-12-18',
                     'start_time' => '10:00:00',
                     'end_time' => '12:00:00',
                     'price' => 10000,
