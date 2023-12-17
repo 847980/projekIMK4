@@ -230,10 +230,6 @@
                 <div class="box-img-coming">
                     <img src="assets/spirited.png">
                 </div>
-            </div>
-            <div class="box-coming">
-                <div class="box-img-coming">
-                    <img src="assets/before.jpg">
                 </div>
             </div>
         </div>
