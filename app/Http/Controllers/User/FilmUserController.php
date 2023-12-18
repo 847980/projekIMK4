@@ -27,9 +27,9 @@ class FilmUserController extends Controller
     }
     public function getFilmAgeGenre($cinema)
     {
-        $data['films'] = ShowTime::where('cinema_id', $cinema)->distinct()->get();
+        $data['films'] = ShowTime::where('cinema_id', $cinema)->pluck('film_id')->unique();
         foreach ($data['films'] as $film) {
-            $result['films'][] = Film::select('films.*', 'genres.name as name')->where('films.id', $film['film_id'])->join('genres', 'films.genre_id', '=', 'genres.id')->get();
+            $result['films'][] = Film::select('films.*', 'genres.name as name')->where('films.id', $film)->join('genres', 'films.genre_id', '=', 'genres.id')->get();
         }
         return response()->json($result);
     }

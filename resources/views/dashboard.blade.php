@@ -196,15 +196,22 @@ function getCinema(){
                     //     "</div>" +
                     //     "</form>");
                     $('#movies-container').append(
-                        "<div data-aos='fade-up' data-aos-duration='2500'>" +
-                        "<div class='box-img'>"+"<img src='" + "{{ asset('storage/assets/spirited.png') }}" + "'>" +
-                        "<form action='{{ route('user.get-detail') }}' method='post'> " +
-                        "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>"+
-                        "<p> " + film[0].judul + " " + film[0].name +" "+ film[0].age_cat + "<br>"+ film[0].description +
-                        "<input type='hidden' name='film_id' value='"+film[0].id+"'>"+
-                        "<input type='hidden' name='cinema_id' value='"+cinemaId+"'>"+
-                         "<br><button class='btn btn-primary'>Buy Ticket</button>"
-                         + "</p>"+ "</form>"+"</div>"+"</div>");
+                        "<div class='box' data-aos='fade-up' data-aos-duration='2500'>" +
+                        "<div class='box-img'>" +
+                        "<img src='" + "{{ asset('storage/assets/spirited.png') }}" + "' alt='" + film[0].judul + "'>" +
+                        "<form action='{{ route('user.get-detail') }}' method='post'>" +
+                        "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>" +
+                        "<div class='overlay'>" +
+                        "<input type='hidden' name='film_id' value='" + film[0].id + "'>" +
+                        "<input type='hidden' name='cinema_id' value='" + cinemaId + "'>" +
+                        "<p class='movie-desc'>" + film[0].description + "</p>" +
+                        "<button class='btn btn-primary'>Buy Ticket</button>" + 
+                        "</div>" +
+                        "</div>" +
+                        "<h3>" + film[0].judul + "</h3>" +
+                        "<span>" + film[0].name + " | " + film[0].age_cat + "</span>" +                        
+                        "</form>" +
+                        "</div>");
                 })
 
                 
