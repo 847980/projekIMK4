@@ -105,6 +105,11 @@
                             <select class="form-control @error('cinema_id') is-invalid @enderror" name="cinema_id" id="cinema_id">
                                 <option hidden disabled selected value="">--Silahkan Pilih Kota Dulu--</option>
                             </select>
+                            @error('cinema_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -117,6 +122,11 @@
                             <select class="form-control @error('studio_id') is-invalid @enderror" name="studio_id" id="studio_id">
                                 <option hidden disabled selected value="">--Silahkan Pilih Cinema Dulu--</option>
                             </select>
+                            @error('studio_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -127,6 +137,11 @@
                         </div>
                         <div class="col-6">
                             <input type="date" name="show_date" id="show_date" class="form-control @error('show_date') is-invalid @enderror" placeholder="Show Date" aria-describedby="helpId">
+                            @error('show_date')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -144,6 +159,11 @@
                                 <option value="16:00:00-18:00:00">16.00-18.00</option>
                                 <option value="18:00:00-20:00:00">18.00-20.00</option>
                             </select>
+                            @error('show_time')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -154,6 +174,11 @@
                         </div>
                         <div class="col-6">
                             <input type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Price" aria-describedby="helpId">
+                            @error('price')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
