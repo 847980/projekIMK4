@@ -209,7 +209,7 @@
                     <label for="trailer" class="form-label">Trailer :</label>
                 </div>
                 <div class="col-6">
-                    <input name="trailer" id="trailer" class="input form-control @error('trailer') is-invalid  @enderror" type="text" value="{{ $film->age_cat }}">
+                    <input name="trailer" id="trailer" class="input form-control @error('trailer') is-invalid  @enderror" type="text" value="{{ $film->trailer }}">
                     @error('trailer')
                     <div class="invalid-feedback">
                         {{ $message }}

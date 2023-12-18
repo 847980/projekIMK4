@@ -26,7 +26,7 @@ use App\Http\Controllers\User\CinemaUserController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('user.dashboard'));
 });
 
 
@@ -43,6 +43,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // user sudah login
 Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], function(){
     //dashboard
+    Route::get('/', function () {
+        return redirect(route('user.dashboard'));
+    });
     Route::get('/dashboard', function () {
         $data['title'] = 'Dashboard';
         return view('dashboard', $data);
@@ -75,15 +78,16 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
 
 // login admin
 Route::middleware('guest:admin')->group(function(){
-    Route::get('admin/login', [AdminAuthController::class, 'loginView'])->name('admin.login.index');
-    Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.send');
+    Route::get('admins/login', [AdminAuthController::class, 'loginView'])->name('admin.login.index');
+    Route::post('admins/login', [AdminAuthController::class, 'login'])->name('admin.login.send');
 }); 
   
 // admin sudah login
-Route::group(['as'=> 'admin.', 'prefix' => 'admin', 'middleware'=>'auth:admin'], function(){
-    Route::get('/dashboard', function () {
-        $data['title'] = 'Dashboard';
-        return view('admin.index', $data);
+Route::group(['as'=> 'admin.', 'prefix' => 'admins', 'middleware'=>'auth:admin'], function(){
+    Route::get('/', function () {
+        // $data['title'] = 'Dashboard';
+        // return view('admin.index', $data);
+        return redirect(route('admin.film.index'));
     })->name('dashboard');
 
     Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');

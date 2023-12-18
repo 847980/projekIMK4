@@ -229,6 +229,11 @@
                                     <option value="{{ $genre->id }}">{{ $genre->name }}</option>
                                 @endforeach
                             </select>
+                            @error('genre_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                         
@@ -244,6 +249,11 @@
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
+                            @error('country_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
