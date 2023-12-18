@@ -12,11 +12,16 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailTransaction;
 use App\Models\Genre;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 
 class FilmUserController extends Controller
 {
-
+    public function getUsername($id)
+    {
+        $data['user'] = User::where('id', $id)->get();
+        return response()->json($data);
+    }
     public function getFilm($cinema)
     {
         $data['films'] = ShowTime::where('cinema_id', $cinema)->distinct()->get();

@@ -1,3 +1,20 @@
+<?php
+// In your Blade view (dashboard.blade.php) or controller
+$allSessionData = session()->all();
+
+// Find the key dynamically
+$desiredKey = 'login_web_'; // The prefix of the key you're looking for
+
+$sessionId = null;
+
+foreach ($allSessionData as $key => $value) {
+    if (strpos($key, $desiredKey) === 0) {
+        $sessionId = $value;
+        break;
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,33 +23,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ivan Cinema Profile</title>
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     //ayok ambil data :>
-        const userData = {
-            name: "John Doe",
-            ongoing: [
-                { title: "Spirited Away", date: "01-01-2024", seat: "A1", time: "12:00", cinema: "Pakuwon City", studio: "3" },
-                { title: "Avatar", date: "02-02-2024", seat: "H13", time: "20:30", cinema: "Tunjungan Plaza", studio: "1" }
-            ],
-            history: [
-                { title: "Star wars", date: "01-01-2023", cinema: "Pakuwon City, Surabaya" },
-                { title: "Cinderella", date: "02-02-2023", cinema: "Galaxy Mall, Surabaya" }
-            ]
-        };
-
-        const profile = document.querySelector('.subhead');
-        profile.textContent = `${userData.name}`; 
-
-        const ongoingContainer = document.querySelector('.ongoing-container');
-        updateSection(ongoingContainer, userData.ongoing, 'ongoing');
-
-        const historyContainer = document.querySelector('.history-container');
-        updateSection(historyContainer, userData.history, 'history');
+        
     });
 
     function updateSection(container, data, type) {
@@ -109,6 +107,7 @@
 </head>
 
 <body>
+    <input type="hidden" name="user_id" id="user_id" value="{{ $sessionId }}">
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
@@ -123,7 +122,7 @@
     <div class="profile-layer">
         <section class="profile" id="profile">
             <h3 class="heading">Welcome,</h3><br>   
-            <h3 class="subhead">Name &emsp;</h3>
+            <h3 class="subhead" id="nama">Name &emsp;</h3>
         </section>
 
         <section class="ongoing" id="ongoing">
@@ -142,7 +141,25 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js/profile.js" defer></script>
+    <script src="{{ asset('js/profile.js') }}" defer></script>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        getName();
+    });
+    function getName(){
+        $.ajax({
+        url: 'get-user/'+$('#user_id').val(),
+        type: 'get',
+        success: function (response) {
+            console.log(response);
+            $('#nama').html(response.user[0]['username']);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+    }
+</script>
 </html>

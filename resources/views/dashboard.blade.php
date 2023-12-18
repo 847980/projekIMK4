@@ -21,8 +21,8 @@
             <li><a href="#home" class="home-active">HOME</a></li>
             <li><a href="#movies">MOVIES</a></li>
             <li><a href="#coming">COMING</a></li>
-            <li><a href="#newsletter">NEWSLETTER</a></li>
-            <li><a href="/profile" id="profile" style="display: none;">PROFILE</a></li>
+            <li><a href="#newsletter">NEWSLETTER</a></li>            
+            <li><a href="{{ route('user.profile') }}" id="profile" style="display: none;">PROFILE</a></li>
             <li><a href="/login" id="signin" style="display: inline;">SIGN IN</a></li>
         </ul>
     </header>
@@ -164,6 +164,7 @@ function getCinema(){
             type: 'get',
             success: function (response) {
                 console.log(response);
+            
                 $.each(response.cinemas, function(index, cinema) {
                     $('#cinemaDropdown').append($('<option>', {
                         value: cinema.id,  
