@@ -93,12 +93,12 @@
         <div class="coming-container swiper">
             <div class="box-coming">
                 <div class="box-img-coming">
-                    <img src="{{ asset('storage/assets/starwars.jpg') }}">
+                    <img src="{{ asset('storage/assets/before.jpg') }}">
                 </div>
             </div>
             <div class="box-coming">
                 <div class="box-img-coming">
-                    <img src="{{ asset('storage/assets/avatar.jpg') }}">
+                    <img src="{{ asset('storage/assets/pixel.jpg') }}">
                 </div>
             </div>
             <div class="box-coming">
@@ -186,41 +186,24 @@ function getCinema(){
             success: function (response) {
                 console.log(response);
                 $.each(response.films, function(index, film){
-                    
-                    // $('#movies-container').append(
-                    //     "<form action='{{ route('user.get-detail') }}' method='post'> " +
-                    //     "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>"+
-                    //     "<div data-aos='fade-up' data-aos-duration='2500'>" +
-                    //     "<div class='box-img'>" + "<img src='" + {{ asset('storage/assets/spirited.png') }} + "'>" +
-                    //     "</div>" +
-                    //     "</div>" +
-                    //     "</form>");
                     $('#movies-container').append(
-                        "<div data-aos='fade-up' data-aos-duration='2500'>" +
-                        "<div class='box-img'>"+"<img src='" + "{{ asset('storage/assets/spirited.png') }}" + "'>" +
-                        "<form action='{{ route('user.get-detail') }}' method='post'> " +
-                        "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>"+
-                        "<p> " + film[0].judul + " " + film[0].name +" "+ film[0].age_cat + "<br>"+ film[0].description +
-                        "<input type='hidden' name='film_id' value='"+film[0].id+"'>"+
-                        "<input type='hidden' name='cinema_id' value='"+cinemaId+"'>"+
-                         "<br><button class='btn btn-primary'>Buy Ticket</button>"
-                         + "</p>"+ "</form>"+"</div>"+"</div>");
-                })
-
-                
-
-
-        //         `<div data-aos="fade-up" data-aos-duration="2500">
-        // //                 <div class="box-img">
-        // //                     <img src="${item.img}">
-        // //                     <div class="overlay">
-        // //                         <p class="movie-desc">${item.desc}</p>
-        // //                         <a href="/detail" class="btn-mov">BOOK</a>
-        // //                     </div>
-        // //                 </div>
-        // //                 <h3>${item.title}</h3>
-        // //                 <span>${item.duration} | ${item.genre}</span>
-        // //             </div>`;
+                        "<div class='box' data-aos='fade-up' data-aos-duration='2500'>" +
+                        "<div class='box-img'>" +
+                        "<img src='" + "{{ asset('storage/assets/spirited.png') }}" + "' alt='" + film[0].judul + "'>" +
+                        "<form action='{{ route('user.get-detail') }}' method='post'>" +
+                        "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>" +
+                        "<div class='overlay'>" +
+                        "<input type='hidden' name='film_id' value='" + film[0].id + "'>" +
+                        "<input type='hidden' name='cinema_id' value='" + cinemaId + "'>" +
+                        "<p class='movie-desc'>" + film[0].description + "</p>" +
+                        "<button class='btn btn-primary'>Buy Ticket</button>" + 
+                        "</div>" +
+                        "</div>" +
+                        "<h3>" + film[0].judul + "</h3>" +
+                        "<span>" + film[0].name + " | " + film[0].age_cat + "</span>" +                        
+                        "</form>" +
+                        "</div>");
+                })  
             },
             error: function (error) {
                 console.log(error);

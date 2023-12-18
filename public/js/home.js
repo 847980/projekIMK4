@@ -44,19 +44,6 @@ document.getElementById('menu-icon').addEventListener('click', function () {
     document.querySelector('.navbar').classList.toggle('show');
 });
 
-//tmbhi pengecekan kpn false (user blm login) dan true (user udh login)
-const userValid = true;
-const signIn= document.getElementById('signin');
-const userProfile = document.getElementById('profile');
-
-if (userValid) {
-    signIn.style.display = 'none';
-    userProfile.style.display = 'inline';
-} else {
-    signIn.style.display = 'inline';
-    userProfile.style.display = 'none';
-}
-
 var swiper = new Swiper(".home", {
     spaceBetween: 30,
     centeredSlides: true,
