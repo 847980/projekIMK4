@@ -18,7 +18,7 @@ class ShowSeat extends Model
         return $this->belongsTo(ShowTime::class);
     }
 
-    public function detailTransaction()
+    public function DetailTransaction()
     {
         return $this->hasOne(DetailTransaction::class);
     }

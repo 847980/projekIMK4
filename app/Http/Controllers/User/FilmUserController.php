@@ -17,6 +17,29 @@ use Carbon\Carbon;
 class FilmUserController extends Controller
 {
 
+    // menampilkan transaksi user yang sudah dilakukan
+    public function getTicket(){
+            $userId = session('id');
+            $data['transactions'] = Transaction::with('DetailTransaction')->get();
+            
+            echo $data['transactions']->DetailTransaction;
+
+
+
+
+            // foreach ($data['transactions'] as $transaction) {
+            //     foreach ($transaction->detailTransaction as $detailTransaction) {
+            //         // Akses setiap detail transaksi di sini
+            //         $showSeat = $detailTransaction->ShowSeat;
+
+            //         dd($showSeat);
+            //     }
+            // }
+            
+            // dd($data['myticket']);
+
+    }
+
     public function getFilm($cinema)
     {
         $data['films'] = ShowTime::where('cinema_id', $cinema)->distinct()->get();

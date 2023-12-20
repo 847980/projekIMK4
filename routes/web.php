@@ -29,6 +29,8 @@ Route::get('/', function () {
     return redirect(route('user.dashboard'));
 });
 
+Route::get('/testing',[FilmUserController::class, 'getTicket'])->name('getTicket');
+
 
 // user login dan register
 Route::middleware('guest')->group(function(){
