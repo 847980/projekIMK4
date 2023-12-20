@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <style>
-        .checkout-container {
+.checkout-container {
             max-width: 70%;
         }
         .checkout-title {
@@ -29,21 +29,26 @@
             padding: 1.7em 2em;
             border-radius: 10px;
             margin: 1em;
+            width: 100%;
         }
         .row {
             display: flex;
             justify-content: space-between;
             flex-flow: row wrap;
+            width: 100%;
         }
+        
 
         .row .checkout-card {
             width: 10em;
+            margin: 0.5em 0;
             padding: 1.5em;
             padding-bottom: 1.2em;
             padding-top: 1.2em;
         }
 
         .row .checkout-card h2 {
+            
             font-size: 2rem;
             font-weight: bold;
         }
@@ -59,18 +64,6 @@
             margin-top: 1em;
             margin-bottom: 1em;
         }
-
-        @media only screen and (max-width: 768px) {
-            .row .checkout-card {
-                flex: 0 0 calc(50% - 2em);
-            }
-        }
-
-        @media only screen and (max-width: 480px) {
-            .row .checkout-card {
-                flex: 0 0 calc(100% - 2em);
-            }
-        }
         .seat-card {
             background-color: rgb(255, 211, 105);
             width: 5em;
@@ -79,6 +72,9 @@
             margin: 1em;
             display: flex;
             justify-content: center;
+        }
+        .big-card {
+
         }
         .seat-card p {
             font-size: 1.5rem;
@@ -93,13 +89,39 @@
             font-size: 1.3rem;
             border-style: none;
         }
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 60%;
+            margin: 0 auto;
+        }
+        @media only screen and (max-width: 825px) {
+            .flex-container {
+                width: 73%
+            }
+            .big-card {
+                justify-content: center;
+                margin: 0.5em 10em;
+                gap: 1em 2em;
+                width: 100%;
+            }
+        }   
+        @media only screen and (max-width: 480px) {
+            .flex-container {
+                width: 80%
+            }
+            .row .checkout-card {
+                width: 100%;
+            }
+        }   
     </style>
 </head>
 <body>
-<a class="btn btn-danger" href="{{ route('user.dashboard') }}">Cancel</a>
+<a class="btn btn-danger" href="{{ route('user.dashboard') }}" style="margin: 20px">Cancel</a>
 
     <div class="flex-container">
-        <div class="checkout-container">
             <div class="checkout-title checkout-card">
                 <div class="poster">
                     
@@ -112,68 +134,59 @@
                     <span id="keterangan"></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-4">
-                    <div class="checkout-card ">
+            <div class="row big-card">
+                <div class="col-4 checkout-card ">
                         <h2><span id="tanggal"></span></h2>
                         <p>Date</p>
-                    </div>
                 </div>
-                <div class="col-4">
-                    <div class="checkout-card">
+                <div class="col-4 checkout-card">
                         <h2><span id="jam"></span></h2>
                         <p>Time</p>
-                    </div>
                 </div>
-                <div class="col-4">
-                    <div class="checkout-card">
+                <div class="col-4 checkout-card">
                         <h2><span id="studioName"></span></h2>
                         <p>Studio</p>
-                    </div>
                 </div>
             </div>
-            <div class="transaction-details">
-                <div class="checkout-card">
-                    <div class="row">
-                        <div class="col-6"><h3>Cinema Name</h3></div>
-                        <div class="col-6"><p><span id="cinemaName"></span></p></div>
-                    </div>
-                    <div class="border-bottom"></div>
-                    <div class="row">
-                        <div class="col-6"><h3>Studio</h3></div>
-                        <div class="col-6"><p><span id="studioName2"></span></p></div>
-                    </div>
-                    <div class="border-bottom"></div>
-                    <div class="row">
-                        <div class="col-6"><h3>Date</h3></div>
-                        <div class="col-6"><p><span id="tanggal2"></span></p></div>
-                    </div>
-                    <div class="border-bottom"></div>
-                    <div class="row">
-                        <div class="col-6"><h3>Start time</h3></div>
-                        <div class="col-6"><p><span id="jam2"></span> WIB</p></div>
-                    </div>
+            <div class="checkout-card">
+                <div class="row">
+                    <div class="col-6"><h3>Cinema Name</h3></div>
+                    <div class="col-6"><p><span id="cinemaName"></span></p></div>
+                </div>
+                <div class="border-bottom"></div>
+                <div class="row">
+                    <div class="col-6"><h3>Studio</h3></div>
+                    <div class="col-6"><p><span id="studioName2"></span></p></div>
+                </div>
+                <div class="border-bottom"></div>
+                <div class="row">
+                    <div class="col-6"><h3>Date</h3></div>
+                    <div class="col-6"><p><span id="tanggal2"></span></p></div>
+                </div>
+                <div class="border-bottom"></div>
+                <div class="row">
+                    <div class="col-6"><h3>Start time</h3></div>
+                    <div class="col-6"><p><span id="jam2"></span> WIB</p></div>
+                </div>
 
-                    <div class="border-bottom"></div>
-                    <div class="row">
-                        <div class="col-6"><h3>Seat Booked</h3></div>
+                <div class="border-bottom"></div>
+                <div class="row">
+                    <div class="col-6"><h3>Seat Booked</h3></div>
+                </div>
+                <div id="seat container"></div>
+                <div class="border-bottom"></div>
+                <div class="row">
+                    <div class="col-6"><h3>TOTAL</h3></div>
+                    <div class="col-6"><h1>$<span id="totalBayar"></span></h1></div>
+                </div>
+                <div class="border-bottom"></div>
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div class="col">
+                        <button class="pay-btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">PAYMENT</button>
                     </div>
-                    <div id="seat"></div>
-                    <div class="border-bottom"></div>
-                    <div class="row">
-                        <div class="col-6"><h3>TOTAL</h3></div>
-                        <div class="col-6"><h1>$<span id="totalBayar"></span></h1></div>
-                    </div>
-                    <div class="border-bottom"></div>
-                    <div class="row" style="display: flex; justify-content: center;">
-                        <div class="col">
-                            <button class="pay-btn" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">PAYMENT</button>
-                        </div>
-                        
-                    </div>
+                    
                 </div>
             </div>
-        </div>
     </div>
 
 

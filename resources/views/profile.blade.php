@@ -118,7 +118,7 @@ foreach ($allSessionData as $key => $value) {
             <li><a href="#" id="profile">PROFILE</a></li>
         </ul>
     </header>    
-
+    
     <div class="profile-layer">
         <section class="profile" id="profile">
             <h3 class="heading">Welcome,</h3><br>   

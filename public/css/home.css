@@ -341,9 +341,9 @@ li.selected {
     margin-top: 2rem;
 }
 
-.box-img{
+/* .box-img{
     background: var(--text-color);
-}
+} */
 
 .box .box-img{
     width: 100%;
