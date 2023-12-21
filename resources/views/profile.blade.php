@@ -111,11 +111,12 @@ foreach ($allSessionData as $key => $value) {
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
-            <li><a href="/home" class="home-active">HOME</a></li>
-            <li><a href="/home#movies">MOVIES</a></li>
-            <li><a href="/home#coming">COMING</a></li>
-            <li><a href="/home#newsletter">NEWSLETTER</a></li>
+            <li><a href="{{ route('user.dashboard') }}" class="home-active">HOME</a></li>
+            <li><a href="{{ route('user.dashboard') }}">MOVIES</a></li>
+            <li><a href="{{ route('user.dashboard') }}">COMING</a></li>
+            <li><a href="{{ route('user.dashboard') }}">NEWSLETTER</a></li>
             <li><a href="#" id="profile">PROFILE</a></li>
+            <li><a href="{{ route('logout') }}" id="signin">LOG OUT</a></li>
         </ul>
     </header>    
     

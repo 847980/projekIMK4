@@ -249,6 +249,9 @@ foreach ($_POST as $key => $value) {
 <input type="hidden" name="seatNums" id="seatNums" value="">
 <input type="hidden" name='user_id' id="user_id" value="{{ $sessionId }}">
 <input type="hidden" name='transaction_id' id="transaction_id" value="">
+<form action="" id="csrfForm">
+    @csrf
+</form>
 
 <form action="{{ route('paypal') }}" method="post">
     @csrf
@@ -268,7 +271,10 @@ foreach ($_POST as $key => $value) {
             The order cannot be canceled. Are you sure?
         </div>
         <div class="modal-footer">
-  <button class="btn btn-warning" onclick="paypal()">Confirm</button>
+  <button class="btn btn-warning" onclick="checkSeat()">Confirm</button> 
+  {{-- should be paypal() --}}
+  
+  <p id="testing"></p>
         </div>
       </div>
     </div>
@@ -289,9 +295,11 @@ foreach ($_POST as $key => $value) {
     var genre_id = "";
     var genreName = "";
     var ageCat = "";
+    var seatStat = [];
     var duration = -1;
 
     $(document).ready(function(){
+        console.log("ready");
         var dateString = $('#date').val();
         var dateObject = new Date(dateString);
         var day = dateObject.getDate();
@@ -310,7 +318,6 @@ foreach ($_POST as $key => $value) {
 
         runAsyncOperations();
         
-
     });
     
     async function runAsyncOperations() {
@@ -439,16 +446,66 @@ foreach ($_POST as $key => $value) {
             success: function (response) {
                 console.log('show seat: ')
                 console.log(response)
+                console.log("chair:");
                 console.log(response[0]['chair_number']);
                 var temp = $("#seatNums").val();
+                // $('#testing').html("dd");
                 $("#seatNums").val(temp + "," +response[0]['chair_number']);
+                $("#seat").append("<p>"+response[0]['chair_number']+"</p>")
                 $("#seat").append("<div class=\"seat-card\"><p>"+response[0]['chair_number']+"</p></div>")
-                if (index === seats.length - 1) {
-                    var tempSeatNumber = $("#seatNums").val().substring(1);
-                    console.log(tempSeatNumber);
-                    $('#description').append("<p> Seat Number: "+tempSeatNumber+"</p>");
+                // if (index === seats.length - 1) {
+                //     var tempSeatNumber = $("#seatNums").val().substring(1);
+                //     console.log("seats:"+tempSeatNumber);
+                //     $('#description').append("<p> Seat Number: "+tempSeatNumber+"</p>");
                     
 
+                // }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+            });
+        });
+    }
+    function showstat(){
+        console.log(seatStat);
+        var paynow = true;
+        $.each(seatStat, function(index, seat){
+            if (seat == 1) {
+                paynow = false;
+            }
+        });
+        console.log(paynow);
+        if(paynow){
+            paypal();
+        } else {
+            showAlertAndRedirect();
+        }
+    };
+    
+        // Function to show the alert and redirect when OK is clicked
+        function showAlertAndRedirect() {
+      window.alert("Seat taken. Kindly return to the main menu for other options.");
+      // Redirect to another site after clicking OK
+      window.location.href = "dashboard";
+    }
+
+    function checkSeat(){
+        $.each(seats, function(index, seat){
+            $.ajax({
+            url: 'check-seat/'+seat,
+            type: 'get',
+            success: function (response) {
+                console.log("chair:");
+                console.log(response[0]['chair_status']);
+                if (response[0]['chair_status'] == 0) {
+                    console.log("kosong");
+                    seatStat.push(0);
+                } else {
+                    seatStat.push(1);
+                }
+                if (index == seats.length - 1) {
+                    showstat();
                 }
             },
             error: function (error) {

@@ -22,8 +22,8 @@
             <li><a href="#movies">MOVIES</a></li>
             <li><a href="#coming">COMING</a></li>
             <li><a href="#newsletter">NEWSLETTER</a></li>            
-            <li><a href="{{ route('user.profile') }}" id="profile" style="display: none;">PROFILE</a></li>
-            <li><a href="/login" id="signin" style="display: inline;">SIGN IN</a></li>
+            <li><a href="{{ route('user.profile') }}" id="profile" >PROFILE</a></li>
+            <li><a href="{{ route('logout') }}" id="signin">LOG OUT</a></li>
         </ul>
     </header>
 
@@ -204,9 +204,7 @@ function getCinema(){
                         "<span>" + film[0].name + " | " + film[0].age_cat + "</span>" +                        
                         "</form>" +
                         "</div>");
-
                 })  
-
             },
             error: function (error) {
                 console.log(error);
