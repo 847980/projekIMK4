@@ -289,6 +289,7 @@
             seats = [];
             $('#chair').html("");
         }
+        $('#date').val($('.date_point.active').attr('id'));
 
         //ketika date dirubah 
         $('.date_point').click(function(){
@@ -435,6 +436,7 @@
 
 
         getStudioTime();
+
 
 
         // ketika submit

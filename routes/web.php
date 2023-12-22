@@ -70,6 +70,11 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
     Route::get('/create-transaction/{Id}/{total}', [FilmUserController::class, 'createTransaction']);
     Route::get('/create-detail/{Id1}/{id2}', [FilmUserController::class, 'createDetailTransaction']);
     Route::get('/update-seat/{id}', [FilmUserController::class, 'seatUpdate']);
+    Route::get('/check-seat/{id}', [FilmUserController::class, 'seatCheck']);
+
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
 
     Route::get('/profile', function () {
         return view('profile');
@@ -172,6 +177,10 @@ Route::get('/book', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+// Route::get('/detail', function () {
+//     return view('detail');
+// });
 
 
 Route::get('/checkout', function() {

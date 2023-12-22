@@ -240,4 +240,9 @@ class FilmUserController extends Controller
         $seat->update($request);
         return response()->json(['success' => true, 'message' => 'update successfully']);
     }
+
+    public function seatCheck($id){
+        $data = ShowSeat::where('id', $id)->get();
+        return response()->json($data);
+    }
 }

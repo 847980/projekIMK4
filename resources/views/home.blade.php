@@ -1,3 +1,20 @@
+<?php
+// In your Blade view (dashboard.blade.php) or controller
+$allSessionData = session()->all();
+
+// Find the key dynamically
+$desiredKey = 'login_web_'; // The prefix of the key you're looking for
+
+$sessionId = null;
+
+foreach ($allSessionData as $key => $value) {
+    if (strpos($key, $desiredKey) === 0) {
+        $sessionId = $value;
+        break;
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
