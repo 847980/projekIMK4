@@ -24,7 +24,7 @@ class TransactionSeeder extends Seeder
             [
                 'user_id' => User::where('username','user')->first()->id,
                 'total' => 30000,
-            ]
+            ],
         ];
         
         foreach($data as $value){

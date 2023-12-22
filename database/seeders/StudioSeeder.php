@@ -33,8 +33,8 @@ class StudioSeeder extends Seeder
 
             ],
             [
-                'name' => 'studio1',
-                'cinema_id' => Cinema::where('name','Bukan Cinema')->first()->id,
+                'name' => 'studio3',
+                'cinema_id' => Cinema::where('name','Bukan cinemaku')->first()->id,
                 'total_chair' => 144,
 
             ],

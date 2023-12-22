@@ -14,6 +14,7 @@ use App\Models\Studio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use App\Models\ShowSeat;
+use Carbon\Carbon;
 
 class DetailTransactionSeeder extends Seeder
 {
@@ -25,6 +26,8 @@ class DetailTransactionSeeder extends Seeder
          // Schema::disableForeignKeyConstraints();
         // DB::table('detail_transactions')->truncate();
         // Schema::enableForeignKeyConstraints();
+        $date = Carbon::now()->addDays(2)->format('Y-m-d');
+
         $data = [
             [
                 'transaction_id' => Transaction::where('user_id', User::where('username', 'user')->first()->id)->first()->id,
@@ -57,6 +60,44 @@ class DetailTransactionSeeder extends Seeder
                     ->where('cinema_id',Cinema::where('name','cinemaku')->first()->id)
                     ->where('film_id', Film::where('judul', 'film1')->first()->id)
                     ->where('show_date', '2023-12-18')
+                    ->where('start_time', '10:00:00')
+                    ->first()->id
+                    )
+                ->where('chair_number', 3)->first()->id
+            ],
+
+            [
+                'transaction_id' => Transaction::where('user_id', User::where('username', 'user')->first()->id)->first()->id,
+                'showseat_id' => ShowSeat::where(
+                    'showtime_id', ShowTime::where('studio_id', Studio::where('name','studio1')->first()->id)
+                    ->where('cinema_id',Cinema::where('name','cinemaku')->first()->id)
+                    ->where('film_id', Film::where('judul', 'film1')->first()->id)
+                    ->where('show_date', $date)
+                    ->where('start_time', '10:00:00')
+                    ->first()->id
+                    )
+                ->where('chair_number', 1)->first()->id
+            ],
+
+            [
+                'transaction_id' => Transaction::where('user_id', User::where('username', 'user')->first()->id)->first()->id,
+                'showseat_id' => ShowSeat::where(
+                    'showtime_id', ShowTime::where('studio_id', Studio::where('name','studio1')->first()->id)
+                    ->where('cinema_id',Cinema::where('name','cinemaku')->first()->id)
+                    ->where('film_id', Film::where('judul', 'film1')->first()->id)
+                    ->where('show_date', $date)
+                    ->where('start_time', '10:00:00')
+                    ->first()->id
+                    )
+                ->where('chair_number', 2)->first()->id
+            ],
+            [
+                'transaction_id' => Transaction::where('user_id', User::where('username', 'user')->first()->id)->first()->id,
+                'showseat_id' => ShowSeat::where(
+                    'showtime_id', ShowTime::where('studio_id', Studio::where('name','studio1')->first()->id)
+                    ->where('cinema_id',Cinema::where('name','cinemaku')->first()->id)
+                    ->where('film_id', Film::where('judul', 'film1')->first()->id)
+                    ->where('show_date', $date)
                     ->where('start_time', '10:00:00')
                     ->first()->id
                     )
