@@ -45,6 +45,27 @@ document.getElementById('menu-icon').addEventListener('click', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    // const detailButtons = document.querySelectorAll('.box-ongoing button');
+
+    // detailButtons.forEach((button, index) => {
+    //     button.addEventListener('click', function () {
+    //         const modalOverlay = document.getElementById(`modalOverlay${index + 1}`);
+    //         modalOverlay.style.display = 'flex';
+    //         const modal = modalOverlay.querySelector('.ticket-modal');
+    //     });
+    // });
+
+    // const closeButtons = document.querySelectorAll('.modal .close');
+
+    // closeButtons.forEach((closeButton) => {
+    //     closeButton.addEventListener('click', function () {
+    //         const modalOverlay = this.closest('.overlay');
+    //         modalOverlay.style.display = 'none';
+    //     });
+    // });
+});
+
+function buttonSelector(){
     const detailButtons = document.querySelectorAll('.box-ongoing button');
 
     detailButtons.forEach((button, index) => {
@@ -63,4 +84,4 @@ document.addEventListener('DOMContentLoaded', function () {
             modalOverlay.style.display = 'none';
         });
     });
-});
+}

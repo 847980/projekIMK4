@@ -41,7 +41,7 @@
                             {{-- hari pertama --}}
                                 <li>
                                     <h6>{{ $current_date->format('D') }}</h6>
-                                    <h6 class="date_point active" id="{{ $current_date->format('Y-m-d') }}">{{ $current_date->format('j') }}</h6>
+                                    <h6 class="date_point active now" id="{{ $current_date->format('Y-m-d') }}">{{ $current_date->format('j') }}</h6>
                                 </li>
                                 @php
                                     $current_date->addDay();
@@ -265,7 +265,7 @@
     <input type="hidden" name='film_id' id="film_id" value="{{ session('film_id') }}">
     <input type="hidden" name='cinema_id' id="cinema_id" value="{{ session('cinema_id') }}">
     <input type="hidden" name="studio_id2" id="studio_id2" value="-1">
-    <input type="hidden" name="date" id="date" value="-1">
+    <input type="hidden" name="date" id="date2" value="{{ $date->format('Y-m-d') }}">
     <input type="hidden" name="time" id="timeChoose" value="-1">
     <input type="hidden" name="show_timeId" id="show_timeId" value="-1">
     <button id="order" type="submit" style="display: none;">Go</button>
@@ -292,10 +292,14 @@
 
         //ketika date dirubah 
         $('.date_point').click(function(){
-            $('.date_point').removeClass('active');
-            $(this).addClass('active');
-            getStudioTime();
+            if($(this).hasClass('now')){
+                // console log this class
+                return;
+            }
+            $('.date_point').removeClass('active now');
+            $(this).addClass('active now');
             reset();
+            getStudioTime();
             // isi form
             $('#date').val($(this).attr('id'));
             // reset form
@@ -334,17 +338,20 @@
 
         // ketika showtime di klik
         $('.showtime-container').on('click', '.showtime', function(){
-            $('.showtime').removeClass('active');
-            $(this).addClass('active');
+            if($(this).hasClass('now')){
+                return;
+            }
+            $('.showtime').removeClass('active now');
+            $(this).addClass('active now');
             var showtimeId = $(this).attr('id');
             console.log(showtimeId);
             getChair(showtimeId);
             reset();
 
-            // reset form
-            $("#studio_id2").val(-1);
-            $("#show_timeId").val(-1);
-            $("#timeChoose").val(-1);
+            // // reset form
+            // $("#studio_id2").val(-1);
+            // $("#show_timeId").val(-1);
+            // $("#timeChoose").val(-1);
             // isi form
             $("#studio_id2").val($(this).attr('studioId'));
             $("#show_timeId").val($(this).attr('id'));
@@ -432,7 +439,16 @@
 
         // ketika submit
         $('.confirm_button').click(function(){
-            console.log("yee")
+            var date = $("#date2").val();
+            var studio = $("#studio_id2").val();
+            var showtime = $("#show_timeId").val();
+            var time = $("#timeChoose").val();
+            
+            if(date == -1 || studio == -1 || showtime == -1 || time == -1){
+                alert("Please choose date, studio, and showtime")
+                return;
+            }
+
             $.each(seats, function(index, seat){
                 $('#form').append('<input type="hidden" name="'+seat+'" id="'+seat+'" value="'+seat+'">')
             });

@@ -31,7 +31,7 @@ class ShowTime extends Model
     }
 
     public function ShowSeat(){
-        return $this->hasMany(ShowSeat::class);
+        return $this->hasMany(ShowSeat::class, "showtime_id");
     }
 
     

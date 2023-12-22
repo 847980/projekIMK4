@@ -12,34 +12,77 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailTransaction;
 use App\Models\Genre;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 
 class FilmUserController extends Controller
 {
 
     // menampilkan transaksi user yang sudah dilakukan
-    public function getTicket(){
+    public function getUserTicket(){
             $userId = session('id');
-            $data['transactions'] = Transaction::with('DetailTransaction')->get();
-            
-            echo $data['transactions']->DetailTransaction;
+            // get showseat
+            // mengambil apa yang usdah dibooking oleh user 
+            $data['transactions'] = Transaction::with(['DetailTransaction.showseat.showtime.film','DetailTransaction.showseat.showtime.cinema','DetailTransaction.showseat.showtime.studio'])
+            ->where('user_id', $userId)
+            ->get();
 
+            $today = Carbon::now()->format('Y-m-d');
+            $groupedOngoing = [];
+            $groupedPast = [];
 
-
-
-            // foreach ($data['transactions'] as $transaction) {
-            //     foreach ($transaction->detailTransaction as $detailTransaction) {
-            //         // Akses setiap detail transaksi di sini
-            //         $showSeat = $detailTransaction->ShowSeat;
-
-            //         dd($showSeat);
-            //     }
-            // }
-            
-            // dd($data['myticket']);
-
+            // mengambil data film yang sudah dibooking oleh user
+            foreach ($data['transactions'] as $transaction) {
+                foreach($transaction['DetailTransaction'] as $detail){
+                    $showtimeId = $detail->showseat->showtime->id;
+                    //ongoing
+                    if($detail->showseat->showtime->show_date >= $today){
+                        if(!isset($groupedOngoing[$showtimeId])){
+                            $groupedOngoing[$showtimeId] = [
+                                'title' => $detail->showseat->showtime->film->judul,
+                                'cinema' => $detail->showseat->showtime->cinema->name,
+                                'studio' => str_replace("studio","",$detail->showseat->showtime->studio->name),
+                                'date' => $detail->showseat->showtime->show_date,
+                                'time' => $detail->showseat->showtime->start_time,
+                                'seat' => [],
+                            ];
+                        }
+                        $groupedOngoing[$showtimeId]['seat'][] = $detail->showseat->chair_number;
+                    }
+                    // past
+                    else{
+                        if(!isset($groupedPast[$showtimeId])){
+                            $groupedPast[$showtimeId] = [
+                                'title' => $detail->showseat->showtime->film->judul,
+                                'cinema' => $detail->showseat->showtime->cinema->name,
+                                'studio' => $detail->showseat->showtime->studio->name,
+                                'date' => $detail->showseat->showtime->show_date,
+                                'time' => $detail->showseat->showtime->start_time,
+                                'seat' => [],
+                            ];
+                        }
+                        $groupedPast[$showtimeId]['seat'][] = $detail->showseat->chair_number;
+                    }
+                }
+            }
+            $data2['ongoing'] = $groupedOngoing;
+            $data2['past'] = $groupedPast;
+            // implode seat
+            foreach($data2['ongoing'] as &$ongoing){
+                $ongoing['seat'] = implode(', ', $ongoing['seat']);
+            }
+            foreach($data2['past'] as &$past){
+                $past['seat'] = implode(', ', $past['seat']);
+            }
+        return response()->json($data2);
     }
 
+    public function getUsername($id)
+    {
+        $data['user'] = User::where('id', $id)->get();
+        return response()->json($data);
+    }
+    
     public function getFilm($cinema)
     {
         $data['films'] = ShowTime::where('cinema_id', $cinema)->distinct()->get();
@@ -50,10 +93,20 @@ class FilmUserController extends Controller
     }
     public function getFilmAgeGenre($cinema)
     {
-        $data['films'] = ShowTime::where('cinema_id', $cinema)->distinct()->get();
+        // dapetin hari ini 
+        $data['films'] = ShowTime::where('cinema_id', $cinema)
+        ->whereDate('show_date', '>=', Carbon::now())
+        ->whereDate('show_date', '<=', Carbon::now()->addDays(13))
+        ->pluck('film_id')->unique();
+
         foreach ($data['films'] as $film) {
-            $result['films'][] = Film::select('films.*', 'genres.name as name')->where('films.id', $film['film_id'])->join('genres', 'films.genre_id', '=', 'genres.id')->get();
+            $result['films'][] = Film::select('films.*', 'genres.name as name')->where('films.id', $film)->join('genres', 'films.genre_id', '=', 'genres.id')->get();
         }
+
+        if(empty($result['films'])){
+        return response()->json(['success' => false, 'message' => 'Film not found',"until"=>Carbon::now()->addDays(13)->format("Y-m-d")]);
+        }
+        $result['success'] = true;
         return response()->json($result);
     }
     

@@ -15,12 +15,15 @@ class ShowSeat extends Model
     // orm
     public function ShowTime()
     {
-        return $this->belongsTo(ShowTime::class);
+        return $this->belongsTo(ShowTime::class, "showtime_id");
     }
 
     public function DetailTransaction()
     {
-        return $this->hasOne(DetailTransaction::class);
+        return $this->hasOne(DetailTransaction::class, "showseat_id");
     }
+    
+
+
     
 }

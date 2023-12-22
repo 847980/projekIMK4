@@ -54,11 +54,11 @@ class FilmController extends Controller
 
          
         $filename_potrait = $request->judul . '_potrait'. '-' . time() . '.' . $request->poster_potrait->extension();
-        $request->poster_potrait->storeAs('public/poster', $filename_potrait);
+        $request->poster_potrait->storeAs('public/assets', $filename_potrait);
         // Storage::putFileAs('public', $request->file('poster_potrait'), $filename_potrait);
 
         $filename_landscape = $request->judul . '_landscape'. '-' . time() . '.' . $request->poster_landscape->extension();
-        $request->poster_landscape->storeAs('public/poster', $filename_landscape);
+        $request->poster_landscape->storeAs('public/assets', $filename_landscape);
         
         $data['poster_potrait'] = $filename_potrait;
         $data['poster_landscape'] = $filename_landscape;
@@ -115,19 +115,19 @@ class FilmController extends Controller
 
         if($request->poster_potrait){
             // hapus file lama
-            Storage::delete('public/poster/' . $data['poster_potrait'] );
+            Storage::delete('public/assets/' . $data['poster_potrait'] );
 
             $filename_potrait = $request->judul . '_potrait'. '-' . time() . '.' . $request->poster_potrait->extension();
-            $request->poster_potrait->storeAs('public/poster', $filename_potrait);
+            $request->poster_potrait->storeAs('public/assets', $filename_potrait);
             $data['poster_potrait'] = $filename_potrait;
         }
 
         if($request->poster_landscape){
             // hapus file lama
-            Storage::delete('public/poster/' . $data['poster_landscape'] );
+            Storage::delete('public/assets/' . $data['poster_landscape'] );
 
             $filename_landscape = $request->judul . '_landscape'. '-' . time() . '.' . $request->poster_landscape->extension();
-            $request->poster_landscape->storeAs('public/poster', $filename_landscape);
+            $request->poster_landscape->storeAs('public/assets', $filename_landscape);
             $data['poster_landscape'] = $filename_landscape;
         }
         
@@ -148,8 +148,8 @@ class FilmController extends Controller
         }
 
         // hapus file lama
-        Storage::delete('public/poster/' . $film->poster_potrait );
-        Storage::delete('public/poster/' . $film->poster_landscape );
+        Storage::delete('public/assets/' . $film->poster_potrait );
+        Storage::delete('public/assets/' . $film->poster_landscape );
         return redirect()->back()->with('success', 'Film berhasil dihapus');
     }
     

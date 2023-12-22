@@ -21,9 +21,9 @@
             <li><a href="#home" class="home-active">HOME</a></li>
             <li><a href="#movies">MOVIES</a></li>
             <li><a href="#coming">COMING</a></li>
-            <li><a href="#newsletter">NEWSLETTER</a></li>
-            <li><a href="/profile" id="profile" style="display: none;">PROFILE</a></li>
-            <li><a href="/login" id="signin" style="display: inline;">SIGN IN</a></li>
+            <li><a href="#newsletter">NEWSLETTER</a></li>            
+            <li><a href="{{ route('user.profile') }}" id="profile" >PROFILE</a></li>
+            <li><a href="{{ route('logout') }}" id="logout" >LOGOUT</a></li>
         </ul>
     </header>
 
@@ -72,6 +72,7 @@
                 </select>
             </div>
         </div>
+
         <div class="wrapper">    
             <div class="dropdown">
                 <label for="cinemaDropdown" >Cinema&ensp;</label>
@@ -150,12 +151,17 @@ function loadCity(){
         }
     });
 };
+// <option hidden disabled selected value="">--Silahkan Pilih Waktu--</option>
+
 function getCinema(){
+            $('#movies-container').html("");
             $("#cinemaDropdown").find("option").remove();
             $('#cinemaDropdown').append($('<option>', {
-                        value: '-1',  
-                        text: " ",
-                        selected: true  
+                        value: '',  
+                        text: "-- Select Cinema --",
+                        selected: true,
+                        disabled: true,
+                        hidden: true  
                     }));
             var id = $("#cityDropdown").val();
             console.log(id);
@@ -164,6 +170,7 @@ function getCinema(){
             type: 'get',
             success: function (response) {
                 console.log(response);
+            
                 $.each(response.cinemas, function(index, cinema) {
                     $('#cinemaDropdown').append($('<option>', {
                         value: cinema.id,  
@@ -182,14 +189,25 @@ function getCinema(){
             console.log(cinemaId);
             $.ajax({
             url: 'get-films-lengkap/'+cinemaId,
-            type: 'get',            
+            type: 'get', 
+            dataType: 'json',           
             success: function (response) {
                 console.log(response);
+                if(!response.success){
+                    $("#movies-container").append(`
+                        <div class='box' data-aos='fade-up' data-aos-duration='2500'>
+                            <h3>There is no movie playing in this cinema from today until ${response.until}</h3>
+                        </div>
+                    `)
+                }
+
+
                 $.each(response.films, function(index, film){
                     $('#movies-container').append(
                         "<div class='box' data-aos='fade-up' data-aos-duration='2500'>" +
                         "<div class='box-img'>" +
-                        "<img src='" + "{{ asset('storage/assets/spirited.png') }}" + "' alt='" + film[0].judul + "'>" +
+                        `<img src = "{{ asset('storage/assets/${film[0].poster_potrait}')}}" alt= "${film[0].judul}" >`+
+                        // "<img src='" + "{{ asset('storage/assets/"+ film[0].judul +"') }}" + "' alt='" + film[0].judul + "'>" +
                         "<form action='{{ route('user.get-detail') }}' method='post'>" +
                         "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>" +
                         "<div class='overlay'>" +
@@ -203,7 +221,9 @@ function getCinema(){
                         "<span>" + film[0].name + " | " + film[0].age_cat + "</span>" +                        
                         "</form>" +
                         "</div>");
+
                 })  
+
             },
             error: function (error) {
                 console.log(error);

@@ -24,6 +24,6 @@ class DetailTransaction extends Model
 
     public function ShowSeat()
     {
-        return $this->belongsTo(ShowSeat::class);
+        return $this->belongsTo(ShowSeat::class, "showseat_id");
     }
 }

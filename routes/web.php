@@ -29,7 +29,6 @@ Route::get('/', function () {
     return redirect(route('user.dashboard'));
 });
 
-Route::get('/testing',[FilmUserController::class, 'getTicket'])->name('getTicket');
 
 
 // user login dan register
@@ -52,7 +51,7 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
         $data['title'] = 'Dashboard';
         return view('dashboard', $data);
     })->name('dashboard');
-    
+    Route::get('/get-user/{id}', [FilmUserController::class, 'getUsername']);
     Route::get('/get-cities', [CityUserController::class, 'getCity']);
     Route::get('/get-cinemas/{id}', [CinemaUserController::class, 'getCinema']);
     Route::get('/get-films/{id}', [FilmUserController::class, 'getFilm']);
@@ -72,6 +71,14 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
     Route::get('/create-detail/{Id1}/{id2}', [FilmUserController::class, 'createDetailTransaction']);
     Route::get('/update-seat/{id}', [FilmUserController::class, 'seatUpdate']);
 
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
+
+    Route::get("/get-ticket",[FilmUserController::class, "getUserTicket"])->name('getTicket');
+    Route::get('/detail', function () {
+        return view('detail');
+    });
 });
 
 
@@ -167,12 +174,6 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/detail', function () {
-    return view('detail');
-});
-Route::get('/profile', function () {
-    return view('profile');
-});
 
 Route::get('/checkout', function() {
     return view('checkout');

@@ -35,21 +35,16 @@ class StudioController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = $request->validate([
-        //     'judul' => 'required|min:3|max:50',
-        //     'release_date' => 'required|date',
-        //     'duration' => 'required|integer',
-        //     'description' => 'required|min:10|max:1000',
-        //     'sutradara' => 'required|min:3|max:50',
-        //     'cast' => 'required|min:3|max:100',
-        //     'age_cat' => 'required|min:3|max:50',
-        //     'trailer' => 'required|url',
-        //     'genre_id' => 'required',
-        //     'country_id' => 'required',
-        // ]);
+        $data = $request->validate([
+            'cinema_id' => 'required',
+            'name' => 'required',
+            'total_chair' => 'required|integer',
+        ]);
+
+        // dd($data);
         
-        // Film::create($data);
-        // return redirect()->back()->with('success', 'Film berhasil ditambahkan');
+        Studio::create($data);
+        return redirect()->back()->with('success', 'Studio berhasil ditambahkan');
     }
 
     /**
@@ -71,7 +66,6 @@ class StudioController extends Controller
         // $data['countries'] = Country::all();
 
         // return view('admin.studio.editFilm', $data);
-
     }
 
     /**

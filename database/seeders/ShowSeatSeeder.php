@@ -28,6 +28,15 @@ class ShowSeatSeeder extends Seeder
                 ->first()->id,
                 'chair_number' => 1,
                 'chair_status' => 0,
+            ],
+            [
+                'showtime_id' => ShowTime::where('film_id',Film::where('judul','film1')->first()->id)
+                ->where('show_date','2023-12-18')
+                ->where('start_time','13:00:00')
+                ->where('end_time','15:00:00')
+                ->first()->id,
+                'chair_number' => 1,
+                'chair_status' => 0,
             ]
         ];
 

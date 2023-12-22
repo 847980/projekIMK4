@@ -172,8 +172,9 @@
                 <div class="border-bottom"></div>
                 <div class="row">
                     <div class="col-6"><h3>Seat Booked</h3></div>
+                    <div class="col-6"><p><span id="seat"></span></p></div>
                 </div>
-                <div id="seat container"></div>
+                {{-- <div id="seat container">dfafdasfasf</div> --}}
                 <div class="border-bottom"></div>
                 <div class="row">
                     <div class="col-6"><h3>TOTAL</h3></div>
@@ -442,14 +443,15 @@ foreach ($_POST as $key => $value) {
                 console.log(response[0]['chair_number']);
                 var temp = $("#seatNums").val();
                 $("#seatNums").val(temp + "," +response[0]['chair_number']);
-                $("#seat").append("<div class=\"seat-card\"><p>"+response[0]['chair_number']+"</p></div>")
-                if (index === seats.length - 1) {
-                    var tempSeatNumber = $("#seatNums").val().substring(1);
-                    console.log(tempSeatNumber);
-                    $('#description').append("<p> Seat Number: "+tempSeatNumber+"</p>");
+                // $("#seat").append("<div class=\"seat-card\"><p>"+response[0]['chair_number']+"</p></div>")
+                // if (index === seats.length - 1) {
+                //     var tempSeatNumber = $("#seatNums").val().substring(1);
+                //     console.log(tempSeatNumber);
+                //     $('#description').append("<p> Seat Number: "+tempSeatNumber+"</p>");
                     
 
-                }
+                // }
+                $("#seat").text($("#seatNums").val().substring(1));
             },
             error: function (error) {
                 console.log(error);
