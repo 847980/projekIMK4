@@ -77,6 +77,19 @@ class FilmUserController extends Controller
         return response()->json($data2);
     }
 
+    public function detail(Request $request){
+        $request->validate([
+            'film_id' => 'required',
+            'cinema_id' => 'required',
+        ]);
+        // set session
+        $request->session()->put('film_id', $request->film_id);
+        $request->session()->put('cinema_id', $request->cinema_id);
+        $data['title'] = "detail";
+        $data['film'] = Film::where('id', $request->film_id)->first();
+        return view('detail', $data);
+    }
+
     public function getUsername($id)
     {
         $data['user'] = User::where('id', $id)->get();
@@ -124,7 +137,6 @@ class FilmUserController extends Controller
         $data['date'] = Carbon::now();
         $data['end_date'] = Carbon::now()->addDays(13);
         $data['film'] = Film::where('id', $request->film_id)->first();
-
 
         return view('book', $data);
     }

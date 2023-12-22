@@ -6,24 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sprited Away - Ivan Cinema</title>
-    <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const detailFilm = {
-                background: "assets/spirited.png",
-                poster: "assets/spirit_poster.jpg",
-                title: "Spirited Away",
-                trailer: "https://youtu.be/ByXuk9QqQkk?si=qYtpG3GYmT0xUZ_2",
-                rating: "R-13",
-                duration: "125 min",
-                genre: "Drama",
-                release: "20 July 2001",
-                director: "Hayao Miyazaki",
-                stars: "Daveigh Chase, Suzanne Pleshette, Miyu Irino",
-                syp: "10-year-old girl who wanders into a world ruled by witches and spirits, where humans are changed into animals."
+                background: "{{ asset('storage/assets/spirited.png') }}",
+                poster: "{{ asset('storage/assets/' . $film->poster_potrait) }}",
+                title: "{{ $film->judul }}",
+                trailer: "{{ $film->trailer }}",
+                rating: "{{ $film->age_cat }}",
+                duration: "{{ $film->duration  }}",
+                genre: "{{ $film->genre->name  }}",
+                release: "{{ $film->release_date  }}",
+                director: "{{ $film->sutradara   }}",
+                stars: "{{ $film->cast }}",
+                syp: "{{ $film->description }}"
             };
 
             const container = document.querySelector('.flex-container');
@@ -46,7 +46,12 @@
             poster.className = 'poster';
             poster.innerHTML = `
                 <img src="${data.poster}">
-                <a href="#" class="ticket-button">Buy Ticket</a>
+                "<form action='{{ route('user.get-detail') }}' method='post'>" 
+                        "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>" 
+                        "<input type='hidden' name='film_id' value='{{ $film->id }}'>" 
+                        "<input type='hidden' name='cinema_id' value='{{ session('cinema_id') }}'>" 
+                        <button type="submit" class='ticket-button'>Buy Ticket</button>
+                </form>" 
             `;
             flexContainer.appendChild(poster);
 
@@ -82,14 +87,15 @@
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
-            <li><a href="/home" class="home-active">HOME</a></li>
-            <li><a href="/home#movies">MOVIES</a></li>
-            <li><a href="/home#coming">COMING</a></li>
-            <li><a href="/home#newsletter">NEWSLETTER</a></li>
-            <li><a href="/profile"></i>SIGN IN</a></li>
+            <li><a href="#home" class="home-active">HOME</a></li>
+            <li><a href="#movies">MOVIES</a></li>
+            <li><a href="#coming">COMING</a></li>
+            <li><a href="#newsletter">NEWSLETTER</a></li>            
+            <li><a href="{{ route('user.profile') }}" id="profile" >PROFILE</a></li>
+            <li><a href="{{ route('logout') }}" id="logout" >LOGOUT</a></li>
         </ul>       
     </header>
     <div class="flex-container"></div>
-    <script src="js/detail.js"></script>
+    <script src="{{ asset('js/detail.js') }}"></script>
 </body>
 </html>

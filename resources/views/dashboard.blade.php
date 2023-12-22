@@ -208,7 +208,7 @@ function getCinema(){
                         "<div class='box-img'>" +
                         `<img src = "{{ asset('storage/assets/${film[0].poster_potrait}')}}" alt= "${film[0].judul}" >`+
                         // "<img src='" + "{{ asset('storage/assets/"+ film[0].judul +"') }}" + "' alt='" + film[0].judul + "'>" +
-                        "<form action='{{ route('user.get-detail') }}' method='post'>" +
+                        "<form action='{{ route('user.detail') }}' method='post'>" +
                         "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>" +
                         "<div class='overlay'>" +
                         "<input type='hidden' name='film_id' value='" + film[0].id + "'>" +
