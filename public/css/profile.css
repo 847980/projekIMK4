@@ -203,6 +203,10 @@ header.shadow {
     flex-wrap: wrap;     
 }
 
+.modal .cardWrap {
+    cursor: context-menu;
+}
+
 .cardLeft {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px; 

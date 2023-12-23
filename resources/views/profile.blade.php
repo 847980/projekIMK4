@@ -72,119 +72,137 @@ foreach ($allSessionData as $key => $value) {
 
 
 <script>
+    function buttonSelector() {
+        const detailButtons = document.querySelectorAll('.box-ongoing button');
+
+        detailButtons.forEach((button, index) => {
+            button.addEventListener('click', function () {
+                const modalOverlay = document.getElementById(`modalOverlay${index + 1}`);
+                modalOverlay.style.display = 'flex';
+                const modal = modalOverlay.querySelector('.ticket-modal');
+            });
+        });
+
+        const closeButtons = document.querySelectorAll('.modal .close');
+
+        closeButtons.forEach((closeButton) => {
+            closeButton.addEventListener('click', function () {
+                const modalOverlay = this.closest('.overlay');
+                modalOverlay.style.display = 'none';
+            });
+        });
+    }
     document.addEventListener('DOMContentLoaded', function () {
-    //ayok ambil data :>
+        function updateSection(container, data, type) {
+            container.innerHTML = '';
+            data.forEach((item, index) => {
+                const box = document.createElement('div');
+                box.className = type === 'ongoing' ? 'box-ongoing' : 'box-history';
+
+                const ul = document.createElement('ul');
+                ul.className = 'desc';
+                if (type === 'ongoing') {
+                    ul.innerHTML = `
+                    <li class="movie_title">${item[1].title}</li>
+                    <li class="movie_date">Date: ${item[1].date}</li>
+                    <li><button class="openModalBtn" id="openModalBtn${index + 1}">Detail</button></li>
+                    `;
+                } else if (type === 'history') {
+                    ul.innerHTML = `
+                    <li class="movie_title">${item[1].title}</li>
+                    <li class="movie_date">Date: ${item[1].date}</li>
+                    <li class="movie_place">Cinema: ${item[1].cinema}</li>
+                    `;
+                }
+                box.appendChild(ul);
+                container.appendChild(box);
+
+                if (type === 'ongoing') {
+                    const modalOverlay = document.createElement('div');
+                    modalOverlay.className = 'overlay';
+                    modalOverlay.id = `modalOverlay${index + 1}`;
+                    modalOverlay.style.display = 'none';
+
+                    const modal = document.createElement('div');
+                    modal.className = 'modal';
+                    modal.innerHTML = `
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <div class="cardWrap">
+                            <div class="card cardLeft">
+                                <h1>Ivan <span>Cinema</span></h1>
+                                <div class="title">
+                                    <h2>${item[1].title}</h2>
+                                    <span>movie</span>
+                                </div>
+                                <div class="date">
+                                    <h2>${item[1].date}, ${item[1].time}</h2>
+                                    <span>date</span>
+                                </div>
+                                <div class="seat">
+                                    <h2>${item[1].seat}</h2>
+                                    <span>seat</span>
+                                </div>
+                            </div>
+                            <div class="card cardRight">
+                                <div class="number">
+                                    <h1>${item[1].cinema}</h1>
+                                    <h3>${item[1].studio}</h3>
+                                    <span>studio</span>
+                                </div>
+                                <div class="barcode"></div>
+                            </div>
+                        </div>
+                    `;
+                    modalOverlay.appendChild(modal);
+                    document.body.appendChild(modalOverlay);
+                }
+            });
+        }
+
+        function getName(){
+            $.ajax({
+            url: 'get-user/'+$('#user_id').val(),
+            type: 'get',
+            success: function (response) {
+                console.log(response);
+                $('#nama').html(response.user[0]['username']);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+        }
+
+        function getTicket(){
+            $.ajax({
+                url:"{{ route('user.getTicket') }}",
+                type:"GET",
+                dataType:"json",
+                success:function(res){
+                    if(res['ongoing'].length != 0){
+                        updateSection(document.querySelector('.ongoing-container'), Object.entries(res['ongoing']), 'ongoing');
+                    }
+                    if(res['past'].length != 0){
+                        updateSection(document.querySelector('.history-container'), Object.entries(res['past']), 'history');
+                    }
+                    buttonSelector();
+
+                },
+                error:function(error){
+                    alert("error")
+                    console.log(error);
+                }
+            })
+        }
+        getTicket();
+        getName();
+
+
+        buttonSelector();
         
     });
 
-    function updateSection(container, data, type) {
-        container.innerHTML = '';
-        data.forEach((item, index) => {
-            const box = document.createElement('div');
-            box.className = type === 'ongoing' ? 'box-ongoing' : 'box-history';
-
-            const ul = document.createElement('ul');
-            ul.className = 'desc';
-            if (type === 'ongoing') {
-                ul.innerHTML = `
-                <li class="movie_title">${item[1].title}</li>
-                <li class="movie_date">Date: ${item[1].date}</li>
-                <li><button class="openModalBtn" id="openModalBtn${index + 1}">Detail</button></li>
-                `;
-            } else if (type === 'history') {
-                ul.innerHTML = `
-                <li class="movie_title">${item[1].title}</li>
-                <li class="movie_date">Date: ${item[1].date}</li>
-                <li class="movie_place">Cinema: ${item[1].cinema}</li>
-                `;
-            }
-            box.appendChild(ul);
-            container.appendChild(box);
-
-            if (type === 'ongoing') {
-                const modalOverlay = document.createElement('div');
-                modalOverlay.className = 'overlay';
-                modalOverlay.id = `modalOverlay${index + 1}`;
-                modalOverlay.style.display = 'none';
-
-                const modal = document.createElement('div');
-                modal.className = 'modal';
-                modal.innerHTML = `
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <div class="cardWrap">
-                        <div class="card cardLeft">
-                            <h1>Ivan <span>Cinema</span></h1>
-                            <div class="title">
-                                <h2>${item[1].title}</h2>
-                                <span>movie</span>
-                            </div>
-                            <div class="date">
-                                <h2>${item[1].date}</h2>
-                                <span>date</span>
-                            </div>
-                            <div class="seat">
-                                <h2>${item[1].seat}</h2>
-                                <span>seat</span>
-                            </div>
-                            <div class="time">
-                                <h2>${item[1].time}</h2>
-                                <span>time</span>
-                            </div>
-                        </div>
-                        <div class="card cardRight">
-                            <div class="number">
-                                <h1>${item[1].cinema}</h1>
-                                <h3>${item[1].studio}</h3>
-                                <span>studio</span>
-                            </div>
-                            <div class="barcode"></div>
-                        </div>
-                    </div>
-                `;
-                modalOverlay.appendChild(modal);
-                document.body.appendChild(modalOverlay);
-            }
-        });
-    }
-
-    function getName(){
-        $.ajax({
-        url: 'get-user/'+$('#user_id').val(),
-        type: 'get',
-        success: function (response) {
-            console.log(response);
-            $('#nama').html(response.user[0]['username']);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-    }
-
-    function getTicket(){
-        $.ajax({
-            url:"{{ route('user.getTicket') }}",
-            type:"GET",
-            dataType:"json",
-            success:function(res){
-                if(res['ongoing'].length != 0){
-                    updateSection(document.querySelector('.ongoing-container'), Object.entries(res['ongoing']), 'ongoing');
-                }
-                if(res['past'].length != 0){
-                    updateSection(document.querySelector('.history-container'), Object.entries(res['past']), 'history');
-                }
-                buttonSelector();
-
-            },
-            error:function(error){
-                alert("error")
-                console.log(error);
-            }
-        })
-    }
-    getTicket();
-    getName();
-
+    
 
 </script>
 </html>

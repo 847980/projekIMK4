@@ -46,12 +46,12 @@
             poster.className = 'poster';
             poster.innerHTML = `
                 <img src="${data.poster}">
-                "<form action='{{ route('user.get-detail') }}' method='post'>" 
-                        "<input type='hidden' name='_token' value='{{ csrf_token() }}' autocomplete='off'>" 
-                        "<input type='hidden' name='film_id' value='{{ $film->id }}'>" 
-                        "<input type='hidden' name='cinema_id' value='{{ session('cinema_id') }}'>" 
-                        <button type="submit" class='ticket-button'>Buy Ticket</button>
-                </form>" 
+                <form action="{{ route('user.get-detail') }}" method="post" style="margin: 0; padding: 0;">
+                    @csrf
+                    <input type="hidden" name="film_id" value="{{ $film->id }}">
+                    <input type="hidden" name="cinema_id" value="{{ session('cinema_id') }}">
+                    <button type="submit" class="ticket-button">Buy Ticket</button>
+                </form>
             `;
             flexContainer.appendChild(poster);
 
@@ -69,7 +69,7 @@
             homeText.appendChild(titleContainer);
 
             homeText.innerHTML += `
-                <h2>${data.rating}&emsp;|&emsp;${data.duration}&emsp;|&emsp;${data.genre}</h2><br>
+                <h2>${data.rating}&emsp;|&emsp;${data.duration} min&emsp;|&emsp;${data.genre}</h2><br>
                 <ul class="desc-movie">
                     <li class="movie_date">Release:&ensp;${data.release}</li>
                     <li class="movie_dir">Director:&ensp;${data.director}</li>
