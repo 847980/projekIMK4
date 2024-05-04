@@ -22,6 +22,7 @@
         .poster img {
             max-width: 9em;
             max-height: 15em;
+            object-fit: cover; 
         }
 
         .checkout-card {
@@ -124,8 +125,7 @@
     <div class="flex-container">
             <div class="checkout-title checkout-card">
                 <div class="poster">
-                    
-                    <img src="{{ asset('storage/assets/spirit_poster.jpg') }}">
+                    <img id="posterFilm" >
                 </div>
                 <div class="home-text">
                     <div class="title-container">
@@ -194,11 +194,8 @@
 
 
 <?php
-// In your Blade view (dashboard.blade.php) or controller
 $allSessionData = session()->all();
-
-// Find the key dynamically
-$desiredKey = 'login_web_'; // The prefix of the key you're looking for
+$desiredKey = 'login_web_'; 
 
 $sessionId = null;
 
@@ -233,6 +230,10 @@ foreach ($_POST as $key => $value) {
         } elseif ($key == 'time') {
             ?>
                 <input type="hidden" name="time" id="time" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'poster') {
+            ?>
+                <input type="hidden" name="posterAddress" id="posterAddress" value="{{ $value }}">
                 <?php
         } elseif ($key == 'show_timeId') {
             ?>
@@ -301,6 +302,7 @@ foreach ($_POST as $key => $value) {
 
     $(document).ready(function(){
         console.log("ready");
+        $('#posterFilm').attr('src', $('#posterAddress').val());
         var dateString = $('#date').val();
         var dateObject = new Date(dateString);
         var day = dateObject.getDate();
@@ -362,7 +364,7 @@ foreach ($_POST as $key => $value) {
             type: 'get',
             success: function (response) {
                 console.log(response);
-                filmName = response[0]['judul'];
+                filmName = response[0]['judul'];                
                 console.log(filmName);
                 $('#description').append("<p>"+filmName+"</p>");
                 $('#judul').html(filmName);

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sprited Away - Ivan Cinema</title>
+    <title>Ivan Cinema</title>
     <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -13,7 +13,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const detailFilm = {
-                background: "{{ asset('storage/assets/spirited.png') }}",
+                background: "{{ asset('storage/assets/' . $film->poster_potrait) }}",
                 poster: "{{ asset('storage/assets/' . $film->poster_potrait) }}",
                 title: "{{ $film->judul }}",
                 trailer: "{{ $film->trailer }}",
@@ -49,6 +49,7 @@
                 <form action="{{ route('user.get-detail') }}" method="post" style="margin: 0; padding: 0;">
                     @csrf
                     <input type="hidden" name="film_id" value="{{ $film->id }}">
+                    <input type="hidden" name="poster" value="{{ asset('storage/assets/' . $film->poster_potrait) }}">
                     <input type="hidden" name="cinema_id" value="{{ session('cinema_id') }}">
                     <button type="submit" class="ticket-button">Buy Ticket</button>
                 </form>
@@ -87,10 +88,10 @@
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
-            <li><a href="#home" class="home-active">HOME</a></li>
-            <li><a href="#movies">MOVIES</a></li>
-            <li><a href="#coming">COMING</a></li>
-            <li><a href="#newsletter">NEWSLETTER</a></li>            
+            <li><a href="dashboard" class="home-active">HOME</a></li>
+            <li><a href="dashboard">MOVIES</a></li>
+            <li><a href="dashboard">COMING</a></li>
+            <li><a href="dashboard">NEWSLETTER</a></li>            
             <li><a href="{{ route('user.profile') }}" id="profile" >PROFILE</a></li>
             <li><a href="{{ route('logout') }}" id="logout" >LOGOUT</a></li>
         </ul>       

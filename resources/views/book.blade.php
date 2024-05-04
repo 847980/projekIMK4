@@ -263,6 +263,7 @@
 <form action="{{ route('user.transaction') }}" id="form" method="post">
     @csrf
     <input type="hidden" name='film_id' id="film_id" value="{{ session('film_id') }}">
+    <input type="hidden" name='poster' id="poster" value="{{ $_POST['poster'] }}">
     <input type="hidden" name='cinema_id' id="cinema_id" value="{{ session('cinema_id') }}">
     <input type="hidden" name="studio_id2" id="studio_id2" value="-1">
     <input type="hidden" name="date" id="date2" value="{{ $date->format('Y-m-d') }}">

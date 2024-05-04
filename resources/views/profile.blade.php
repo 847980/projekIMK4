@@ -41,6 +41,8 @@ foreach ($allSessionData as $key => $value) {
             <li><a href="{{ route('user.dashboard') }}#coming">COMING</a></li>
             <li><a href="{{ route('user.dashboard') }}#newsletter">NEWSLETTER</a></li>
             <li><a href="#" id="profile">PROFILE</a></li>
+            <li><a href="{{ route('logout') }}" id="logout" >LOGOUT</a></li>
+
         </ul>
     </header>    
     
