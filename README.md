@@ -1,7 +1,10 @@
 JANGAN LUPA!
-1. buat file .env, isinya copy dari env.txt.txt
-2. ekstrak 2 zip di vendor
-3. terminal, php artisan storage:link
+Cara clone
+1. buka terminal di folder baru
+2. git clone https://github.com/847980/projekIMK4.git
+3. buat file .env, isinya copy dari env.txt.txt
+4. ekstrak 2 zip di vendor
+5. terminal, php artisan storage:link
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
