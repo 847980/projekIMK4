@@ -455,8 +455,6 @@ foreach ($_POST as $key => $value) {
                 let convert = response[0]['chair_number'];
                 arrSeat.push(String.fromCharCode('A'.charCodeAt(0) + (convert/24)) + "" + (convert % 24));
                 let seatsNumFix = arrSeat.join(",");
-                console.log("tes seat");
-                console.log(seatsNumFix);
                 $("#seat").text(seatsNumFix);
             },
             error: function (error) {
