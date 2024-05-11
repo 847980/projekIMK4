@@ -406,6 +406,7 @@
             if($('#'+chairId).hasClass('selected')){
                 console.log('has selected')
                 $('#'+chairId).removeClass('selected');
+                $('#'+chairId).addClass('available');
                 deleteSeatById(chairId);
             }
             else if($('#'+chairId).hasClass('available')){
