@@ -1,1 +1,4 @@
 UPDATE `show_times` SET `show_date` = `show_date` - INTERVAL 10 DAY; 
+
+row = (val / 24) + 'A'
+number = val % 24
