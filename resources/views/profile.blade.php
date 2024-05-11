@@ -74,6 +74,10 @@ foreach ($allSessionData as $key => $value) {
 
 
 <script>
+    $(document).ready(function(){
+        console.log("saau");
+    });
+
     function buttonSelector() {
         const detailButtons = document.querySelectorAll('.box-ongoing button');
 
@@ -98,6 +102,14 @@ foreach ($allSessionData as $key => $value) {
         function updateSection(container, data, type) {
             container.innerHTML = '';
             data.forEach((item, index) => {
+                let arrSeat = item[1].seat.split(", ");
+                let seatFix = [];
+                arrSeat.forEach(seat => {
+                    let seatNum = String.fromCharCode('A'.charCodeAt(0) + (seat/24)) + "" + (seat % 24);
+                    seatFix.push(seatNum);
+                });
+                let seatNumCorrect = seatFix.join(", ");
+                console.log(seatNumCorrect);
                 const box = document.createElement('div');
                 box.className = type === 'ongoing' ? 'box-ongoing' : 'box-history';
 
@@ -141,7 +153,7 @@ foreach ($allSessionData as $key => $value) {
                                     <span>date</span>
                                 </div>
                                 <div class="seat">
-                                    <h2>${item[1].seat}</h2>
+                                    <h2>${seatNumCorrect}</h2>
                                     <span>seat</span>
                                 </div>
                             </div>
