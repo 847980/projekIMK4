@@ -93,6 +93,9 @@
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach
                             </select>
+                            {{-- <select class="form-control @error('city_id') is-invalid @enderror" name="city_id" id="city_id">
+                                <option selected value="9aea95f4-6d97-45ea-92f1-2bfe238f2684">Surabaya</option>
+                            </select> --}}
                         </div>
                     </div>
 
@@ -105,6 +108,9 @@
                             <select class="form-control @error('cinema_id') is-invalid @enderror" name="cinema_id" id="cinema_id">
                                 <option hidden disabled selected value="">--Silahkan Pilih Kota Dulu--</option>
                             </select>
+                            {{-- <select class="form-control @error('cinema_id') is-invalid @enderror" name="cinema_id" id="cinema_id">
+                                <option selected value="9aea95f4-85e9-4f07-886f-c7cab3ec6745">Cinemaku</option>
+                            </select> --}}
                             @error('cinema_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -122,6 +128,15 @@
                             <select class="form-control @error('studio_id') is-invalid @enderror" name="studio_id" id="studio_id">
                                 <option hidden disabled selected value="">--Silahkan Pilih Cinema Dulu--</option>
                             </select>
+                            {{-- <select class="form-control @error('studio_id') is-invalid @enderror" name="studio_id" id="studio_id">
+                                <option selected value="9aea95f4-aa85-4af5-9601-8c5bf77d7634">studio1</option>
+                            </select> --}}
+                            {{-- <select class="form-control @error('studio_id') is-invalid @enderror" name="studio_id" id="studio_id">
+                                <option selected value="9aea95f4-ada4-4b3b-b4de-3e19d6846477">studio2</option>
+                            </select>  --}}
+                            {{-- <select class="form-control @error('studio_id') is-invalid @enderror" name="studio_id" id="studio_id">
+                                <option selected value="cf6e2a72-0ed8-11ef-a527-f8a2d6ed2412">studio3</option>
+                            </select> --}}
                             @error('studio_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -174,6 +189,7 @@
                         </div>
                         <div class="col-6">
                             <input type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Price" aria-describedby="helpId">
+                            {{-- <input type="number" value="100" name="price" id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Price" aria-describedby="helpId"> --}}
                             @error('price')
                             <div class="invalid-feedback">
                                 {{ $message }}

@@ -1,0 +1,1 @@
+UPDATE `show_times` SET `show_date` = `show_date` - INTERVAL 10 DAY; 
