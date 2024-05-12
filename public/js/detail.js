@@ -3,24 +3,29 @@ let menu = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 let prevScrollpos = window.scrollY;
 
-window.addEventListener('scroll', () => {
-    var currentScrollPos = window.scrollY;
 
-    if (currentScrollPos > 50) {
-        header.style.backgroundColor = 'var(--text-color-light)';
-        navbar.style.backgroundColor = 'var(--text-color-light)';
-    } else {
-        header.style.backgroundColor = 'transparent';
-        navbar.style.backgroundColor = 'transparent';
-    }
+// window.addEventListener('scroll', () => {
+//     var currentScrollPos = window.scrollY;
 
-    if (currentScrollPos === 0) {
-        header.style.backgroundColor = 'transparent';
-        navbar.style.backgroundColor = 'transparent';
-    }
 
-    prevScrollpos = currentScrollPos;
-});
+//     if (currentScrollPos > 50) {
+//         header.style.backgroundColor = 'var(--text-color-light)';
+//         navbar.style.backgroundColor = 'var(--text-color-light)';
+//     } else {
+//         header.style.backgroundColor = 'transparent';
+//         navbar.style.backgroundColor = 'transparent';
+//     }
+
+
+//     if (currentScrollPos === 0) {
+//         header.style.backgroundColor = 'transparent';
+//         navbar.style.backgroundColor = 'transparent';
+//     }
+
+
+//     prevScrollpos = currentScrollPos;
+// });
+
 
 menu.onclick = () => {
     menu.classList.toggle('bx-x');
@@ -40,6 +45,8 @@ menu.onclick = () => {
     }
 };
 
+
 document.getElementById('menu-icon').addEventListener('click', function () {
     document.querySelector('.navbar').classList.toggle('show');
 });
+

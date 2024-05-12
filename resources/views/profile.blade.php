@@ -2,10 +2,13 @@
 // In your Blade view (dashboard.blade.php) or controller
 $allSessionData = session()->all();
 
+
 // Find the key dynamically
 $desiredKey = 'login_web_'; // The prefix of the key you're looking for
 
+
 $sessionId = null;
+
 
 foreach ($allSessionData as $key => $value) {
     if (strpos($key, $desiredKey) === 0) {
@@ -14,9 +17,11 @@ foreach ($allSessionData as $key => $value) {
     }
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -29,7 +34,10 @@ foreach ($allSessionData as $key => $value) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
+
+
 </head>
+
 
 <body>
     <input type="hidden" name="user_id" id="user_id" value="{{ $sessionId }}">
@@ -42,30 +50,31 @@ foreach ($allSessionData as $key => $value) {
             <li><a href="{{ route('user.dashboard') }}#newsletter">NEWSLETTER</a></li>
             <li><a href="#" id="profile">PROFILE</a></li>
             <li><a href="{{ route('logout') }}" id="logout" >LOGOUT</a></li>
-
         </ul>
     </header>    
-    
+   
     <div class="profile-layer">
         <section class="profile" id="profile">
-            <h3 class="heading">Welcome,</h3><br>   
+            <h3 class="heading">Welcome,</h3><br>  
             <h3 class="subhead" id="nama">Name &emsp;</h3>
         </section>
+
 
         <section class="ongoing" id="ongoing">
             <h3 class="subhead">ONGOING</h3>
             <div class="ongoing-container">
-            </div>         
+            </div>        
         </section>
+
 
         <section class="history" id="history">
             <h3 class="subhead" id="test">HISTORY</h3>
             <div class="history-container">
-                
+               
             </div>    
         </section>
     </div>
-    
+   
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/profile.js') }}" defer></script>
 </body>
@@ -73,9 +82,13 @@ foreach ($allSessionData as $key => $value) {
 
 
 
+
+
+
 <script>
     function buttonSelector() {
         const detailButtons = document.querySelectorAll('.box-ongoing button');
+
 
         detailButtons.forEach((button, index) => {
             button.addEventListener('click', function () {
@@ -85,7 +98,9 @@ foreach ($allSessionData as $key => $value) {
             });
         });
 
+
         const closeButtons = document.querySelectorAll('.modal .close');
+
 
         closeButtons.forEach((closeButton) => {
             closeButton.addEventListener('click', function () {
@@ -100,6 +115,7 @@ foreach ($allSessionData as $key => $value) {
             data.forEach((item, index) => {
                 const box = document.createElement('div');
                 box.className = type === 'ongoing' ? 'box-ongoing' : 'box-history';
+
 
                 const ul = document.createElement('ul');
                 ul.className = 'desc';
@@ -119,11 +135,13 @@ foreach ($allSessionData as $key => $value) {
                 box.appendChild(ul);
                 container.appendChild(box);
 
+
                 if (type === 'ongoing') {
                     const modalOverlay = document.createElement('div');
                     modalOverlay.className = 'overlay';
                     modalOverlay.id = `modalOverlay${index + 1}`;
                     modalOverlay.style.display = 'none';
+
 
                     const modal = document.createElement('div');
                     modal.className = 'modal';
@@ -149,7 +167,6 @@ foreach ($allSessionData as $key => $value) {
                                 <div class="number">
                                     <h1>${item[1].cinema}</h1>
                                     <h3>${item[1].studio}</h3>
-                                    <span>studio</span>
                                 </div>
                                 <div class="barcode"></div>
                             </div>
@@ -160,6 +177,7 @@ foreach ($allSessionData as $key => $value) {
                 }
             });
         }
+
 
         function getName(){
             $.ajax({
@@ -175,6 +193,7 @@ foreach ($allSessionData as $key => $value) {
         });
         }
 
+
         function getTicket(){
             $.ajax({
                 url:"{{ route('user.getTicket') }}",
@@ -189,6 +208,7 @@ foreach ($allSessionData as $key => $value) {
                     }
                     buttonSelector();
 
+
                 },
                 error:function(error){
                     alert("error")
@@ -200,11 +220,15 @@ foreach ($allSessionData as $key => $value) {
         getName();
 
 
+
+
         buttonSelector();
-        
+       
     });
 
-    
+
+   
+
 
 </script>
 </html>

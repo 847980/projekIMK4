@@ -3,24 +3,69 @@ let menu = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 let prevScrollpos = window.scrollY;
 
-window.addEventListener('scroll', () => {
-    var currentScrollPos = window.scrollY;
 
-    if (currentScrollPos > 50) {
-        header.style.backgroundColor = 'var(--text-color-light)';
-        navbar.style.backgroundColor = 'var(--text-color-light)';
-    } else {
-        header.style.backgroundColor = 'transparent';
-        navbar.style.backgroundColor = 'transparent';
-    }
+// window.addEventListener('scroll', () => {
+//     var currentScrollPos = window.scrollY;
 
-    if (currentScrollPos === 0) {
-        header.style.backgroundColor = 'transparent';
-        navbar.style.backgroundColor = 'transparent';
-    }
 
-    prevScrollpos = currentScrollPos;
-});
+//     if (currentScrollPos > 50) {
+//         header.style.backgroundColor = 'var(--text-color-light)';
+//         navbar.style.backgroundColor = 'var(--text-color-light)';
+//     } else {
+//         header.style.backgroundColor = 'transparent';
+//         navbar.style.backgroundColor = 'transparent';
+//     }
+
+
+//     if (currentScrollPos === 0) {
+//         header.style.backgroundColor = 'transparent';
+//         navbar.style.backgroundColor = 'transparent';
+//     }
+
+
+//     prevScrollpos = currentScrollPos;
+// });
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     var movieDescElements = document.querySelectorAll('.movie-desc');
+
+
+//     movieDescElements.forEach(function(descElement) {
+//         var originalText = descElement.textContent.trim();
+//         var maxLength = 10;
+
+
+//         // Check if the text length exceeds the maximum length
+//         if (originalText.length > maxLength) {
+//             // Trim the text to the maximum length and add ellipsis
+//             var trimmedText = originalText.substring(0, maxLength) + '...';
+//             descElement.textContent = trimmedText;
+//         }
+//     });
+// });
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     var movieDescElements = document.querySelectorAll('.movie-desc');
+
+
+//     movieDescElements.forEach(function(descElement) {
+//         var maxLength = parseInt(descElement.getAttribute('data-maxlength'), 10);
+//         var originalText = descElement.textContent.trim();
+
+
+//         if (originalText.length > maxLength) {
+//             var trimmedText = originalText.substring(0, maxLength) + '...';
+//             descElement.textContent = trimmedText;
+//         }
+//     });
+// });
+
+
+
 
 menu.onclick = () => {
     menu.classList.toggle('bx-x');
@@ -40,9 +85,11 @@ menu.onclick = () => {
     }
 };
 
+
 document.getElementById('menu-icon').addEventListener('click', function () {
     document.querySelector('.navbar').classList.toggle('show');
 });
+
 
 var swiper = new Swiper(".home", {
     spaceBetween: 30,
@@ -56,6 +103,7 @@ var swiper = new Swiper(".home", {
         clickable: true,
     },
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
     AOS.init();
@@ -104,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //         }
 //     };
 
+
 //     function populateCities() {
 //         const cityDropdown = document.getElementById("cityDropdown");
 //         if (!cityDropdown) {
@@ -111,9 +160,11 @@ document.addEventListener("DOMContentLoaded", function () {
 //             return;
 //         }
 
+
 //         const cinemaDropdown = document.getElementById("cinemaDropdown");
 //         const selectedCity = cityDropdown.value;
 //         const cinemaOptions = Object.keys(cinemas[selectedCity] || {});
+
 
 //         cinemaDropdown.innerHTML = '';
 //         cinemaOptions.forEach(cinema => {
@@ -124,12 +175,15 @@ document.addEventListener("DOMContentLoaded", function () {
 //         showMovies();
 //     }
 
+
 //     function showMovies() {
 //         const selectedCity = document.getElementById("cityDropdown").value;
 //         const selectedCinema = document.getElementById("cinemaDropdown").value;
 //         const moviesContainer = document.querySelector(".movies-container");
 
+
 //         moviesContainer.innerHTML = '';
+
 
 //         if (selectedCity === "Select City" || selectedCinema === "Select Cinema") {
 //             const initialCinemaMovies = getMoviesForCityAndCinema("City 1", "Cinema 1A");
@@ -140,9 +194,11 @@ document.addEventListener("DOMContentLoaded", function () {
 //         }
 //     }
 
+
 //     function getMoviesForCityAndCinema(city, cinema) {
 //         return cinemas[city][cinema];
 //     }
+
 
 //     function updateMovie(container, data) {
 //         container.innerHTML = '';
@@ -165,15 +221,19 @@ document.addEventListener("DOMContentLoaded", function () {
 //         });
 //     }
 
+
 //     const moviesContainer = document.querySelector('.movies-container');
+
 
 //     const initialCity = "City 1";
 //     const initialCinema = "Cinema 1A";
 //     const initialCinemaMovies = getMoviesForCityAndCinema(initialCity, initialCinema);
 //     updateMovie(moviesContainer, initialCinemaMovies);
 
+
 //     const cityDropdown = document.getElementById("cityDropdown");
 //     const cinemaDropdown = document.getElementById("cinemaDropdown");
+
 
 //     if (cityDropdown && cinemaDropdown) {
 //         cityDropdown.addEventListener("change", populateCities);

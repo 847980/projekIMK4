@@ -1,5 +1,7 @@
+<!-- penanda navbar -> sdg aktif dmn blm ada -->
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +14,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+
 </head>
+
 
 <body>
     <header>
@@ -26,52 +30,80 @@
             <li><a href="{{ route('logout') }}" id="logout" >LOGOUT</a></li>
         </ul>
     </header>
+    <script>
+        $(document).ready(function() {
+            // Loop through the sections
+            $('.section').each(function() {
+                // Get the section ID
+                var sectionId = $(this).attr('id');
+
+
+                // Get the corresponding navbar link
+                var navbarLink = $('a[href="#' + sectionId + '"]');
+
+
+                // Check if the section is in view
+                $(window).scroll(function() {
+                    if ($(this).scrollTop() >= $('#' + sectionId).offset().top - 100) {
+                        // Add the active class to the navbar link
+                        navbarLink.addClass('active');
+                    } else {
+                        // Remove the active class from the navbar link
+                        navbarLink.removeClass('active');
+                    }
+                });
+            });
+        });
+    </script>
+
 
     <section class="home swiper" id="home">
         <div class="swiper-wrapper">
             <div class="swiper-slide container">
                 <img src="{{ asset('storage/assets/starwars.jpg') }}">
-                <div class="home-text">
-                    <span>Lucasfilm</span>
-                    <h1>Star Wars</h1>
-                    <a href="/detail" class="btn">BOOK NOW</a>                    
-                    <a href="https://youtu.be/bD7bpG-zDJQ?si=ab3C2pS0hBNuPGH_" class="btn btn-primary"><i
-                            class='bx bx-play'></i></a>      
+                <div class="swiper-overlay">
+                    <div class="home-text">
+                        <span>Lucasfilm</span>
+                        <h1>Star Wars</h1>
+                        <a href="/detail" class="btn">TRAILER</a>
+                    </div>
                 </div>
             </div>
             <div class="swiper-slide container">
                 <img src="{{ asset('storage/assets/avatar.jpg') }}">
-                <div class="home-text">
-                    <span>20th Century Fox</span>
-                    <h1>Avatar</h1>
-                    <a href="/detail" class="btn">BOOK NOW</a>
-                    <a href="https://youtu.be/5PSNL1qE6VY?si=x2aIZjZ-rwnZYqCp" class="btn btn-primary"><i
-                            class='bx bx-play'></i></a>
+                <div class="swiper-overlay">
+                    <div class="home-text">
+                        <span>20th Century Fox</span>
+                        <h1>Avatar</h1>
+                        <a href="/detail" class="btn">TRAILER</a>
+                    </div>
                 </div>
             </div>
             <div class="swiper-slide container">
                 <img src="{{ asset('storage/assets/spirited.png') }}">
-                <div class="home-text">
-                    <span>Studio Ghibli</span>
-                    <h1>Spirited Away</h1>
-                    <a href="/detail" class="btn">BOOK NOW</a>
-                    <a href="https://youtu.be/ByXuk9QqQkk?si=qYtpG3GYmT0xUZ_2" class="btn btn-primary"><i
-                            class='bx bx-play'></i></a>
+                <div class="swiper-overlay">
+                    <div class="home-text">
+                        <span>Studio Ghibli</span>
+                        <h1>Spirited Away</h1>
+                        <a href="/detail" class="btn">TRAILER</a>
+                    </div>
                 </div>
-            </div>
+            </div>            
         </div>
         <div class="swiper-pagination"></div>
     </section>
+
 
     <div class="flex-container">
         <div class="wrapper">    
             <div class="dropdown">
                 <label for="cityDropdown">City&emsp;</label>
                 <select id="cityDropdown" onchange="getCinema()">
-                    
+                   
                 </select>
             </div>
         </div>
+
 
         <div class="wrapper">    
             <div class="dropdown">
@@ -82,6 +114,7 @@
         </div>    
     </div>
 
+
     <section class="movies" id="movies">
         <h2 class="heading">Playing Now</h2>
         <div class="movies-container" id="movies-container">
@@ -89,29 +122,57 @@
         </div>
     </section>
 
+
     <section class="coming" id="coming">
         <h2 class="heading">Coming Soon</h2>
-        <div class="coming-container swiper">
-            <div class="box-coming">
-                <div class="box-img-coming">
-                    <img src="{{ asset('storage/assets/before.jpg') }}">
-                </div>
+        <div class="movies-container" id="coming-movies-container">
+            <div class="box">
+                <div class="box-img">
+                    <img src="{{ asset('storage/assets/film5_potrait.jpg') }}">
+                </div>                    
             </div>
-            <div class="box-coming">
-                <div class="box-img-coming">
-                    <img src="{{ asset('storage/assets/pixel.jpg') }}">
-                </div>
+            <div class="box">
+                <div class="box-img">
+                    <img src="{{ asset('storage/assets/film4_potrait.jpg') }}">
+                </div>  
             </div>
-            <div class="box-coming">
-                <div class="box-img-coming">
-                    <img src="{{ asset('storage/assets/spirited.png') }}">
-                </div>
-                </div>
+            <div class="box">
+                <div class="box-img">
+                    <img src="{{ asset('storage/assets/film3_potrait.jpg') }}">
+                </div>                    
+            </div>
+            <div class="box">
+                <div class="box-img">
+                    <img src="{{ asset('storage/assets/film2_potrait.jpg') }}">
+                </div>                    
+            </div>
+            <div class="box">
+                <div class="box-img">
+                    <img src="{{ asset('storage/assets/film1_potrait.jpg') }}">
+                </div>                    
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var movieDescElements = document.querySelectorAll('.movie-desc');
+
+
+            movieDescElements.forEach(function(descElement) {
+                var maxLength = 100; // Set the maximum length to 10 characters
+                var originalText = descElement.textContent.trim();
+
+
+                if (originalText.length > maxLength) {
+                    var trimmedText = originalText.substring(0, maxLength) + '...';
+                    descElement.textContent = trimmedText;
+                }
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/home.js') }}" defer></script>
+
 
     <section class="newsletter" id="newsletter">
         <footer>
@@ -130,8 +191,10 @@
 <script>
     $(document).ready(function(){
     loadCity();
-    
+   
 });
+
+
 function loadCity(){
     $.ajax({
         url: 'get-cities',
@@ -153,6 +216,7 @@ function loadCity(){
 };
 // <option hidden disabled selected value="">--Silahkan Pilih Waktu--</option>
 
+
 function getCinema(){
             $('#movies-container').html("");
             $("#cinemaDropdown").find("option").remove();
@@ -170,7 +234,7 @@ function getCinema(){
             type: 'get',
             success: function (response) {
                 console.log(response);
-            
+           
                 $.each(response.cinemas, function(index, cinema) {
                     $('#cinemaDropdown').append($('<option>', {
                         value: cinema.id,  
@@ -189,8 +253,8 @@ function getCinema(){
             console.log(cinemaId);
             $.ajax({
             url: 'get-films-lengkap/'+cinemaId,
-            type: 'get', 
-            dataType: 'json',           
+            type: 'get',
+            dataType: 'json',          
             success: function (response) {
                 console.log(response);
                 if(!response.success){
@@ -200,6 +264,8 @@ function getCinema(){
                         </div>
                     `)
                 }
+
+
 
 
                 $.each(response.films, function(index, film){
@@ -214,7 +280,7 @@ function getCinema(){
                         "<input type='hidden' name='film_id' value='" + film[0].id + "'>" +
                         "<input type='hidden' name='cinema_id' value='" + cinemaId + "'>" +
                         "<p class='movie-desc'>" + film[0].description + "</p>" +
-                        "<button class='btn btn-primary'>Buy Ticket</button>" + 
+                        "<button class='btn btn-primary'>Detail</button>" +
                         "</div>" +
                         "</div>" +
                         "<h3>" + film[0].judul + "</h3>" +
@@ -222,7 +288,9 @@ function getCinema(){
                         "</form>" +
                         "</div>");
 
+
                 })  
+
 
             },
             error: function (error) {
@@ -233,6 +301,7 @@ function getCinema(){
 </script>
 </html>
 
+
 {{-- @section('style')
 <style>
     h1 {
@@ -240,6 +309,7 @@ function getCinema(){
     }
 </style>
 @endsection
+
 
 @section('body')
 <select name="city" id="city" onchange="getCinema()">
@@ -251,10 +321,13 @@ function getCinema(){
 <p>Daftar Film</p>
 <div id="filmsHere"></div>
 
+
 @endsection
+
 
 @section('script')
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
 <script>
     Swal.fire({
@@ -265,7 +338,7 @@ function getCinema(){
     })
     $(document).ready(function(){
         loadCity();
-        
+       
     });
     function loadCity(){
         $.ajax({
@@ -341,7 +414,7 @@ function getCinema(){
                         // </form>
                     $('#filmsHere').append(
                         "<p> " + film[0].judul + "<br>" + studio[0].name + "<br>" + film[0].description +
-                        
+                       
                          "<br><button class='btn btn-primary' id='"+st+"' onClick='redirectFilm' >Buy Ticket</button>"
                         + "</p>");
                 }
@@ -359,6 +432,6 @@ function getCinema(){
         });
     }
 
+
 </script>
 @endsection --}}
-

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Chivo&display=swap');
 
+
 * {
     font-family: "Chivo";
     margin: 0;
@@ -11,17 +12,20 @@
     scroll-behavior: smooth;
 }
 
+
 :root {
-    --main-color: rgb(255, 211, 105);
-    --text-color: rgb(34, 40, 49);
-    --text-color-light: rgb(57, 62, 70);
-    --bg-color: rgb(238, 238, 238);
+    --main-color: #34495E;
+    --text-color: #F4F4F2;
+    --text-color-light: #E8E8E8;
+    --bg-color: #5DA0A2;
 }
+
 
 body {
     background: var(--text-color);
     color: var(--bg-color);
 }
+
 
 /* NAVBAR */
 header {
@@ -33,13 +37,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 100px;
-    background-color: transparent;
+    padding: 20px 40px;
+    background-color: var(--text-color-light);
 }
+
 
 header.shadow {
     box-shadow: var(--text-color);
 }
+
 
 .navbar {
     display: flex;
@@ -49,9 +55,11 @@ header.shadow {
     justify-content: center;
 }
 
+
 .navbar li {
     position: relative;
 }
+
 
 .navbar a {
     font-size: 1rem;
@@ -61,21 +69,24 @@ header.shadow {
     margin: 0px 30px;
 }
 
+
 .navbar a::after {
     content: '';
-    width: 0; 
+    width: 0;
     height: 2px;
-    background: var(--main-color); 
+    background: var(--main-color);
     position: absolute;
     bottom: -4px;
-    left: 50%; 
-    transform: translateX(-50%); 
+    left: 50%;
+    transform: translateX(-50%);
     transition: 0.4s all linear;
 }
 
+
 .navbar a:hover::after {
-    width: 100%; 
+    width: 100%;
 }
+
 
 #menu-icon {
     font-size: 24px;
@@ -85,27 +96,75 @@ header.shadow {
     display: none;
 }
 
+
 /* HOME SECTION */
+.movie-info {
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+
+.movie-info h2 {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+ 
+.desc-movie {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ 
+.movie_info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.movie_syp {
+    margin-top: 20px;
+}
+ 
+.movie_info-label {
+    width: 150px;
+    font-weight: bold;
+}
+ 
+.movie_info-value {
+    flex: 1;
+    max-width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.description-wrapper {
+    flex: 1;
+    padding-left: 20px;
+}
+
+
 .flex-container {
     display: flex;
     flex-direction: row;
-    margin: 70px ; 
+    margin: 70px ;
     max-width: 100%;
     justify-content: center;
     align-items: center;
 }
 
+
 .poster {
     position: relative;
+    flex: 0 0 200px
 }
+
 
 .poster img {
     height: 350px;
 }
 
-.description-wrapper {
-    position: relative;
-}
 
 .background-layer {
     position: fixed;
@@ -117,43 +176,49 @@ header.shadow {
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
-    opacity: 0.3; /* Adjust the opacity as needed */
+    opacity: 0.8;
 }
+
 
 .home-text {
     padding: 20px;
-    color: #fff; 
+    color: #fff;
 }
+
 
 .title-container {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    padding-left: 20px;
 }
+
 
 .title-container h1 {
     font-size: 2rem;
-    margin-right: 30px; /* Adjust this margin as needed */
+    margin-right: 30px;
 }
+
 
 .title-container a i.bx-play-circle {
     color: var(--bg-color);
-    background-color: transparent; 
-    transition: color 0.3s ease, background-color 0.3s ease; 
+    background-color: transparent;
+    transition: color 0.3s ease, background-color 0.3s ease;
     font-size: 3.5rem;
 }
 
+
 .title-container a:hover i.bx-play-circle {
-    color: var(--main-color); 
+    color: var(--main-color);
 }
 
+
 .ticket-button {
-    width: 100%; 
-    padding: 15px; 
+    width: 100%;
+    padding: 15px;
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: rgb(221, 201, 155);
+    background-color: var(--main-color);
     color: var(--text-color-light);
     text-align: center;
     text-decoration: none;
@@ -163,9 +228,11 @@ header.shadow {
     transition: background-color 0.3s ease;
 }
 
+
 .ticket-button:hover {
-    background-color: var(--main-color); 
+    background-color: var(--bg-color);
 }
+
 
 /* RESPONSIVE */
 @media screen and (max-width: 1156px) {
@@ -175,16 +242,19 @@ header.shadow {
         justify-content: center;
     }
 
+
     .navbar a {
-        margin: 0 20px; 
+        margin: 0 20px;
     }
 }
 
+
 @media screen and (max-width: 1076px) {
     .navbar a {
-        margin: 0 15px; 
+        margin: 0 15px;
     }
 }
+
 
 @media screen and (max-width: 1024px) {
     .navbar {
@@ -203,13 +273,16 @@ header.shadow {
         background-color: transparent;
     }
 
+
     .navbar.show {
         display: flex;
     }
 
+
     .navbar li {
         margin-bottom: 10px;
     }
+
 
     .navbar a {
         font-size: 0.8rem;
@@ -217,107 +290,130 @@ header.shadow {
         transition: all .50s ease;
     }
 
+
     .navbar.open {
         display: flex;
     }
+
 
     #menu-icon {
         font-size: 24px;
         color: var(--bg-color);
         cursor: pointer;
         z-index: 1000001;
-        display: block; 
+        display: block;
         position: absolute;
         right: 20px;
-        
+       
     }
+
 
     .btn {
         padding: 0.3rem 0.6rem;      
         text-align: center;
     }
 
+
     .title-container a i.bx-play-circle {
         font-size: 3rem;
     }
 }
+
 
 @media screen and (max-width: 768px) {
     .poster img {
         height: 310px;
     }
 
+
     .flex-container {
         flex-direction: column;
     }
 
+
     .poster-wrapper, .description-wrapper {
-        flex: none; 
+        flex: none;
     }
+
 
     .title-container a i.bx-play-circle {
         font-size: 2.5rem;
     }
 }
 
+
 @media screen and (max-width: 555px){
     .poster img {
         height: 280px;
     }
 
+
     .home-text h1 {
         font-size: 1.5rem;
     }
+
 
     .home-text h2 {
         font-size: 1.1rem;
     }
 
+
     .movie_date, .movie_dir, .movie_cast, .movie_syp {
         font-size: 1rem;
     }
+
 
     .main a {
         font-size: 1rem;
     }
 
+
     #menu-icon {
         font-size: 40px;
     }
 
+
     .navbar a {
         font-size: 1.1rem;
     }    
+
 
     .title-container a i.bx-play-circle {
         font-size: 2rem;
     }
 }
 
+
 @media screen and (max-width: 360px) {
     .poster img {
         height: 230px;
     }
 
+
     .home-text h1 {
         font-size: 1.1rem;
     }
+
 
     .home-text h2 {
         font-size: 0.8rem;
     }
 
+
     .movie_date, .movie_dir, .movie_cast, .movie_syp {
         font-size: 0.6rem;
     }
+
 
     .main a {
         font-size: 0.6rem;
     }
 
+
     #menu-icon {
         font-size: 28px;
     }
+
 
     .navbar a {
         font-size: 0.8rem;
