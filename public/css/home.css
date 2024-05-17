@@ -32,6 +32,10 @@ section {
     padding: 4.5rem 0 1.5rem;
 }
 
+section#newsletter.newsletter{
+    padding: 4.5rem 0 0;
+}
+
 
 
 
@@ -146,7 +150,8 @@ header.shadow {
 }
 
 
-.btn:hover, .btn-mov:hover {
+.btn:hover,
+.btn-mov:hover {
     color: var(--text-color);
     background-color: var(--main-color);
     border: 3px solid var(--main-color);
@@ -176,12 +181,15 @@ header.shadow {
     flex-wrap: wrap;
     align-content: flex-start;
     flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    column-gap: 150px;
 }
 
 
 .wrapper {
     margin-top: 50px;
-    margin-left: 150px;
     position: relative;
 }
 
@@ -249,7 +257,8 @@ header.shadow {
     border-radius: 5px;
     padding: 0 20px 0 35px;
     border: 1px solid #B3B3B3;
-    background: var(--bg-color); /* Set background color */
+    background: var(--bg-color);
+    /* Set background color */
     color: var(--text-color);
 }
 
@@ -428,7 +437,8 @@ li.selected {
 }
 
 
-.movies-container, .coming-container{
+.movies-container,
+.coming-container {
     max-width: 968px;
     margin-right: auto;
     margin-left: auto;
@@ -439,7 +449,7 @@ li.selected {
 }
 
 
-.box .box-img{
+.box .box-img {
     width: 100%;
     height: 270px;
     border-radius: 15px;
@@ -462,7 +472,7 @@ li.selected {
 }
 
 
-.box h3{
+.box h3 {
     font-size: 1rem;
     font-weight: 500;
 }
@@ -482,7 +492,7 @@ li.selected {
 .box .box-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;    
+    object-fit: cover;
     transition: all 1s ease-in-out;
 }
 
@@ -532,22 +542,23 @@ li.selected {
 
 /* FOOTER */
 footer {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    padding: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 40px;
     text-align: center;
 }
 
 
 .social {
-    padding: 30px;
+    padding: 20px 0 0;
+    color: var(--text-color);
 }
 
 
 .social-icons {
     font-size: 24px;
     margin: 0 10px;
-    color: var(--bg-color);
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -640,7 +651,7 @@ footer {
         display: block;
         position: absolute;
         right: 20px;
-       
+
     }
 
 
