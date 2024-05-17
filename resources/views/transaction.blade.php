@@ -441,7 +441,7 @@ foreach ($_POST as $key => $value) {
     }
 
     function showSeat(){
-        $("#seatNums").val("");
+        let arrSeat = [];
         $.each(seats, function(index, seat){
             $.ajax({
             url: 'get-seats-number/'+seat,
@@ -452,17 +452,10 @@ foreach ($_POST as $key => $value) {
                 console.log("chair:");
                 console.log(response[0]['chair_number']);
                 var temp = $("#seatNums").val();
-                // $('#testing').html("dd");
-                $("#seatNums").val(temp + "," +response[0]['chair_number']);
-                // $("#seat").append("<p>"+response[0]['chair_number']+"</p>")
-                // $("#seat").append("<div class=\"seat-card\"><p>"+response[0]['chair_number']+"</p></div>")
-                // if (index === seats.length - 1) {
-                //     var tempSeatNumber = $("#seatNums").val().substring(1);
-                //     console.log("seats:"+tempSeatNumber);
-                //     $('#description').append("<p> Seat Number: "+tempSeatNumber+"</p>");
-                    
-                // }
-                $("#seat").text($("#seatNums").val().substring(1));
+                let convert = response[0]['chair_number'];
+                arrSeat.push(String.fromCharCode('A'.charCodeAt(0) + (convert/24)) + "" + (convert % 24));
+                let seatsNumFix = arrSeat.join(",");
+                $("#seat").text(seatsNumFix);
             },
             error: function (error) {
                 console.log(error);
