@@ -17,7 +17,6 @@ foreach ($allSessionData as $key => $value) {
     }
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

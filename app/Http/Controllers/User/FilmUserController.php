@@ -145,7 +145,7 @@ class FilmUserController extends Controller
         return response()->json($data);
     }
     public function getStudioTime($id, $date){
-        $data['studioTimes'] = ShowTime::with('studio')->where('film_id', $id)->where('show_date', $date)->where('cinema_id',session('cinema_id'))->get();
+        $data['studioTimes'] = ShowTime::with(['studio', 'cinema'])->where('film_id', $id)->where('show_date', $date)->where('cinema_id',session('cinema_id'))->get();
         return response()->json($data);
     }
     public function getChair($id){
