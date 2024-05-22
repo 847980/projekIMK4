@@ -312,7 +312,7 @@ foreach ($_POST as $key => $value) {
             The order cannot be canceled. Are you sure?
         </div>
         <div class="modal-footer">
-  <button class="btn btn-warning" onclick="checkSeat()">Confirm</button> 
+  <button id="confirmButton" class="btn btn-warning" onclick="checkSeat()">Confirm</button> 
   {{-- should be paypal() --}}
   
   <p id="testing"></p>
@@ -516,30 +516,31 @@ foreach ($_POST as $key => $value) {
     //     //     });
     //     // });
     // }
-    function showstat(){
-        console.log(seatStat);
-        var paynow = true;
-        $.each(seatStat, function(index, seat){
-            if (seat == 1) {
-                paynow = false;
-            }
-        });
-        console.log(paynow);
-        if(paynow){
-            paypal();
-        } else {
-            showAlertAndRedirect();
-        }
-    };
+    // function showstat(){
+    //     console.log(seatStat);
+    //     var paynow = true;
+    //     $.each(seatStat, function(index, seat){
+    //         if (seat == 1) {
+    //             paynow = false;
+    //         }
+    //     });
+    //     console.log(paynow);
+    //     if(paynow){
+    //         paypal();
+    //     } else {
+    //         showAlertAndRedirect();
+    //     }
+    // };
     
         // Function to show the alert and redirect when OK is clicked
-        function showAlertAndRedirect() {
+    function showAlertAndRedirect() {
       window.alert("Seat taken. Kindly return to the main menu for other options.");
       // Redirect to another site after clicking OK
       window.location.href = "dashboard";
     }
 
     function checkSeat(){
+        $('#confirmButton').prop('disabled', true);
         $.each(seats, function(index, seat){
             $.ajax({
             url: 'check-seat/'+seat,
@@ -551,10 +552,10 @@ foreach ($_POST as $key => $value) {
                     console.log("kosong");
                     seatStat.push(0);
                 } else {
-                    seatStat.push(1);
+                    showAlertAndRedirect()
                 }
                 if (index == seats.length - 1) {
-                    showstat();
+                    paypal();
                 }
             },
             error: function (error) {
