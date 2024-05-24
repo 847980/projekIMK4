@@ -139,7 +139,7 @@
                 </span>
                 <input type="password" name="password" id="password2" placeholder="Password" required >
                 
-                <button>Login</button>
+                <button class="button-login">Login</button>
             </form>
         </div>
 

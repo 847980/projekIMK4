@@ -12,6 +12,9 @@
     scroll-behavior: smooth;
 }
 
+*::-webkit-scrollbar-track  {
+    background: transparent;
+}
 
 :root {
     --main-color: #34495E;
@@ -48,7 +51,7 @@ header {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px 40px;
     background-color: var(--text-color-light);
 }
@@ -659,6 +662,13 @@ footer {
         flex-direction: column;
     }
 }
+
+@media screen and (max-width: 913px) {   
+    .heading{
+        margin-left: 2vw;
+    }
+}
+
 
 
 /* @media screen and (max-width: 310px) {

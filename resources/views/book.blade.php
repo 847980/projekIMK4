@@ -251,7 +251,10 @@
                     </div>
                 </div>
 
-                <div class="confirm_button" >
+                <div class="confirm_button d-flex flex-row align-items-center">
+                    <div class="money align-self-end" style="color: white;">
+                        $ 10.000
+                    </div>
                     <button class="book_tic" id="book_ticket">
                         <i class="bi bi-arrow-right-short"></i>
                     </button>

@@ -179,7 +179,7 @@
             <div class="col">
                 <h4>FOLLOW US ON</h4>
                 <div class="social">
-                    <a href="#" class="social-icons"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://www.instagram.com/alicia.claresta31?igsh=MXR4MmRibGYwbXhleg==" target="_blank" class="social-icons"><i class='bx bxl-instagram'></i></a>
                     <a href="#" class="social-icons"><i class='bx bxl-twitter'></i></a>
                     <a href="#" class="social-icons"><i class='bx bxl-youtube'></i></a>
                 </div>

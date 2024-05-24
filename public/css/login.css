@@ -1,3 +1,10 @@
+:root {
+    --main-color: #34495E;
+    --text-color: #F4F4F2;
+    --text-color-light: #E8E8E8;
+    --bg-color: #5DA0A2;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -6,9 +13,8 @@ body {
     align-items: center;
     min-height: 100vh;
     background: url('https://wallpapers.com/images/featured/movie-9pvmdtvz4cb0xl37.jpg') no-repeat center / cover;
-    background-blend-mode: darken;
-    background-color: rgba(0, 0, 0, 0.6);
-    /* background-color: #EEEEEE; */
+    /* background-blend-mode: darken; */
+    /* background-color: var(--bg-color); */
     font-family: 'Chivo';
 }
 
@@ -16,7 +22,8 @@ body {
     width: 350px;
     height: 500px;
     overflow: hidden;
-    background: url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=') no-repeat center / cover;
+    /* background: url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=') no-repeat center / cover; */
+    background-color: var(--bg-color);
     border-radius: 10px;
     box-shadow: 20px 20px 100px 20px rgba(0, 0, 0, 1);
     margin-left: 10px;
@@ -39,7 +46,7 @@ body {
 }
 
 label {
-    color: #FFD369;
+    color: var(--main-color);
     font-size: 2.3em;
     justify-content: center;
     display: flex;
@@ -52,7 +59,7 @@ label {
 input {
     width: 60%;
     height: 40px;
-    background: #EEEEEE;
+    background: var(--text-color);
     justify-content: center;
     display: flex;
     margin: 15px auto;
@@ -70,8 +77,8 @@ button {
     margin-top: 20px;
     justify-content: center;
     display: block;
-    color: #FFD369;
-    background: #393E46;
+    color: var(--text-color-light);
+    background: var(--main-color);
     font-size: 1em;
     font-weight: bold;
     outline: none;
@@ -81,13 +88,17 @@ button {
     cursor: pointer;
 }
 
+.button-login{
+    background-color: var(--bg-color);
+}
+
 button:hover {
     background: #585f6b;
 }
 
 .login {
     height: 460px;
-    background: #FFD369;
+    background: var(--main-color);
     border-radius: 60% / 10%;
     transform: translateY(-180px);
     transition: .8s ease-in-out;
@@ -95,7 +106,7 @@ button:hover {
 
 .login label {
     padding-top: 15px;
-    color: #393E46;
+    color: var(--text-color);
     transform: scale(.6);
 }
 
@@ -112,13 +123,13 @@ button:hover {
 }
 
 .signup span {
-    color: #EEEEEE;
+    color: var(--text-color);
     margin-left: 70px;
     padding: 0;
 }
 
 .login span {
-    color: #585f6b;
+    color: var(--text-color);
     margin-left: 70px;
     padding: 0;
 }
@@ -185,7 +196,7 @@ button:hover {
 }
 
 .sign svg path {
-    fill: #FFD369;
+    fill: var(--text-color);
 }
 
 .text {
@@ -193,7 +204,7 @@ button:hover {
     right: 0%;
     width: 0%;
     opacity: 0;
-    color: #FFD369;
+    color: var(--text-color);
     font-size: 1.2em;
     font-weight: 600;
     transition-duration: .3s;
@@ -211,4 +222,10 @@ button:hover {
 
 .btn-invalid{
     margin-top: 2px;
+}
+
+@media screen and (max-width: 913px) {   
+    .heading{
+        margin-left: 4vw;
+    }
 }

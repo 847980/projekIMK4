@@ -391,8 +391,13 @@ body {
 .content .book .right .confirm_button {
     padding-top: 30px;
     padding-bottom: 30px;
-    display: block;
+    display: flex;
     float: right;
+    gap: 30px;
+}
+
+.content .book .right .confirm_button .money{
+    padding-top: 5px;
 }
 
 .content .book .right .confirm_button .book_tic {
