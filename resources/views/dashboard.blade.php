@@ -1,4 +1,9 @@
 <!-- penanda navbar -> sdg aktif dmn blm ada -->
+<script>
+    var success = "{{ $title }}";
+    console.log("{{ $title }}");
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +23,7 @@
 </head>
 
 
-<body>
+<body>   
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
@@ -32,8 +37,12 @@
     </header>
     <script>
         $(document).ready(function() {
+            
+            console.log("kjsha");
+            
             // Loop through the sections
             $('.section').each(function() {
+
                 // Get the section ID
                 var sectionId = $(this).attr('id');
 
@@ -190,7 +199,13 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
     $(document).ready(function(){
-    loadCity();
+        loadCity();
+        console.log(success);
+        if (success == "Success") {
+            alert("Payment Success")
+            window.location.href = "http://127.0.0.1:8000/user/dashboard#home";
+            // console.log($("#back").click());
+        };
    
 });
 

@@ -1,3 +1,5 @@
+{{-- lanjutan untuk pilih kursi, oper data --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -265,13 +267,18 @@
 {{-- hidden form --}}
 <form action="{{ route('user.transaction') }}" id="form" method="post">
     @csrf
-    <input type="hidden" name='film_id' id="film_id" value="{{ session('film_id') }}">
+    <input type="hidden" name='film_id' id="film_id" value="{{ $film->id }}">
+    <input type="hidden" name='film_judul' id="film_judul" value="{{ $film->judul }}">
+    <input type="hidden" name='film_age' id="film_age" value="{{ $film->age_cat }}">
+    <input type="hidden" name='film_min' id="film_min" value="{{ $film->duration }}">
+    <input type="hidden" name='film_genre' id="film_genre" value="{{ $_POST['genre'] }}">
+    <input type="hidden" name='film_genreID' id="film_genreID" value="{{ $_POST['genre_id'] }}">
     <input type="hidden" name='poster' id="poster" value="{{ $_POST['poster'] }}">
     <input type="hidden" name='cinema_id' id="cinema_id" value="{{ session('cinema_id') }}">
     <input type="hidden" name="studio_id2" id="studio_id2" value="-1">
     <input type="hidden" name="date" id="date2" value="{{ $date->format('Y-m-d') }}">
     <input type="hidden" name="time" id="timeChoose" value="-1">
-    <input type="hidden" name="show_timeId" id="show_timeId" value="-1">
+    <input type="hidden" name="cinemaName" id="cinemaName" value="">
     <button id="order" type="submit" style="display: none;">Go</button>
 </form>
 
@@ -287,7 +294,11 @@
     $(document).ready(function(){
         var id_film = "{{ session('film_id') }}" ; //id film
         var id_cinema = "{{ session('cinema_id') }}";
+        var cinema_name = "";
+        var studio_name = "";
+        var price = 0;
         var seats = [];
+        var nums = [];
 
         function reset(){
             seats = [];
@@ -323,14 +334,13 @@
                 url: 'get-studio-time/' + id + "/" + date,
                 type: 'get',
                 success: function (response) {
-                    console.log("yes")
                     console.log(response);
                     $('.showtime-container').html("");
                     $.each(response.studioTimes, function(index, studioTime) {
                         $('.showtime-container').append(`
                             <li>
                                 <h6 style="padding: 0px 5px">${ studioTime.studio['name']}</h6>
-                                <h6 class="showtime" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0,5)}</h6>
+                                <h6 data-cinemaName="${studioTime.cinema['name']}" data-price=${studioTime['price']} data-studioName="${studioTime.studio['name']}" class="showtime" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0,5)}</h6>
                             </li>
                         `);
                     });
@@ -350,7 +360,19 @@
             $(this).addClass('active now');
             var showtimeId = $(this).attr('id');
             console.log(showtimeId);
+            let cinName = $(this).attr('data-cinemaName');
+            let stuName = $(this).attr('data-studioName');
+            let pri = $(this).attr('data-price');
+            price = pri;
+    //         <input type="hidden" name="studioName" id="studioName" value="">
+    // <input type="hidden" name="price" id="price" value="0">
+    // <input type="hidden" name="show_timeId" id="show_timeId" value="-1">
+            $('#form').append('<input type="hidden" name="studioName" id="studioName" value="'+stuName+'">')
+            $('#form').append('<input type="hidden" name="cinemaName" id="cinemaName" value="'+cinName+'">')
+            $('#form').append('<input type="hidden" name="film_price" id="film_price" value="'+pri+'">')
             getChair(showtimeId);
+            console.log(price);
+
             reset();
 
             // // reset form
@@ -392,7 +414,7 @@
                         }
                         // append to current row
                         $(`.row-${row}`).append($(`<li class='seat ${seat['chair_status'] === 0 ? "available" : "booked"}' 
-                        id="${seat['id']}">${String.fromCharCode(64+row)} ${colNow}</li>`))
+                        id="${seat['id']}"  data-num="${seat.chair_number}">${String.fromCharCode(64+row)} ${colNow}</li>`))
                         colNow++;
                     });
                 },
@@ -403,30 +425,34 @@
         }
 
         // pilih dan batalkan chair
-        function setChair(id){
+        function setChair(id, num){
             var chairId =  id;
 
             if($('#'+chairId).hasClass('selected')){
                 console.log('has selected')
                 $('#'+chairId).removeClass('selected');
-                deleteSeatById(chairId);
+                $('#'+chairId).addClass('available');
+                deleteSeatById(chairId, num);
             }
             else if($('#'+chairId).hasClass('available')){
                 console.log('no selected')
                 $('#'+chairId).removeClass('available');
                 $('#'+chairId).addClass('selected');
                 seats.push(chairId);
+                nums.push(num);
             }
 
             console.log("array seats: ");
-            console.log(seats)            
+            console.log(seats);            
+            console.log(nums);            
         }
 
-        function deleteSeatById(idToDelete) {
+        function deleteSeatById(idToDelete, num) {
             console.log("idToDelete: "+idToDelete);
             for (let i = 0; i < seats.length; i++) {
                 if (seats[i] === idToDelete) {
                     seats.splice(i, 1);
+                    nums.splice(nums.indexOf(num), 1);
                 }
             }
         }
@@ -434,13 +460,12 @@
         // seat click
         $('#chair').on('click', '.seat', function(){
             var chairId = $(this).attr('id');
-            console.log(chairId);
-            setChair(chairId);
+            var chairNum = $(this).attr('data-num');
+            setChair(chairId, chairNum);
         });
 
 
         getStudioTime();
-
 
 
         // ketika submit
@@ -454,10 +479,15 @@
                 alert("Please choose date, studio, and showtime")
                 return;
             }
-
+            if(seats.length <= 0){
+                alert("Please choose at least one seat")
+                return;
+            }
             $.each(seats, function(index, seat){
                 $('#form').append('<input type="hidden" name="'+seat+'" id="'+seat+'" value="'+seat+'">')
             });
+            let numString = nums.join(", ");
+            $('#form').append('<input type="hidden" name="numSeatStr" id="numSeatStr" value="'+numString+'">');
             $('#order').click();
             
         });

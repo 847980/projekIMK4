@@ -1,5 +1,8 @@
+{{-- Pembayaran, get semua data --}}
+
 @extends('layouts.basic')
 @section('body')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -334,9 +337,9 @@ foreach ($allSessionData as $key => $value) {
 
 ?>
 
-    <?php
-
+<?php
 foreach ($_POST as $key => $value) {
+
     if ($key == 'film_id') {
         ?>
     <input type="hidden" name='film_id' id="film_id" value="{{ $value }}">
@@ -363,10 +366,46 @@ foreach ($_POST as $key => $value) {
     <?php
     } elseif ($key == 'show_timeId') {
             ?>
-    <input type="hidden" name="show_timeId" id="show_timeId" value="{{ $value }}">
-    <?php
-    } else {
-        if ($key != '_token') {
+                <input type="hidden" name="show_timeId" id="show_timeId" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'film_judul') {
+            ?>
+                <input type="hidden" name="film_judul" id="film_judul" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'film_age') {
+            ?>
+                <input type="hidden" name="film_age" id="film_age" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'film_min') {
+            ?>
+                <input type="hidden" name="film_duration" id="film_duration" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'film_genre') {
+            ?>
+                <input type="hidden" name="film_genre" id="film_genre" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'film_genreID') {
+            ?>
+                <input type="hidden" name="film_genreId" id="film_genreId" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'studioName') {
+            ?>
+                <input type="hidden" name="studio_name" id="studio_name" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'cinemaName') {
+            ?>
+                <input type="hidden" name="cinema_name" id="cinema_name" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'film_price') {
+            ?>
+                <input type="hidden" name="film_price" id="film_price" value="{{ $value }}">
+                <?php
+        } elseif ($key == 'numSeatStr') {
+            ?>
+                <input type="hidden" name="numSeats" id="numSeats" value="{{ $value }}">
+                <?php
+        } else {
+            if ($key != '_token') {
                 ?>
     <input type="hidden" class="seats" name="{{ $key }}" id="{{ $key }}" value="{{ $value }}">
     <?php
@@ -388,268 +427,282 @@ foreach ($_POST as $key => $value) {
     </form>
 
 
-    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-dark" id="exampleModalToggleLabel">Confirm</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-dark">
-                    The order cannot be canceled. Are you sure?
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-warning" onclick="checkSeat()">Confirm</button>
-                    {{-- should be paypal() --}}
-
-                    <p id="testing"></p>
-                </div>
-            </div>
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-dark" id="exampleModalToggleLabel">Confirm</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body text-dark">
+            The order cannot be canceled. Are you sure?
+        </div>
+        <div class="modal-footer">
+  <button id="confirmButton" class="btn btn-warning" onclick="checkSeat()">Confirm</button> 
+  {{-- should be paypal() --}}
+  
+  <p id="testing"></p>
+        </div>
+      </div>
     </div>
+  </div>
 
     @endsection
 
-    @section('script')
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        var seats = [];
-        var totalSeat = -1;
-        var filmName = "";
-        var studioName = "";
-        var cinemaName = "";
-        var price = -1;
-        var totalPrice = -1;
-        var genre_id = "";
-        var genreName = "";
-        var ageCat = "";
-        var seatStat = [];
-        var duration = -1;
+@section('script')
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $('#posterFilm').attr('src', $('#posterAddress').val());
 
-        $(document).ready(function () {
-            console.log("ready");
-            $('#posterFilm').attr('src', $('#posterAddress').val());
-            var dateString = $('#date').val();
-            var dateObject = new Date(dateString);
-            var day = dateObject.getDate();
-            var month = dateObject.toLocaleString('en-us', { month: 'short' });
-            var formattedDate = day + " " + month;
-            console.log(formattedDate);
-            $('#tanggal').html(formattedDate);
-            $('#tanggal2').html($('#date').val());
-            var timeString = $('#time').val();
-            var dateObject = new Date("1970-01-01 " + timeString);
-            var formattedTime = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-            console.log(formattedTime);
+    var seats = [];
+    $('.seats').each(function(index, seat){
+            seats.push($(this).val());
+        });
+    let seatTemp = $('#numSeats').val();
+        let seatSplit = seatTemp.split(", ");
+        let arrSeat = [];
+        seatSplit.forEach(seat => {
+            let num = parseInt(seat);
+            arrSeat.push(String.fromCharCode('A'.charCodeAt(0) + (num/24)) + "" + (num % 24));
+        });
+        let seatsNumFix = arrSeat.join(",");
+        $("#seat").text(seatsNumFix);
+
+    var totalSeat = seats.length;
+
+    // console.log($('#film_judul').val());
+    var filmName = $('#film_judul').val();
+    var studioName = $('#studio_name').val();
+    $('#studioName').html(studioName);
+    $('#studioName2').html(studioName);
+    // $('#description').append("<p>"+filmName+"</p>");
+    $('#judul').html(filmName);
+    var cinemaName = $('#cinema_name').val();
+    $('#cinemaName').html(cinemaName);
+    var price = $('#film_price').val();
+    
+    var totalPrice = totalSeat * price;
+    // $('#description').append("<p>Total: "+totalPrice+"</p>");
+    $('#price').val(totalPrice);
+    var currencyValue = totalPrice;
+    var formattedCurrency = currencyValue.toLocaleString('en-US');
+    console.log(formattedCurrency);
+    $('#totalBayar').html(formattedCurrency);
+    
+    var genre_id = $('#film_genreId').val();
+    var genreName = $('#film_genre').val();
+    var ageCat = $('#film_age').val();
+    var duration = $('#film_duration').val();
+    $('#keterangan').append('<h2>'+ageCat+'&emsp;|&emsp;'+duration+' min&emsp;|&emsp;'+genreName+'</h2><br>');
+    var seatStat = [];
+
+    $(document).ready(function(){
+        console.log("ready");
+        var dateString = $('#date').val();
+        var dateObject = new Date(dateString);
+        var day = dateObject.getDate();
+        var month = dateObject.toLocaleString('en-us', { month: 'short' });
+        var formattedDate = day + " " + month;
+        console.log(formattedDate);
+        $('#tanggal').html(formattedDate);
+        $('#tanggal2').html($('#date').val());
+        var timeString = $('#time').val();
+        var dateObject = new Date("1970-01-01 " + timeString);
+        var formattedTime = dateObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        console.log(formattedTime);
 
             $('#jam').html(formattedTime);
             $('#jam2').html($('#time').val());
 
-            runAsyncOperations();
+    });
+    
+    // function getGenre(){
+    //     $.ajax({
+    //         url: 'get-genre/'+genre_id,
+    //         type: 'get',
+    //         success: function (response) {
+    //             console.log(response[0]['name']);
+    //             genreName = response[0]['name'];
+                
+    //         },
+    //         error: function (error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // };
+    // function getSeats(){
+    //     $('.seats').each(function(index, seat){
+    //         seats.push($(this).val());
+    //     })
+    //     totalSeat = seats.length;
+    //     console.log(totalSeat);
+    // };
+    // function getFilm(){
+    //     var id = $('#film_id').val();
+    //     $.ajax({
+    //         url: 'get-film-title/'+id,
+    //         type: 'get',
+    //         success: function (response) {
+    //             console.log(response);              
+    //             // getGenre();
+    //         },
+    //         error: function (error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // }
+    // function getStudio(){
+    //     var id = $('#studio_id').val();
+    //     $.ajax({
+    //         url: 'get-studio/'+id,
+    //         type: 'get',
+    //         success: function (response) {
+    //             console.log(response);
+    //             studioName = response[0]['name'];
+    //             console.log(studioName);
+    //             $('#description').append("<p>"+studioName+"</p>");
+    //             // $('#studioName').html(studioName);
+    //             // $('#studioName2').html(studioName);
 
-        });
+    //         },
+    //         error: function (error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // }
+    // function getCinema(){
+    //     var id = $('#cinema_id').val();
+    //     $.ajax({
+    //         url: 'get-cinema/'+id,
+    //         type: 'get',
+    //         success: function (response) {
+    //             console.log(response);
+    //             cinemaName = response[0]['name'];
+    //             console.log(cinemaName);
+    //             $('#description').append("<p>"+cinemaName+"</p>");
+    //             // $('#cinemaName').html(cinemaName);
 
-        async function runAsyncOperations() {
-            try {
-                await getSeats();
+    //         },
+    //         error: function (error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // }
+    // function getPrice(){
+    //     var id = $('#show_timeId').val();
+    //     $.ajax({
+    //         url: 'get-price/'+id,
+    //         type: 'get',
+    //         success: function (response) {
+    //             console.log(response);
+    //             console.log(price);
+    //             $('#description').append("<p>Price: "+price+"</p>");
+    //             totalPrice = totalSeat * price;
+    //             $('#description').append("<p>Total: "+totalPrice+"</p>");
+    //             $('#price').val(totalPrice);
+                
+    //             // var currencyValue = totalPrice;
+    //             // var formattedCurrency = currencyValue.toLocaleString('en-US');
+    //             // console.log(formattedCurrency);
+    //             // $('#totalBayar').html(formattedCurrency);
+    //         },
+    //         error: function (error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // }
 
-                await Promise.all([getCinema(), getStudio(), getFilm(), getPrice(), showSeat()]);
-                console.log("All operations finished");
-
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        };
-        function getGenre() {
-            $.ajax({
-                url: 'get-genre/' + genre_id,
-                type: 'get',
-                success: function (response) {
-                    console.log(response[0]['name']);
-                    genreName = response[0]['name'];
-                    $('#keterangan').append(
-                        '<h2>' + ageCat + '&emsp;|&emsp;' + duration + ' min&emsp;|&emsp;' + genreName + '</h2><br>'
-                    );
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        };
-        function getSeats() {
-            $('.seats').each(function (index, seat) {
-                seats.push($(this).val());
-            })
-            totalSeat = seats.length;
-            console.log(totalSeat);
-        };
-        function getFilm() {
-            var id = $('#film_id').val();
-            $.ajax({
-                url: 'get-film-title/' + id,
-                type: 'get',
-                success: function (response) {
-                    console.log(response);
-                    filmName = response[0]['judul'];
-                    console.log(filmName);
-                    $('#description').append("<p>" + filmName + "</p>");
-                    $('#judul').html(filmName);
-                    ageCat = response[0]['age_cat'];
-                    duration = response[0]['duration'];
-                    genre_id = response[0]['genre_id'];
-                    getGenre();
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-        function getStudio() {
-            var id = $('#studio_id').val();
-            $.ajax({
-                url: 'get-studio/' + id,
-                type: 'get',
-                success: function (response) {
-                    console.log(response);
-                    studioName = response[0]['name'];
-                    console.log(studioName);
-                    $('#description').append("<p>" + studioName + "</p>");
-                    $('#studioName').html(studioName);
-                    $('#studioName2').html(studioName);
-
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-        function getCinema() {
-            var id = $('#cinema_id').val();
-            $.ajax({
-                url: 'get-cinema/' + id,
-                type: 'get',
-                success: function (response) {
-                    console.log(response);
-                    cinemaName = response[0]['name'];
-                    console.log(cinemaName);
-                    $('#description').append("<p>" + cinemaName + "</p>");
-                    $('#cinemaName').html(cinemaName);
-
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-        function getPrice() {
-            var id = $('#show_timeId').val();
-            $.ajax({
-                url: 'get-price/' + id,
-                type: 'get',
-                success: function (response) {
-                    console.log(response);
-                    price = response[0]['price'];
-                    console.log(price);
-                    $('#description').append("<p>Price: " + price + "</p>");
-                    totalPrice = totalSeat * price;
-                    $('#description').append("<p>Total: " + totalPrice + "</p>");
-                    $('#price').val(totalPrice);
-
-                    var currencyValue = totalPrice;
-                    var formattedCurrency = currencyValue.toLocaleString('en-US');
-                    console.log(formattedCurrency);
-                    $('#totalBayar').html(formattedCurrency);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-
-        function showSeat() {
-            let arrSeat = [];
-            $.each(seats, function (index, seat) {
-                $.ajax({
-                    url: 'get-seats-number/' + seat,
-                    type: 'get',
-                    success: function (response) {
-                        console.log('show seat: ')
-                        console.log(response)
-                        console.log("chair:");
-                        console.log(response[0]['chair_number']);
-                        var temp = $("#seatNums").val();
-                        let convert = response[0]['chair_number'];
-                        arrSeat.push(String.fromCharCode('A'.charCodeAt(0) + (convert / 24)) + "" + (convert % 24));
-                        let seatsNumFix = arrSeat.join(",");
-                        $("#seat").text(seatsNumFix);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
-        }
-        function showstat() {
-            console.log(seatStat);
-            var paynow = true;
-            $.each(seatStat, function (index, seat) {
-                if (seat == 1) {
-                    paynow = false;
-                }
-            });
-            console.log(paynow);
-            if (paynow) {
-                paypal();
-            } else {
-                showAlertAndRedirect();
-            }
-        };
-
+    // function showSeat(){
+    //     let seatTemp = $('#numSeats').val();
+    //     let seatSplit = seatTemp.split(", ");
+    //     let arrSeat = [];
+    //     seatSplit.forEach(seat => {
+    //         let num = parseInt(seat);
+    //         arrSeat.push(String.fromCharCode('A'.charCodeAt(0) + (num/24)) + "" + (num % 24));
+    //     });
+    //     let seatsNumFix = arrSeat.join(",");
+    //     $("#seat").text(seatsNumFix);
+    //     console.log(seatsNumFix);
+    //     // $.each(seats, function(index, seat){
+    //     //     $.ajax({
+    //     //     url: 'get-seats-number/'+seat,
+    //     //     type: 'get',
+    //     //     success: function (response) {
+    //     //         console.log('show seat: ')
+    //     //         console.log(response)
+    //     //         console.log("chair:");
+    //     //         console.log(response[0]['chair_number']);
+    //     //         var temp = $("#seatNums").val();
+    //     //         let convert = response[0]['chair_number'];
+                
+    //     //     },
+    //     //     error: function (error) {
+    //     //         console.log(error);
+    //     //     }
+    //     //     });
+    //     // });
+    // }
+    // function showstat(){
+    //     console.log(seatStat);
+    //     var paynow = true;
+    //     $.each(seatStat, function(index, seat){
+    //         if (seat == 1) {
+    //             paynow = false;
+    //         }
+    //     });
+    //     console.log(paynow);
+    //     if(paynow){
+    //         paypal();
+    //     } else {
+    //         showAlertAndRedirect();
+    //     }
+    // };
+    
         // Function to show the alert and redirect when OK is clicked
-        function showAlertAndRedirect() {
-            window.alert("Seat taken. Kindly return to the main menu for other options.");
-            // Redirect to another site after clicking OK
-            window.location.href = "dashboard";
-        }
+    function showAlertAndRedirect() {
+      window.alert("Seat taken. Kindly return to the main menu for other options.");
+      // Redirect to another site after clicking OK
+      window.location.href = "dashboard";
+    }
 
-        function checkSeat() {
-            $.each(seats, function (index, seat) {
-                $.ajax({
-                    url: 'check-seat/' + seat,
-                    type: 'get',
-                    success: function (response) {
-                        console.log("chair:");
-                        console.log(response[0]['chair_status']);
-                        if (response[0]['chair_status'] == 0) {
-                            console.log("kosong");
-                            seatStat.push(0);
-                        } else {
-                            seatStat.push(1);
-                        }
-                        if (index == seats.length - 1) {
-                            showstat();
-                        }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
-        }
-        function paypal() {
-            var userId = $('#user_id').val();
-            var transId;
+    function checkSeat(){
+        $('#confirmButton').prop('disabled', true);
+        $.each(seats, function(index, seat){
             $.ajax({
-                url: 'create-transaction/' + userId + "/" + totalPrice,
-                type: 'get',
-                datatype: 'json',
-                success: function (response) {
-                    console.log(response);
-                    $('#transaction_id').val(response['transaction_id']);
-                    console.log($('#transaction_id').val());
-                    transId = response['transaction_id'];
-                    console.log("transID: " + transId);
+            url: 'check-seat/'+seat,
+            type: 'get',
+            success: function (response) {
+                console.log("chair:");
+                console.log(response[0]['chair_status']);
+                if (response[0]['chair_status'] == 0) {
+                    console.log("kosong");
+                    seatStat.push(0);
+                } else {
+                    showAlertAndRedirect()
+                }
+                if (index == seats.length - 1) {
+                    paypal();
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+            });
+        });
+    }
+    function paypal(){
+        var userId = $('#user_id').val();
+        var transId;
+        $.ajax({
+            url: 'create-transaction/'+userId +"/"+totalPrice,
+            type: 'get',
+            datatype: 'json',
+            success: function (response) {
+                console.log(response);
+                $('#transaction_id').val(response['transaction_id']);
+                console.log($('#transaction_id').val());
+                transId = response['transaction_id'];
+                console.log("transID: " + transId);
 
                     // membuat detail transaksi dan mengupdate status kursi
                     $.each(seats, function (index, seat) {

@@ -59,6 +59,8 @@
                     <input type="hidden" name="film_id" value="{{ $film->id }}">
                     <input type="hidden" name="poster" value="{{ asset('storage/assets/' . $film->poster_potrait) }}">
                     <input type="hidden" name="cinema_id" value="{{ session('cinema_id') }}">
+                    <input type="hidden" name="genre" value="${data.genre}">
+                    <input type="hidden" name="genre_id" value="{{ $film->genre_id}}">
                     <button type="submit" class="ticket-button">Buy Ticket</button>
                 </form>
             `;
