@@ -360,6 +360,7 @@
             let cinName = $(this).attr('data-cinemaName');
             let stuName = $(this).attr('data-studioName');
             let pri = $(this).attr('data-price');
+            price = pri;
     //         <input type="hidden" name="studioName" id="studioName" value="">
     // <input type="hidden" name="price" id="price" value="0">
     // <input type="hidden" name="show_timeId" id="show_timeId" value="-1">
@@ -367,6 +368,8 @@
             $('#form').append('<input type="hidden" name="cinemaName" id="cinemaName" value="'+cinName+'">')
             $('#form').append('<input type="hidden" name="film_price" id="film_price" value="'+pri+'">')
             getChair(showtimeId);
+            console.log(price);
+
             reset();
 
             // // reset form
@@ -462,7 +465,6 @@
         getStudioTime();
 
 
-
         // ketika submit
         $('.confirm_button').click(function(){
             var date = $("#date2").val();
@@ -474,11 +476,15 @@
                 alert("Please choose date, studio, and showtime")
                 return;
             }
+            if(seats.length <= 0){
+                alert("Please choose at least one seat")
+                return;
+            }
             $.each(seats, function(index, seat){
                 $('#form').append('<input type="hidden" name="'+seat+'" id="'+seat+'" value="'+seat+'">')
             });
             let numString = nums.join(", ");
-            $('#form').append('<input type="hidden" name="numSeatStr" id="numSeatStr" value="'+numString+'">')
+            $('#form').append('<input type="hidden" name="numSeatStr" id="numSeatStr" value="'+numString+'">');
             $('#order').click();
             
         });
