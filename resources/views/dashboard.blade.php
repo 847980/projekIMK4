@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-
 </head>
 
 
@@ -35,37 +33,6 @@
             <li><a href="{{ route('logout') }}" id="logout" >LOGOUT</a></li>
         </ul>
     </header>
-    <script>
-        $(document).ready(function() {
-            
-            console.log("kjsha");
-            
-            // Loop through the sections
-            $('.section').each(function() {
-
-                // Get the section ID
-                var sectionId = $(this).attr('id');
-
-
-                // Get the corresponding navbar link
-                var navbarLink = $('a[href="#' + sectionId + '"]');
-
-
-                // Check if the section is in view
-                $(window).scroll(function() {
-                    if ($(this).scrollTop() >= $('#' + sectionId).offset().top - 100) {
-                        // Add the active class to the navbar link
-                        navbarLink.addClass('active');
-                    } else {
-                        // Remove the active class from the navbar link
-                        navbarLink.removeClass('active');
-                    }
-                });
-            });
-        });
-    </script>
-
-
     <section class="home swiper" id="home">
         <div class="swiper-wrapper">
             <div class="swiper-slide container">

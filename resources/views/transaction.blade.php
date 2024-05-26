@@ -191,7 +191,7 @@ foreach ($allSessionData as $key => $value) {
                 </svg></div>
             <div class="text">BACK</div>
         </button>
-    </a>
+    </a> 
 
     <div class="flex-container" id="information-card">
         <div class="checkout-title checkout-card">
