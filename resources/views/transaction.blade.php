@@ -182,7 +182,7 @@ foreach ($allSessionData as $key => $value) {
 @section('body')
 
 <body>
-    <a href="{{ route('user.dashboard') }}" class="exit-btn">
+    <a href="" class="exit-btn" onclick="window.history.back()">
         <button class="Btn">
             <div class="sign"><svg viewBox="0 0 512 512">
                     <path
@@ -365,7 +365,7 @@ foreach ($_POST as $key => $value) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 text-dark" id="exampleModalToggleLabel">Confirm</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button id="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-dark">
                     The order cannot be canceled. Are you sure?
@@ -397,7 +397,7 @@ foreach ($_POST as $key => $value) {
         let num = parseInt(seat);
         arrSeat.push(String.fromCharCode('A'.charCodeAt(0) + (num / 24)) + "" + (num % 24));
     });
-    let seatsNumFix = arrSeat.join(",");
+    let seatsNumFix = arrSeat.join(", ");
     $("#seat").text(seatsNumFix);
 
     var totalSeat = seats.length;
@@ -452,7 +452,9 @@ foreach ($_POST as $key => $value) {
     }
 
     function checkSeat() {
-        $('#confirmButton').prop('disabled', true);
+        $('#closeModal').prop('disabled', true);
+        $('#exampleModalToggle').modal({ backdrop: 'static', keyboard: false });
+
         $.each(seats, function (index, seat) {
             $.ajax({
                 url: 'check-seat/' + seat,
@@ -467,6 +469,7 @@ foreach ($_POST as $key => $value) {
                         showAlertAndRedirect()
                     }
                     if (index == seats.length - 1) {
+                        $('#exampleModalToggle').modal({ backdrop: 'static', keyboard: false });
                         paypal();
                     }
                 },

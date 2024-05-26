@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +14,12 @@
 </head>
 
 <body>
-    <a href="{{ route('user.dashboard') }}" class="exit-btn">
+    <a href="#" class="exit-btn" onclick="window.history.back()">
         <button class="Btn">
             <div class="sign"><svg viewBox="0 0 512 512">
-                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    <path
+                        d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                    </path>
                 </svg></div>
             <div class="text">BACK</div>
         </button>
@@ -41,24 +44,26 @@
                         <h6 class="title">Today: {{ $date->format('l j F') }}</h6>
                         <div class="card_month crd">
                             {{-- hari pertama --}}
+                            <li>
+                                <h6>{{ $current_date->format('D') }}</h6>
+                                <h6 class="date_point active now" id="{{ $current_date->format('Y-m-d') }}">
+                                    {{ $current_date->format('j') }}</h6>
+                            </li>
+                            @php
+                                $current_date->addDay();
+                            @endphp
+
+                            {{-- loop hingga end_date --}}
+                            @while ($current_date <= $end_date)
                                 <li>
                                     <h6>{{ $current_date->format('D') }}</h6>
-                                    <h6 class="date_point active now" id="{{ $current_date->format('Y-m-d') }}">{{ $current_date->format('j') }}</h6>
+                                    <h6 class="date_point" id="{{ $current_date->format('Y-m-d') }}">
+                                        {{ $current_date->format('j') }}</h6>
                                 </li>
                                 @php
                                     $current_date->addDay();
                                 @endphp
-
-                            {{-- loop hingga end_date --}}
-                                @while ($current_date <= $end_date)
-                                    <li>
-                                        <h6>{{ $current_date->format('D') }}</h6>
-                                        <h6 class="date_point" id="{{ $current_date->format('Y-m-d') }}">{{ $current_date->format('j') }}</h6>
-                                    </li>
-                                    @php
-                                        $current_date->addDay();
-                                    @endphp
-                                @endwhile
+                            @endwhile
 
                         </div>
                         {{-- <div class="card_month crd">
@@ -120,7 +125,7 @@
                             </li>
                         </div> --}}
                     </div>
-                    
+
                     <div class="right_card">
                         <h6 class="title">Show Time</h6>
                         <div class="card_month crd showtime-container">
@@ -254,9 +259,7 @@
                 </div>
 
                 <div class="confirm_button d-flex flex-row align-items-center">
-                    <div class="money align-self-end" style="color: white;">
-                        $ 10.000
-                    </div>
+                    <div id="harga" class="money align-self-end" style="color: white;"></div>
                     <button class="book_tic" id="book_ticket">
                         <i class="bi bi-arrow-right-short"></i>
                     </button>
@@ -264,236 +267,248 @@
             </div>
         </div>
     </div>
-{{-- hidden form --}}
-<form action="{{ route('user.transaction') }}" id="form" method="post">
-    @csrf
-    <input type="hidden" name='film_id' id="film_id" value="{{ $film->id }}">
-    <input type="hidden" name='film_judul' id="film_judul" value="{{ $film->judul }}">
-    <input type="hidden" name='film_age' id="film_age" value="{{ $film->age_cat }}">
-    <input type="hidden" name='film_min' id="film_min" value="{{ $film->duration }}">
-    <input type="hidden" name='film_genre' id="film_genre" value="{{ $_POST['genre'] }}">
-    <input type="hidden" name='film_genreID' id="film_genreID" value="{{ $_POST['genre_id'] }}">
-    <input type="hidden" name='poster' id="poster" value="{{ $_POST['poster'] }}">
-    <input type="hidden" name='cinema_id' id="cinema_id" value="{{ session('cinema_id') }}">
-    <input type="hidden" name="studio_id2" id="studio_id2" value="-1">
-    <input type="hidden" name="date" id="date2" value="{{ $date->format('Y-m-d') }}">
-    <input type="hidden" name="time" id="timeChoose" value="-1">
-    <input type="hidden" name="cinemaName" id="cinemaName" value="">
-    <button id="order" type="submit" style="display: none;">Go</button>
-</form>
+    {{-- hidden form --}}
+    <form action="{{ route('user.transaction') }}" id="form" method="post">
+        @csrf
+        <input type="hidden" name='film_id' id="film_id" value="{{ $film->id }}">
+        <input type="hidden" name='film_judul' id="film_judul" value="{{ $film->judul }}">
+        <input type="hidden" name='film_age' id="film_age" value="{{ $film->age_cat }}">
+        <input type="hidden" name='film_min' id="film_min" value="{{ $film->duration }}">
+        <input type="hidden" name='film_genre' id="film_genre" value="{{ $_POST['genre'] }}">
+        <input type="hidden" name='film_genreID' id="film_genreID" value="{{ $_POST['genre_id'] }}">
+        <input type="hidden" name='poster' id="poster" value="{{ $_POST['poster'] }}">
+        <input type="hidden" name='cinema_id' id="cinema_id" value="{{ session('cinema_id') }}">
+        <input type="hidden" name="studio_id2" id="studio_id2" value="-1">
+        <input type="hidden" name="date" id="date2" value="{{ $date->format('Y-m-d') }}">
+        <input type="hidden" name="time" id="timeChoose" value="-1">
+        <input type="hidden" name="cinemaName" id="cinemaName" value="">
+        <button id="order" type="submit" style="display: none;">Go</button>
+    </form>
 
 
-    <script src="{{asset('js/book.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.js" integrity="sha512-wkHtSbhQMx77jh9oKL0AlLBd15fOMoJUowEpAzmSG5q5Pg9oF+XoMLCitFmi7AOhIVhR6T6BsaHJr6ChuXaM/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('js/book.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.js"
+        integrity="sha512-wkHtSbhQMx77jh9oKL0AlLBd15fOMoJUowEpAzmSG5q5Pg9oF+XoMLCitFmi7AOhIVhR6T6BsaHJr6ChuXaM/Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     {{-- <script>
         JsBarcode("#barcode", "J18800792023");
     </script> --}}
 
-<script>
-    $(document).ready(function(){
-        var id_film = "{{ session('film_id') }}" ; //id film
-        var id_cinema = "{{ session('cinema_id') }}";
-        var cinema_name = "";
-        var studio_name = "";
-        var price = 0;
-        var seats = [];
-        var nums = [];
+    <script>
+        $(document).ready(function() {
+            var id_film = "{{ session('film_id') }}"; //id film
+            var id_cinema = "{{ session('cinema_id') }}";
+            var cinema_name = "";
+            var studio_name = "";
+            var price = 0;
+            var seats = [];
+            var nums = [];
 
-        function reset(){
-            seats = [];
-            $('#chair').html("");
-        }
-        $('#date').val($('.date_point.active').attr('id'));
-
-        //ketika date dirubah 
-        $('.date_point').click(function(){
-            if($(this).hasClass('now')){
-                // console log this class
-                return;
+            function reset() {
+                seats = [];
+                $('#chair').html("");
             }
-            $('.date_point').removeClass('active now');
-            $(this).addClass('active now');
-            reset();
-            getStudioTime();
-            // isi form
-            $('#date').val($(this).attr('id'));
-            // reset form
-            $("#studio_id2").val(-1);
-            $("#show_timeId").val(-1);
-            $("#timeChoose").val(-1);
-        });
-    
+            $('#date').val($('.date_point.active').attr('id'));
 
-        // mendapatkan list showtime:studio dan time (ketika date dirubah)
-        function getStudioTime(){
-            var id = id_film ; //id film
-            var date = $('.date_point.active').attr('id'); //date
-            
-            $.ajax({
-                url: 'get-studio-time/' + id + "/" + date,
-                type: 'get',
-                success: function (response) {
-                    console.log(response);
-                    $('.showtime-container').html("");
-                    $.each(response.studioTimes, function(index, studioTime) {
-                        $('.showtime-container').append(`
+            //ketika date dirubah 
+            $('.date_point').click(function() {
+                if ($(this).hasClass('now')) {
+                    // console log this class
+                    return;
+                }
+                $('.date_point').removeClass('active now');
+                $(this).addClass('active now');
+                reset();
+                getStudioTime();
+                // isi form
+                $('#date').val($(this).attr('id'));
+                // reset form
+                $("#studio_id2").val(-1);
+                $("#show_timeId").val(-1);
+                $("#timeChoose").val(-1);
+            });
+
+
+            // mendapatkan list showtime:studio dan time (ketika date dirubah)
+            function getStudioTime() {
+                var id = id_film; //id film
+                var date = $('.date_point.active').attr('id'); //date
+
+                $.ajax({
+                    url: 'get-studio-time/' + id + "/" + date,
+                    type: 'get',
+                    success: function(response) {
+                        console.log(response);
+                        $('.showtime-container').html("");
+                        $.each(response.studioTimes, function(index, studioTime) {
+                            $('.showtime-container').append(`
                             <li>
                                 <h6 style="padding: 0px 5px">${ studioTime.studio['name']}</h6>
                                 <h6 data-cinemaName="${studioTime.cinema['name']}" data-price=${studioTime['price']} data-studioName="${studioTime.studio['name']}" class="showtime" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0,5)}</h6>
                             </li>
                         `);
-                    });
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-
-        // ketika showtime di klik
-        $('.showtime-container').on('click', '.showtime', function(){
-            if($(this).hasClass('now')){
-                return;
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
             }
-            $('.showtime').removeClass('active now');
-            $(this).addClass('active now');
-            var showtimeId = $(this).attr('id');
-            console.log(showtimeId);
-            let cinName = $(this).attr('data-cinemaName');
-            let stuName = $(this).attr('data-studioName');
-            let pri = $(this).attr('data-price');
-            price = pri;
-    //         <input type="hidden" name="studioName" id="studioName" value="">
-    // <input type="hidden" name="price" id="price" value="0">
-    // <input type="hidden" name="show_timeId" id="show_timeId" value="-1">
-            $('#form').append('<input type="hidden" name="studioName" id="studioName" value="'+stuName+'">')
-            $('#form').append('<input type="hidden" name="cinemaName" id="cinemaName" value="'+cinName+'">')
-            $('#form').append('<input type="hidden" name="film_price" id="film_price" value="'+pri+'">')
-            getChair(showtimeId);
-            console.log(price);
 
-            reset();
+            // ketika showtime di klik
+            $('.showtime-container').on('click', '.showtime', function() {
+                if ($(this).hasClass('now')) {
+                    return;
+                }
+                $('.showtime').removeClass('active now');
+                $(this).addClass('active now');
+                var showtimeId = $(this).attr('id');
+                console.log(showtimeId);
+                let cinName = $(this).attr('data-cinemaName');
+                let stuName = $(this).attr('data-studioName');
+                let pri = $(this).attr('data-price');
+                price = pri;
+                //         <input type="hidden" name="studioName" id="studioName" value="">
+                // <input type="hidden" name="price" id="price" value="0">
+                // <input type="hidden" name="show_timeId" id="show_timeId" value="-1">
+                $('#form').append('<input type="hidden" name="studioName" id="studioName" value="' +
+                    stuName + '">')
+                $('#form').append('<input type="hidden" name="cinemaName" id="cinemaName" value="' +
+                    cinName + '">')
+                $('#form').append('<input type="hidden" name="film_price" id="film_price" value="' + pri +
+                    '">')
+                getChair(showtimeId);
 
-            // // reset form
-            // $("#studio_id2").val(-1);
-            // $("#show_timeId").val(-1);
-            // $("#timeChoose").val(-1);
-            // isi form
-            $("#studio_id2").val($(this).attr('studioId'));
-            $("#show_timeId").val($(this).attr('id'));
-            $("#timeChoose").val($(this).attr('startTime'));
-            
-        });
+                var currencyValue = parseInt(price);
+                var formattedCurrency = currencyValue.toLocaleString('en-US');
+                console.log(formattedCurrency);
+                $('#harga').html("$ "+formattedCurrency+" /seat");
+                console.log(price);
+
+                reset();
+
+                // // reset form
+                // $("#studio_id2").val(-1);
+                // $("#show_timeId").val(-1);
+                // $("#timeChoose").val(-1);
+                // isi form
+                $("#studio_id2").val($(this).attr('studioId'));
+                $("#show_timeId").val($(this).attr('id'));
+                $("#timeChoose").val($(this).attr('startTime'));
+
+            });
 
 
-        // mendapatkan list kursi (ketika showtime dirubah)
-        function getChair(showtimeId){
-            var showtimeId =  showtimeId;
-            
-            $.ajax({
-                url: 'get-chair/'+showtimeId,
-                type: 'get',
-                success: function (response) {
-                    // clean chair
-                    reset();
-                    console.log(response);
-                    var row = 0;
-                    var endRow = 6;
-                    var colNow = 1;
-                    $.each(response.chairs, function(index, seat) {
-                        if(colNow % 24 == 1){
-                            row++;
-                            colNow = 1;
-                            // append row to chair
-                            $('#chair').append(`
+            // mendapatkan list kursi (ketika showtime dirubah)
+            function getChair(showtimeId) {
+                var showtimeId = showtimeId;
+
+                $.ajax({
+                    url: 'get-chair/' + showtimeId,
+                    type: 'get',
+                    success: function(response) {
+                        // clean chair
+                        reset();
+                        console.log(response);
+                        var row = 0;
+                        var endRow = 6;
+                        var colNow = 1;
+                        $.each(response.chairs, function(index, seat) {
+                            if (colNow % 24 == 1) {
+                                row++;
+                                colNow = 1;
+                                // append row to chair
+                                $('#chair').append(`
                                 <div class="row row-${row}">
                                     <span id="${row}">${String.fromCharCode(64+row)}</span>
                                 </div>
                             `);
-                        }
-                        // append to current row
-                        $(`.row-${row}`).append($(`<li class='seat ${seat['chair_status'] === 0 ? "available" : "booked"}' 
+                            }
+                            // append to current row
+                            $(`.row-${row}`).append($(
+                                `<li class='seat ${seat['chair_status'] === 0 ? "available" : "booked"}' 
                         id="${seat['id']}"  data-num="${seat.chair_number}">${String.fromCharCode(64+row)} ${colNow}</li>`))
-                        colNow++;
-                    });
-                },
-                error: function (error) {
-                    console.log(error);
+                            colNow++;
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            // pilih dan batalkan chair
+            function setChair(id, num) {
+                var chairId = id;
+
+                if ($('#' + chairId).hasClass('selected')) {
+                    console.log('has selected')
+                    $('#' + chairId).removeClass('selected');
+                    $('#' + chairId).addClass('available');
+                    deleteSeatById(chairId, num);
+                } else if ($('#' + chairId).hasClass('available')) {
+                    console.log('no selected')
+                    $('#' + chairId).removeClass('available');
+                    $('#' + chairId).addClass('selected');
+                    seats.push(chairId);
+                    nums.push(num);
                 }
-            });
-        }
 
-        // pilih dan batalkan chair
-        function setChair(id, num){
-            var chairId =  id;
-
-            if($('#'+chairId).hasClass('selected')){
-                console.log('has selected')
-                $('#'+chairId).removeClass('selected');
-                $('#'+chairId).addClass('available');
-                deleteSeatById(chairId, num);
-            }
-            else if($('#'+chairId).hasClass('available')){
-                console.log('no selected')
-                $('#'+chairId).removeClass('available');
-                $('#'+chairId).addClass('selected');
-                seats.push(chairId);
-                nums.push(num);
+                console.log("array seats: ");
+                console.log(seats);
+                console.log(nums);
             }
 
-            console.log("array seats: ");
-            console.log(seats);            
-            console.log(nums);            
-        }
-
-        function deleteSeatById(idToDelete, num) {
-            console.log("idToDelete: "+idToDelete);
-            for (let i = 0; i < seats.length; i++) {
-                if (seats[i] === idToDelete) {
-                    seats.splice(i, 1);
-                    nums.splice(nums.indexOf(num), 1);
+            function deleteSeatById(idToDelete, num) {
+                console.log("idToDelete: " + idToDelete);
+                for (let i = 0; i < seats.length; i++) {
+                    if (seats[i] === idToDelete) {
+                        seats.splice(i, 1);
+                        nums.splice(nums.indexOf(num), 1);
+                    }
                 }
             }
-        }
 
-        // seat click
-        $('#chair').on('click', '.seat', function(){
-            var chairId = $(this).attr('id');
-            var chairNum = $(this).attr('data-num');
-            setChair(chairId, chairNum);
-        });
-
-
-        getStudioTime();
-
-
-        // ketika submit
-        $('.confirm_button').click(function(){
-            var date = $("#date2").val();
-            var studio = $("#studio_id2").val();
-            var showtime = $("#show_timeId").val();
-            var time = $("#timeChoose").val();
-            
-            if(date == -1 || studio == -1 || showtime == -1 || time == -1){
-                alert("Please choose date, studio, and showtime")
-                return;
-            }
-            if(seats.length <= 0){
-                alert("Please choose at least one seat")
-                return;
-            }
-            $.each(seats, function(index, seat){
-                $('#form').append('<input type="hidden" name="'+seat+'" id="'+seat+'" value="'+seat+'">')
+            // seat click
+            $('#chair').on('click', '.seat', function() {
+                var chairId = $(this).attr('id');
+                var chairNum = $(this).attr('data-num');
+                setChair(chairId, chairNum);
             });
-            let numString = nums.join(", ");
-            $('#form').append('<input type="hidden" name="numSeatStr" id="numSeatStr" value="'+numString+'">');
-            $('#order').click();
-            
+
+
+            getStudioTime();
+
+
+            // ketika submit
+            $('.confirm_button').click(function() {
+                var date = $("#date2").val();
+                var studio = $("#studio_id2").val();
+                var showtime = $("#show_timeId").val();
+                var time = $("#timeChoose").val();
+
+                if (date == -1 || studio == -1 || showtime == -1 || time == -1) {
+                    alert("Please choose date, studio, and showtime")
+                    return;
+                }
+                if (seats.length <= 0) {
+                    alert("Please choose at least one seat")
+                    return;
+                }
+                $.each(seats, function(index, seat) {
+                    $('#form').append('<input type="hidden" name="' + seat + '" id="' + seat +
+                        '" value="' + seat + '">')
+                });
+                let numString = nums.join(", ");
+                $('#form').append('<input type="hidden" name="numSeatStr" id="numSeatStr" value="' +
+                    numString + '">');
+                $('#order').click();
+
+            });
+
         });
-        
-    });
-</script>
+    </script>
 </body>
 
 </html>
