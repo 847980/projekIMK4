@@ -188,7 +188,7 @@ foreach ($allSessionData as $key => $value) {
             </div>
             <div class="text">BACK</div>
         </button>
-    </a>
+    </a> 
 
     <div class="flex-container" id="information-card">
         <div class="checkout-title checkout-card">

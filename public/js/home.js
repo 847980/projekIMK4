@@ -65,7 +65,29 @@ let prevScrollpos = window.scrollY;
 // });
 
 
+$(document).ready(function() {
+    // Loop through the sections
+    $('.section').each(function() {
+        // Get the section ID
+        var sectionId = $(this).attr('id');
 
+        // Get the corresponding navbar link
+        var navbarLink = $('a[href="#' + sectionId + '"]');
+
+        // Check if the section is in view
+        $(window).scroll(function() {
+            if ($(this).scrollTop() >= $('#' + sectionId).offset().top - 100) {
+                // Add the active class to the navbar link
+                navbarLink.addClass('active');
+                navbarLink.addClass('active-underline');
+            } else {
+                // Remove the active class from the navbar link
+                navbarLink.removeClass('active');
+                navbarLink.removeClass('active-underline');
+            }
+        });
+    });
+});
 
 menu.onclick = () => {
     menu.classList.toggle('bx-x');

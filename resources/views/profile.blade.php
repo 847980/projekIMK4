@@ -59,30 +59,27 @@ foreach ($allSessionData as $key => $value) {
         </section>
 
 
-        <section class="ongoing" id="ongoing">
-            <h3 class="subhead">ONGOING</h3>
-            <div class="ongoing-container">
-            </div>        
-        </section>
+        <div class="container">
+            <section class="ongoing" id="ongoing">
+                <h3 class="subhead">ONGOING</h3>
+                <div class="ongoing-container">
+                </div>        
+            </section>
 
 
-        <section class="history" id="history">
-            <h3 class="subhead" id="test">HISTORY</h3>
-            <div class="history-container">
-               
-            </div>    
-        </section>
+            <section class="history" id="history">
+                <h3 class="subhead" id="test">HISTORY</h3>
+                <div class="history-container">
+                
+                </div>    
+            </section>
+        </div>
     </div>
    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/profile.js') }}" defer></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-
-
-
-
 
 <script>
     function buttonSelector() {

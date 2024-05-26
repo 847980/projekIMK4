@@ -1,4 +1,3 @@
-<!-- penanda navbar -> sdg aktif dmn blm ada -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,20 +55,11 @@
             updateSection(container, detailFilm);
         });
 
-
         function updateSection(container, data) {
-            container.innerHTML = '';
-
-
+            // container.innerHTML = '';
             const body = document.body;
-            const backgroundLayer = document.createElement('div');
-            backgroundLayer.className = 'background-layer';
-            backgroundLayer.style.backgroundImage = `url(${data.background})`;
-
-
-            body.appendChild(backgroundLayer);
-
-
+            const wrapper = document.createElement('div');
+            wrapper.className = 'wrapper';
             const flexContainer = document.createElement('div');
             flexContainer.className = 'flex-container';
             const poster = document.createElement('div');
@@ -86,12 +76,10 @@
                     <button type="submit" class="ticket-button">Buy Ticket</button>
                 </form>
             `;
-            flexContainer.appendChild(poster);
-
+            wrapper.appendChild(poster);
 
             const homeText = document.createElement('div');
             homeText.className = 'home-text';
-
 
             const titleContainer = document.createElement('div');
             titleContainer.className = 'title-container';
@@ -100,7 +88,8 @@
             `;
             homeText.appendChild(titleContainer);
 
-
+            const descriptionWrapper = document.createElement('div');
+            descriptionWrapper.className = 'description-wrapper';
             homeText.innerHTML += `
                 <div class="movie-info">
                     <h2>${data.rating}&emsp;|&emsp;${data.duration} min&emsp;|&emsp;${data.genre}</h2>
@@ -119,55 +108,16 @@
                     </ul>
                 </div>
             `;
-            flexContainer.appendChild(homeText);
-            document.body.appendChild(flexContainer);
+            descriptionWrapper.appendChild(homeText);
+            flexContainer.appendChild(wrapper)
+            flexContainer.appendChild(descriptionWrapper)
+            body.appendChild(flexContainer);
         }        
-    </script>
-    <!-- <a href="${data.trailer}" target="_blank" rel="noopener noreferrer" class="play-button">
-                    <i class='bx bx-play-circle'></i>
-                </a> -->
-<!--
-                <form action="{{ route   ('user.get-detail') }}" method="post" style="margin: 0; padding: 0;">
-                    @csrf
-                    <input type="hidden" name="film_id" value="{{ $film->id }}">
-                    <input type="hidden" name="poster" value="{{ asset('storage/assets/' . $film->poster_potrait) }}">
-                    <input type="hidden" name="cinema_id" value="{{ session('cinema_id') }}">
-                    <button type="submit" class="ticket-button">Buy Ticket</button>
-                </form> -->
-
-
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var movieDescElements = document.querySelectorAll('.movie_info-value');
-
-
-            movieDescElements.forEach(function(descElement) {
-                var maxLength = 100;
-                var originalText = descElement.textContent.trim();
-
-
-                if (originalText.length > maxLength) {
-                var trimmedText = originalText.substring(0, maxLength);
-                descElement.textContent = trimmedText.replace(/.{100}/g, '$&\n');
-                }
-            });
-        });
-    </script> -->
+    </script> 
 </head>
 
 
 <body>
-    <!-- <header>
-        <div id="menu-icon" class='bx bx-menu'></div>
-        <ul class="navbar">
-            <li><a href="dashboard" class="home-active">HOME</a></li>
-            <li><a href="dashboard">MOVIES</a></li>
-            <li><a href="dashboard">COMING</a></li>
-            <li><a href="dashboard">NEWSLETTER</a></li>            
-            <li><a href="{{ route('user.profile') }}" id="profile" >PROFILE</a></li>
-            <li><a href="{{ route('logout') }}" id="logout" >LOGOUT</a></li>
-        </ul>      
-    </header> -->
     <a href="#" class="exit-btn" onclick="window.history.back()">
         <button class="Btn">
             <div id="sign">
@@ -176,9 +126,6 @@
             <div class="text">BACK</div>
         </button>
     </a>
-    
-    <div class="flex-container"></div>
     <script src="{{ asset('js/detail.js') }}"></script>
 </body>
 </html>
-
