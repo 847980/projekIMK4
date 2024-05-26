@@ -3,6 +3,13 @@
 @extends('layouts.basic')
 
 @section('style')
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+/>
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 <style>
     .checkout-container {
@@ -95,10 +102,9 @@
         transition-duration: .3s;
     }
 
-    .Btn:hover .sign {
-        width: 30%;
+    .Btn:hover #sign {
+        width: 40%;
         transition-duration: .3s;
-        padding-left: 20px;
     }
 
     /* hover effect button's text */
@@ -133,21 +139,14 @@
         background-color: #585f6b;
     }
 
-    /* plus sign */
-    .sign {
+    /* back sign */
+    #sign {
         width: 100%;
         transition-duration: .3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
-
-    .sign svg {
+    #sign i {
         width: 17px;
-    }
-
-    .sign svg path {
-        fill: #FFD369;
+        color: #FFD369;
     }
 
     .text {
@@ -184,11 +183,9 @@ foreach ($allSessionData as $key => $value) {
 <body>
     <a href="" class="exit-btn" onclick="window.history.back()">
         <button class="Btn">
-            <div class="sign"><svg viewBox="0 0 512 512">
-                    <path
-                        d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
-                    </path>
-                </svg></div>
+            <div id="sign">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </div>
             <div class="text">BACK</div>
         </button>
     </a>
@@ -453,6 +450,7 @@ foreach ($_POST as $key => $value) {
 
     function checkSeat() {
         $('#closeModal').prop('disabled', true);
+        $('#confirmButton').prop('disabled', true);
         $('#exampleModalToggle').modal({ backdrop: 'static', keyboard: false });
 
         $.each(seats, function (index, seat) {
