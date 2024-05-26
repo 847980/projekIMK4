@@ -441,7 +441,7 @@ foreach ($_POST as $key => $value) {
         console.log(formattedTime);
 
         $('#jam').text(formattedTime);
-        $('#jam2').text($('#time').val());
+        $('#jam2').text(formattedTime);
     });
 
     // Function to show the alert and redirect when OK is clicked
