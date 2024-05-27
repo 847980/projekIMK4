@@ -448,6 +448,11 @@ li.selected {
     position: relative;
 }
 
+.box-none {
+    overflow: hidden;
+    position: relative;
+}
+
 .box .box-img {
     width: 100%;
     height: 270px;
