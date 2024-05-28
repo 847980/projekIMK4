@@ -206,7 +206,7 @@
         $('#cinemaDropdown').append($('<option>', {
             value: '',
             text: "-- Select Cinema --",
-            selected: true,
+            selected: false,
             disabled: true,
             hidden: true
         }));
@@ -224,6 +224,7 @@
                         text: cinema.name
                     }));
                 });
+                getFilm();
             },
             error: function (error) {
                 console.log(error);

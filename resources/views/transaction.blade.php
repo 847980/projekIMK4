@@ -181,7 +181,7 @@ foreach ($allSessionData as $key => $value) {
 @section('body')
 
 <body>
-    <a href="" class="exit-btn" onclick="window.history.back()">
+    <a href="#" class="exit-btn" onclick="window.history.back()">
         <button class="Btn">
             <div id="sign">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
