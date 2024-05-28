@@ -8,23 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    />
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* back sign */
         .Btn:hover #sign {
             width: 40%;
             transition-duration: .3s;
         }
+
         #sign {
             width: 100%;
             transition-duration: .3s;
         }
+
         #sign i {
             width: 17px;
             color: #FFD369;
@@ -361,14 +359,26 @@
                     success: function(response) {
                         console.log(response);
                         $('.showtime-container').html("");
+                        let first = true;
                         $.each(response.studioTimes, function(index, studioTime) {
-                            $('.showtime-container').append(`
+                            if (first) {
+                                first = false;
+                                $('.showtime-container').append(`
+                            <li>
+                                <h6 style="padding: 0px 5px">${ studioTime.studio['name']}</h6>
+                                <h6 data-cinemaName="${studioTime.cinema['name']}" data-price=${studioTime['price']} data-studioName="${studioTime.studio['name']}" class="showtime active" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0,5)}</h6>
+                            </li>
+                        `       );
+                            } else {
+                                $('.showtime-container').append(`
                             <li>
                                 <h6 style="padding: 0px 5px">${ studioTime.studio['name']}</h6>
                                 <h6 data-cinemaName="${studioTime.cinema['name']}" data-price=${studioTime['price']} data-studioName="${studioTime.studio['name']}" class="showtime" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0,5)}</h6>
                             </li>
                         `);
+                            }
                         });
+                        firstTime();
                     },
                     error: function(error) {
                         console.log(error);
@@ -376,8 +386,35 @@
                 });
             }
 
+            function firstTime() {
+                var showtimeId = $('.showtime').attr('id');
+                let cinName = $('.showtime').attr('data-cinemaName');
+                let stuName = $('.showtime').attr('data-studioName');
+                let pri = $('.showtime').attr('data-price');
+                price = pri;
+                console.log($('.showtime').attr('data-price'));
+                $('#form').append('<input type="hidden" name="studioName" id="studioName" value="' +
+                    stuName + '">')
+                $('#form').append('<input type="hidden" name="cinemaName" id="cinemaName" value="' +
+                    cinName + '">')
+                $('#form').append('<input type="hidden" name="film_price" id="film_price" value="' + pri +
+                    '">')
+                getChair(showtimeId);
+
+                var currencyValue = parseInt(price);
+                var formattedCurrency = currencyValue.toLocaleString('en-US');
+                console.log(formattedCurrency);
+                $('#harga').html("$ " + formattedCurrency + " /seat");
+                console.log(price);
+
+                reset();
+                $("#studio_id2").val($('.showtime').attr('studioId'));
+                $("#show_timeId").val($('.showtime').attr('id'));
+                $("#timeChoose").val($('.showtime').attr('startTime'));
+            };
             // ketika showtime di klik
             $('.showtime-container').on('click', '.showtime', function() {
+                console.log("ye");
                 if ($(this).hasClass('now')) {
                     return;
                 }
@@ -403,7 +440,7 @@
                 var currencyValue = parseInt(price);
                 var formattedCurrency = currencyValue.toLocaleString('en-US');
                 console.log(formattedCurrency);
-                $('#harga').html("$ "+formattedCurrency+" /seat");
+                $('#harga').html("$ " + formattedCurrency + " /seat");
                 console.log(price);
 
                 reset();
@@ -448,7 +485,8 @@
                             // append to current row
                             $(`.row-${row}`).append($(
                                 `<li class='seat ${seat['chair_status'] === 0 ? "available" : "booked"}' 
-                        id="${seat['id']}"  data-num="${seat.chair_number}">${String.fromCharCode(64+row)} ${colNow}</li>`))
+                        id="${seat['id']}"  data-num="${seat.chair_number}">${String.fromCharCode(64+row)} ${colNow}</li>`
+                            ))
                             colNow++;
                         });
                     },
