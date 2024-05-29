@@ -41,7 +41,7 @@
                     <div class="home-text">
                         <span>Lucasfilm</span>
                         <h1>Star Wars</h1>
-                        <a href="/detail" class="btn">TRAILER</a>
+                        <a href="https://www.youtube.com/watch?v=sGbxmsDFVnE&pp=ygURc3RhciB3YXJzIHRyYWlsZXI%3D" target="_blank" class="btn">TRAILER</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="home-text">
                         <span>20th Century Fox</span>
                         <h1>Avatar</h1>
-                        <a href="/detail" class="btn">TRAILER</a>
+                        <a href="https://www.youtube.com/watch?v=d9MyW72ELq0&pp=ygUOYXZhdGFyIHRyYWlsZXI%3D" target="_blank" class="btn">TRAILER</a>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                     <div class="home-text">
                         <span>Studio Ghibli</span>
                         <h1>Spirited Away</h1>
-                        <a href="/detail" class="btn">TRAILER</a>
+                        <a href="https://www.youtube.com/watch?v=fDUFP7EeXLE&pp=ygUVc3Bpcml0ZWQgYXdheSB0cmFpbGVy" target="_blank" class="btn">TRAILER</a>
                     </div>
                 </div>
             </div>
@@ -157,8 +157,8 @@
                 <div class="social">
                     <a href="https://www.instagram.com/alicia.claresta31?igsh=MXR4MmRibGYwbXhleg==" target="_blank"
                         class="social-icons"><i class='bx bxl-instagram'></i></a>
-                    <a href="#" class="social-icons"><i class='bx bxl-twitter'></i></a>
-                    <a href="#" class="social-icons"><i class='bx bxl-youtube'></i></a>
+                    <a href="https://x.com/elonmusk?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="social-icons" target="_blank"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.youtube.com/@StarvisionPlus" class="social-icons" target="_blank"><i class='bx bxl-youtube'></i></a>
                 </div>
             </div>
         </footer>

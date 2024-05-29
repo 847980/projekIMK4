@@ -31,6 +31,16 @@
             width: 17px;
             color: #FFD369;
         }
+        .rounded-corners-img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .rounded-corners-button {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
     </style>
 
 
@@ -65,7 +75,7 @@
             const poster = document.createElement('div');
             poster.className = 'poster';
             poster.innerHTML = `
-                <img src="${data.poster}">
+                <img src="${data.poster}" class="rounded-corners-img">
                 <form action="{{ route('user.get-detail') }}" method="post" style="margin: 0; padding: 0;">
                     @csrf
                     <input type="hidden" name="film_id" value="{{ $film->id }}">
@@ -73,7 +83,7 @@
                     <input type="hidden" name="cinema_id" value="{{ session('cinema_id') }}">
                     <input type="hidden" name="genre" value="${data.genre}">
                     <input type="hidden" name="genre_id" value="{{ $film->genre_id}}">
-                    <button type="submit" class="ticket-button">Buy Ticket</button>
+                    <button type="submit" class="ticket-button rounded-corners-button">Buy Ticket</button>
                 </form>
             `;
             wrapper.appendChild(poster);

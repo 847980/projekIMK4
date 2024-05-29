@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         /* back sign */
         .Btn:hover #sign {
@@ -65,7 +68,8 @@
                             <li>
                                 <h6>{{ $current_date->format('D') }}</h6>
                                 <h6 class="date_point active now" id="{{ $current_date->format('Y-m-d') }}">
-                                    {{ $current_date->format('j') }}</h6>
+                                    {{ $current_date->format('j') }}
+                                </h6>
                             </li>
                             @php
                                 $current_date->addDay();
@@ -73,14 +77,15 @@
 
                             {{-- loop hingga end_date --}}
                             @while ($current_date <= $end_date)
-                                <li>
-                                    <h6>{{ $current_date->format('D') }}</h6>
-                                    <h6 class="date_point" id="{{ $current_date->format('Y-m-d') }}">
-                                        {{ $current_date->format('j') }}</h6>
-                                </li>
-                                @php
-                                    $current_date->addDay();
-                                @endphp
+                                                        <li>
+                                                            <h6>{{ $current_date->format('D') }}</h6>
+                                                            <h6 class="date_point" id="{{ $current_date->format('Y-m-d') }}">
+                                                                {{ $current_date->format('j') }}
+                                                            </h6>
+                                                        </li>
+                                                        @php
+                                                            $current_date->addDay();
+                                                        @endphp
                             @endwhile
 
                         </div>
@@ -309,12 +314,13 @@
         integrity="sha512-wkHtSbhQMx77jh9oKL0AlLBd15fOMoJUowEpAzmSG5q5Pg9oF+XoMLCitFmi7AOhIVhR6T6BsaHJr6ChuXaM/Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    {{-- <script>
+    {{--
+    <script>
         JsBarcode("#barcode", "J18800792023");
     </script> --}}
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var id_film = "{{ session('film_id') }}"; //id film
             var id_cinema = "{{ session('cinema_id') }}";
             var cinema_name = "";
@@ -330,7 +336,7 @@
             $('#date').val($('.date_point.active').attr('id'));
 
             //ketika date dirubah 
-            $('.date_point').click(function() {
+            $('.date_point').click(function () {
                 if ($(this).hasClass('now')) {
                     // console log this class
                     return;
@@ -356,31 +362,31 @@
                 $.ajax({
                     url: 'get-studio-time/' + id + "/" + date,
                     type: 'get',
-                    success: function(response) {
+                    success: function (response) {
                         console.log(response);
                         $('.showtime-container').html("");
                         let first = true;
-                        $.each(response.studioTimes, function(index, studioTime) {
+                        $.each(response.studioTimes, function (index, studioTime) {
                             if (first) {
                                 first = false;
                                 $('.showtime-container').append(`
                             <li>
-                                <h6 style="padding: 0px 5px">${ studioTime.studio['name']}</h6>
-                                <h6 data-cinemaName="${studioTime.cinema['name']}" data-price=${studioTime['price']} data-studioName="${studioTime.studio['name']}" class="showtime active" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0,5)}</h6>
+                                <h6 style="padding: 0px 5px">${studioTime.studio['name']}</h6>
+                                <h6 data-cinemaName="${studioTime.cinema['name']}" data-price=${studioTime['price']} data-studioName="${studioTime.studio['name']}" class="showtime active" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0, 5)}</h6>
                             </li>
                         `       );
                             } else {
                                 $('.showtime-container').append(`
                             <li>
-                                <h6 style="padding: 0px 5px">${ studioTime.studio['name']}</h6>
-                                <h6 data-cinemaName="${studioTime.cinema['name']}" data-price=${studioTime['price']} data-studioName="${studioTime.studio['name']}" class="showtime" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0,5)}</h6>
+                                <h6 style="padding: 0px 5px">${studioTime.studio['name']}</h6>
+                                <h6 data-cinemaName="${studioTime.cinema['name']}" data-price=${studioTime['price']} data-studioName="${studioTime.studio['name']}" class="showtime" id="${studioTime['id']}" studioId = "${studioTime.studio['id']}" startTime="${studioTime['start_time']}" >${studioTime['start_time'].substring(0, 5)}</h6>
                             </li>
                         `);
                             }
                         });
                         firstTime();
                     },
-                    error: function(error) {
+                    error: function (error) {
                         console.log(error);
                     }
                 });
@@ -413,7 +419,7 @@
                 $("#timeChoose").val($('.showtime').attr('startTime'));
             };
             // ketika showtime di klik
-            $('.showtime-container').on('click', '.showtime', function() {
+            $('.showtime-container').on('click', '.showtime', function () {
                 console.log("ye");
                 if ($(this).hasClass('now')) {
                     return;
@@ -464,33 +470,33 @@
                 $.ajax({
                     url: 'get-chair/' + showtimeId,
                     type: 'get',
-                    success: function(response) {
+                    success: function (response) {
                         // clean chair
                         reset();
                         console.log(response);
                         var row = 0;
                         var endRow = 6;
                         var colNow = 1;
-                        $.each(response.chairs, function(index, seat) {
+                        $.each(response.chairs, function (index, seat) {
                             if (colNow % 24 == 1) {
                                 row++;
                                 colNow = 1;
                                 // append row to chair
                                 $('#chair').append(`
                                 <div class="row row-${row}">
-                                    <span id="${row}">${String.fromCharCode(64+row)}</span>
+                                    <span id="${row}">${String.fromCharCode(64 + row)}</span>
                                 </div>
                             `);
                             }
                             // append to current row
                             $(`.row-${row}`).append($(
                                 `<li class='seat ${seat['chair_status'] === 0 ? "available" : "booked"}' 
-                        id="${seat['id']}"  data-num="${seat.chair_number}">${String.fromCharCode(64+row)} ${colNow}</li>`
+                        id="${seat['id']}"  data-num="${seat.chair_number}">${String.fromCharCode(64 + row)} ${colNow}</li>`
                             ))
                             colNow++;
                         });
                     },
-                    error: function(error) {
+                    error: function (error) {
                         console.log(error);
                     }
                 });
@@ -529,7 +535,7 @@
             }
 
             // seat click
-            $('#chair').on('click', '.seat', function() {
+            $('#chair').on('click', '.seat', function () {
                 var chairId = $(this).attr('id');
                 var chairNum = $(this).attr('data-num');
                 setChair(chairId, chairNum);
@@ -540,7 +546,7 @@
 
 
             // ketika submit
-            $('.confirm_button').click(function() {
+            $('.confirm_button').click(function () {
                 var date = $("#date2").val();
                 var studio = $("#studio_id2").val();
                 var showtime = $("#show_timeId").val();
@@ -551,10 +557,15 @@
                     return;
                 }
                 if (seats.length <= 0) {
-                    alert("Please choose at least one seat")
+                    Swal.fire({
+                        text: "Please choose at least one seat",
+                        icon: "warning",
+                        confirmButtonText: 'OK'
+                    });
+                    // alert("Please choose at least one seat")
                     return;
                 }
-                $.each(seats, function(index, seat) {
+                $.each(seats, function (index, seat) {
                     $('#form').append('<input type="hidden" name="' + seat + '" id="' + seat +
                         '" value="' + seat + '">')
                 });
