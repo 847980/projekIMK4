@@ -290,6 +290,7 @@
             </div>
         </div>
     </div>
+    
     {{-- hidden form --}}
     <form action="{{ route('user.transaction') }}" id="form" method="post">
         @csrf
@@ -553,7 +554,12 @@
                 var time = $("#timeChoose").val();
 
                 if (date == -1 || studio == -1 || showtime == -1 || time == -1) {
-                    alert("Please choose date, studio, and showtime")
+                    Swal.fire({
+                        text: "Please choose date, studio, and showtime",
+                        icon: "warning",
+                        confirmButtonText: 'OK'
+                    });
+                    // alert("Please choose date, studio, and showtime")
                     return;
                 }
                 if (seats.length <= 0) {

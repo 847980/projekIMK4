@@ -87,7 +87,7 @@ class AuthController extends Controller
 
         // jika salah, redirect ke halaman login
         return back()
-        ->with('error','email atau password salah');
+        ->with('error','Email atau password salah');
 
     }
 

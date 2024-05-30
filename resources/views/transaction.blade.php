@@ -3,15 +3,23 @@
 @extends('layouts.basic')
 
 @section('style')
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-/>
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+
+{{-- swal --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Include SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- Include SweetAlert2 JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <style>
+    body{
+        background: linear-gradient(140deg, rgba(240,252,252,1) 0%, rgba(173,246,246,1) 100%) no-repeat center center fixed;
+    }
     .checkout-container {
         max-width: 70%;
     }
@@ -50,13 +58,21 @@
     }
 
     .pay-btn {
-        background-color: var(--bg-color);
-        color: rgb(57, 62, 70);
+        background-color: #4a6987;
+        /* color: rgb(57, 62, 70); */
+        color: var(--text-color);   
         border-radius: 10px;
         padding: 1em;
         text-align: center;
+        justify-content: center;
+        align-items: center;
         font-size: 1.3rem;
         border-style: none;
+        width: 100%;
+    }
+
+    .pay-btn:hover {
+        background-color: var(--bg-color);
     }
 
     .flex-container {
@@ -64,8 +80,10 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 60%;
-        margin: 0 auto;
+        /* width: 60%;
+        margin: 0 auto; */
+        width: auto;
+        margin: 4.5rem;
     }
 
     @media only screen and (max-width: 825px) {
@@ -144,6 +162,7 @@
         width: 100%;
         transition-duration: .3s;
     }
+
     #sign i {
         width: 17px;
         color: #FFD369;
@@ -188,7 +207,7 @@ foreach ($allSessionData as $key => $value) {
             </div>
             <div class="text">BACK</div>
         </button>
-    </a> 
+    </a>
 
     <div class="flex-container" id="information-card">
         <div class="checkout-title checkout-card">
@@ -259,8 +278,9 @@ foreach ($allSessionData as $key => $value) {
             </div>
             <div class="mt-4"></div>
             <div class="row" style="display: flex; justify-content: center;">
-                <div class="col">
-                    <button class="pay-btn w-100" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">BAYAR</button>
+                <div class="col-12">
+                    <button class="pay-btn w-100" onclick="showConfirmation()" data-bs-target="#exampleModalToggle"
+                        data-bs-toggle="modal">BAYAR</button>
                 </div>
             </div>
         </div>
@@ -356,7 +376,7 @@ foreach ($_POST as $key => $value) {
     </form>
 
 
-    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    <!-- <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
         tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -375,7 +395,7 @@ foreach ($_POST as $key => $value) {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </body>
 @endsection
 
@@ -447,6 +467,32 @@ foreach ($_POST as $key => $value) {
         // Redirect to another site after clicking OK
         window.location.href = "dashboard";
     }
+
+    function showConfirmation() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "The order cannot be canceled. Are you sure?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Call the function to handle confirmation
+                checkSeat();
+            }
+        });
+    }
+
+    // function checkSeat() {
+    //     // Your checkSeat logic
+    //     Swal.fire({
+    //         title: 'Confirmed!',
+    //         text: 'Your order has been confirmed.',
+    //         icon: 'success'
+    //     });
+    // }
 
     function checkSeat() {
         $('#closeModal').prop('disabled', true);

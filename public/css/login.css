@@ -28,7 +28,7 @@ body {
     height: 500px;
     overflow: hidden;
     /* background: url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=') no-repeat center / cover; */
-    background-color: var(--bg-color);
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 20px 20px 100px 20px rgba(0, 0, 0, 1);
     margin-left: 10px;
@@ -75,7 +75,7 @@ input {
     border-radius: 5px;
 }
 
-.button-click {
+.main .signup button {
     width: 60%;
     height: 40px;
     margin: 10px auto;
@@ -94,7 +94,7 @@ input {
 }
 
 .button-login{
-    background-color: var(--bg-color);
+    background-color: #4a6987;
     width: 60%;
     height: 40px;
     margin: 10px auto;
@@ -111,13 +111,14 @@ input {
     cursor: pointer;
 }
 
-button:hover {
-    background: #04686b;
+.main .signup button:hover, button:hover {
+    background: var(--bg-color);
 }
 
 .login {
     height: 460px;
-    background: var(--main-color);
+    background: rgb(57, 62, 70);
+    /* background: var(--main-color); */
     border-radius: 60% / 10%;
     transform: translateY(-180px);
     transition: .8s ease-in-out;
@@ -142,7 +143,7 @@ button:hover {
 }
 
 .signup span {
-    color: var(--text-color);
+    color: var(--main-color);
     margin-left: 70px;
     padding: 0;
 }
