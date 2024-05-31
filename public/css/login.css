@@ -8,6 +8,7 @@
     --text-color: #F4F4F2;
     --text-color-light: #E8E8E8;
     --bg-color: #5DA0A2;
+    --abu: rgb(57, 62, 70);
 }
 
 body {
@@ -17,20 +18,22 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('https://wallpapers.com/images/featured/movie-9pvmdtvz4cb0xl37.jpg') no-repeat center / cover;
+    /* background: url('https://wallpapers.com/images/featured/movie-9pvmdtvz4cb0xl37.jpg') no-repeat center / cover; */
     /* background-blend-mode: darken; */
     /* background-color: var(--bg-color); */
+    background: linear-gradient(140deg, rgba(240,252,252,1) 0%, rgba(173,246,246,1) 100%) no-repeat center center fixed;
     font-family: 'Chivo';
 }
 
 .main {
+    z-index: 3;
     width: 350px;
     height: 500px;
     overflow: hidden;
     /* background: url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=') no-repeat center / cover; */
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 20px 20px 100px 20px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 100px 7px rgba(0, 0, 0, 1);
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -117,7 +120,7 @@ input {
 
 .login {
     height: 460px;
-    background: rgb(57, 62, 70);
+    background: var(--main-color);
     /* background: var(--main-color); */
     border-radius: 60% / 10%;
     transform: translateY(-180px);
@@ -247,5 +250,53 @@ input {
 @media screen and (max-width: 913px) {   
     .heading{
         margin-left: 4vw;
+    }
+}
+
+.bgAnimation{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(20,1fr);
+    grid-template-rows: repeat(20,1fr);
+    background: var(--text-color);
+    filter: saturate(2);
+    overflow: hidden;
+}
+
+.colorBox{
+    z-index: 2;
+    filter: brightness(1.1);
+    transition: 2s ease;
+    position: relative;
+    margin: 2px;
+    background: var(--text-color);
+}
+
+.colorBox:hover{
+    background: var(--main-color);
+    transition-duration: 0s;
+}
+
+.backgroundAnim{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: var(--main-color);
+    filter: blur(40px);
+    animation: animBack 6s linear infinite;
+}
+
+@keyframes animBack {
+    0%{
+        top: -60px;
+    }
+    100%{
+        top: 120%;
     }
 }

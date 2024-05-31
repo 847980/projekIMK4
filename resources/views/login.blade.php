@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +14,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +45,7 @@
         function clearInput2() {
 
             var passwordInput = document.getElementById('password2');
-            var usernameInput = document.getElementById('username2');   
+            var usernameInput = document.getElementById('username2');
 
             usernameInput.value = '';
             passwordInput.value = '';
@@ -62,14 +66,14 @@
     @endif
 
     @if (session('error'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: '{{ session('error') }}',
-            confirmButtonText: 'OK'
-        })
-    </script>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '{{ session('error') }}',
+                confirmButtonText: 'OK'
+            })
+        </script>
     @endif
 
     <!-- <a href="home"  class="exit-btn">
@@ -80,6 +84,12 @@
             <div class="text">BACK</div>
         </button>
     </a> -->
+
+    <div class="bgAnimation" id="bgAnimation">
+        <div class="backgroundAnim">
+
+        </div>
+    </div>
 
     <div class="main">
         <input type="checkbox" id="check" aria-hidden="true">
@@ -92,17 +102,19 @@
                     <i class="fas fa-user"></i>
                     Username
                 </span>
-                <input type="text" name="username" class="@error('username') is-invalid  @enderror" id="username" placeholder="Username" required="" value="{{ old('username') }}">
+                <input type="text" name="username" class="@error('username') is-invalid  @enderror" id="username"
+                    placeholder="Username" required="" value="{{ old('username') }}">
                 @error('username')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
                 <span>
-                    <i class="fas fa-envelope"></i>    
+                    <i class="fas fa-envelope"></i>
                     Email
                 </span>
-                <input type="email" name="email" class="@error('email') is-invalid  @enderror" id="email" placeholder="Email" required="" value="{{ old('email') }}">
+                <input type="email" name="email" class="@error('email') is-invalid  @enderror" id="email"
+                    placeholder="Email" required="" value="{{ old('email') }}">
                 @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -112,13 +124,14 @@
                     <i class="fas fa-lock"></i>
                     Password
                 </span>
-                <input type="password" name="password" class="@error('password') is-invalid  @enderror" id="password" placeholder="Password" required="">
+                <input type="password" name="password" class="@error('password') is-invalid  @enderror" id="password"
+                    placeholder="Password" required="">
                 @error('password')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
-                
+
                 <button class="{{ $errors->any() ? 'btn-invalid' : '' }}">Sign Up</button>
             </form>
         </div>
@@ -132,13 +145,13 @@
                     Username
                 </span>
                 <input type="text" name="username" id="username2" placeholder="username" required>
-                
+
                 <span>
-                    <i class="fas fa-lock"></i> 
+                    <i class="fas fa-lock"></i>
                     Password
                 </span>
-                <input type="password" name="password" id="password2" placeholder="Password" required >
-                
+                <input type="password" name="password" id="password2" placeholder="Password" required>
+
                 <button class="button-login">Login</button>
             </form>
         </div>
@@ -147,3 +160,15 @@
 </body>
 
 </html>
+
+<script>
+    const bgAnimation = document.getElementById('bgAnimation');
+
+    const numberOfColorBoxes = 400;
+
+    for (let i = 0; i < numberOfColorBoxes; i++) {
+        const colorBox = document.createElement('div');
+        colorBox.classList.add('colorBox');
+        bgAnimation.append(colorBox)
+    }
+</script>
