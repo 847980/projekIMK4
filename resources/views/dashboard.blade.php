@@ -104,27 +104,17 @@
         <div class="movies-container" id="coming-movies-container">
             <div class="box">
                 <div class="box-img">
-                    <img src="{{ asset('storage/assets/film5_potrait.jpg') }}">
+                    <img src="{{ asset('storage/assets/losmen_bu_broto.jpg') }}">
                 </div>
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="{{ asset('storage/assets/film4_potrait.jpg') }}">
+                    <img src="{{ asset('storage/assets/the_architecture_of_love.jpg') }}">
                 </div>
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="{{ asset('storage/assets/film3_potrait.jpg') }}">
-                </div>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="{{ asset('storage/assets/film2_potrait.jpg') }}">
-                </div>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="{{ asset('storage/assets/film1_potrait.jpg') }}">
+                    <img src="{{ asset('storage/assets/monkey_man.jpg') }}">
                 </div>
             </div>
         </div>
