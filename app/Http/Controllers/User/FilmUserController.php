@@ -144,8 +144,25 @@ class FilmUserController extends Controller
         $data['dates'] = ShowTime::where('film_id', $filmId)->where('cinema_id', $cinemaId)->distinct()->pluck('show_date')->toArray();
         return response()->json($data);
     }
-    public function getStudioTime($id, $date){
-        $data['studioTimes'] = ShowTime::with(['studio', 'cinema'])->where('film_id', $id)->where('show_date', $date)->where('cinema_id',session('cinema_id'))->get();
+    public function getStudioTime($id, $date) {
+        $data['studioTimes'] = ShowTime::with(['studio', 'cinema'])
+            ->where('film_id', $id)
+            ->where('show_date', $date)
+            ->where('cinema_id',session('cinema_id'))
+            ->where(
+                function($query){
+                    $query
+                        ->where('show_date', ">", now()->toDateString())
+                        ->orWhere(
+                            function($query) {
+                                $query
+                                    ->where('show_date', "=", now()->toDateString())
+                                    ->where('start_time', ">", now()->toTimeString());
+                            }
+                        );
+                }
+            )
+            ->get();
         return response()->json($data);
     }
     public function getChair($id){
