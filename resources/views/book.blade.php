@@ -333,6 +333,7 @@
 
             function reset() {
                 seats = [];
+                nums = [];
                 $('#chair').html("");
             }
             $('#date').val($('.date_point.active').attr('id'));
