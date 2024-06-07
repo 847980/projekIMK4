@@ -108,6 +108,11 @@ header.shadow {
     width: 100%;
 }
 
+.navbar li:has(> a.active) {
+    border-bottom: 3px solid var(--main-color);
+    padding-bottom: 3px;
+}
+
 
 #menu-icon {
     font-size: 24px;
