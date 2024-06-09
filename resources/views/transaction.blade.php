@@ -17,9 +17,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
-    body{
-        background: linear-gradient(140deg, rgba(240,252,252,1) 0%, rgba(173,246,246,1) 100%) no-repeat center center fixed;
+    body {
+        background: linear-gradient(140deg, rgba(240, 252, 252, 1) 0%, rgba(173, 246, 246, 1) 100%) no-repeat center center fixed;
     }
+
     .checkout-container {
         max-width: 70%;
     }
@@ -58,9 +59,9 @@
     }
 
     .pay-btn {
-        background-color: #4a6987;
+        background-color: var(--bg-color);
         /* color: rgb(57, 62, 70); */
-        color: var(--text-color);   
+        color: var(--text-color);
         border-radius: 10px;
         padding: 1em;
         text-align: center;
@@ -72,7 +73,7 @@
     }
 
     .pay-btn:hover {
-        background-color: var(--bg-color);
+        background-color: #4a6987;
     }
 
     .flex-container {
@@ -463,10 +464,21 @@ foreach ($_POST as $key => $value) {
 
     // Function to show the alert and redirect when OK is clicked
     function showAlertAndRedirect() {
-        window.alert("Seat taken. Kindly return to the main menu for other options.");
-        // Redirect to another site after clicking OK
-        window.location.href = "dashboard";
+        Swal.fire({
+            icon: 'warning',
+            title: 'Seat taken',
+            text: 'Kindly return to the main menu for other options.',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to another site after clicking OK
+                window.location.href = "dashboard";
+            }
+        });
     }
+
 
     function showConfirmation() {
         Swal.fire({

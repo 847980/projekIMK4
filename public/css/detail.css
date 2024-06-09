@@ -23,7 +23,7 @@
 
 body {
     /* background: var(--text-color); */
-    background: linear-gradient(140deg, rgba(240,252,252,1) 0%, rgba(173,246,246,1) 100%) no-repeat center center fixed;
+    background: linear-gradient(140deg, rgba(240, 252, 252, 1) 0%, rgba(173, 246, 246, 1) 100%) no-repeat center center fixed;
     color: var(--bg-color);
 }
 
@@ -254,7 +254,7 @@ header.shadow {
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: #4a6987;
+    background-color: var(--bg-color);
     color: var(--text-color-light);
     text-align: center;
     text-decoration: none;
@@ -266,7 +266,7 @@ header.shadow {
 
 
 .ticket-button:hover {
-    background-color: var(--bg-color);
+    background-color: #4a6987;
 }
 
 

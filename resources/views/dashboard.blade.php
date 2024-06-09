@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 
@@ -41,7 +42,8 @@
                     <div class="home-text">
                         <span>Lucasfilm</span>
                         <h1>Star Wars</h1>
-                        <a href="https://www.youtube.com/watch?v=sGbxmsDFVnE&pp=ygURc3RhciB3YXJzIHRyYWlsZXI%3D" target="_blank" class="btn">TRAILER</a>
+                        <a href="https://www.youtube.com/watch?v=sGbxmsDFVnE&pp=ygURc3RhciB3YXJzIHRyYWlsZXI%3D"
+                            target="_blank" class="btn">TRAILER</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +53,8 @@
                     <div class="home-text">
                         <span>20th Century Fox</span>
                         <h1>Avatar</h1>
-                        <a href="https://www.youtube.com/watch?v=d9MyW72ELq0&pp=ygUOYXZhdGFyIHRyYWlsZXI%3D" target="_blank" class="btn">TRAILER</a>
+                        <a href="https://www.youtube.com/watch?v=d9MyW72ELq0&pp=ygUOYXZhdGFyIHRyYWlsZXI%3D"
+                            target="_blank" class="btn">TRAILER</a>
                     </div>
                 </div>
             </div>
@@ -61,7 +64,8 @@
                     <div class="home-text">
                         <span>Studio Ghibli</span>
                         <h1>Spirited Away</h1>
-                        <a href="https://www.youtube.com/watch?v=fDUFP7EeXLE&pp=ygUVc3Bpcml0ZWQgYXdheSB0cmFpbGVy" target="_blank" class="btn">TRAILER</a>
+                        <a href="https://www.youtube.com/watch?v=fDUFP7EeXLE&pp=ygUVc3Bpcml0ZWQgYXdheSB0cmFpbGVy"
+                            target="_blank" class="btn">TRAILER</a>
                     </div>
                 </div>
             </div>
@@ -84,6 +88,14 @@
         <div class="wrapper">
             <div class="dropdown">
                 <label for="cinemaDropdown">Cinema&ensp;</label>
+                <select id="cinemaDropdown" onchange="getFilm()">
+                </select>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="dropdown">
+                <label for="cinemaDropdown">Genre&ensp;</label>
                 <select id="cinemaDropdown" onchange="getFilm()">
                 </select>
             </div>
@@ -157,8 +169,10 @@
                 <div class="social">
                     <a href="https://www.instagram.com/alicia.claresta31?igsh=MXR4MmRibGYwbXhleg==" target="_blank"
                         class="social-icons"><i class='bx bxl-instagram'></i></a>
-                    <a href="https://x.com/elonmusk?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="social-icons" target="_blank"><i class='bx bxl-twitter'></i></a>
-                    <a href="https://www.youtube.com/@StarvisionPlus" class="social-icons" target="_blank"><i class='bx bxl-youtube'></i></a>
+                    <a href="https://x.com/elonmusk?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                        class="social-icons" target="_blank"><i class='bx bxl-twitter'></i></a>
+                    <a href="https://www.youtube.com/@StarvisionPlus" class="social-icons" target="_blank"><i
+                            class='bx bxl-youtube'></i></a>
                 </div>
             </div>
         </footer>
@@ -170,13 +184,16 @@
         loadCity();
         console.log(success);
         if (success == "Success") {
-            alert("Payment Success")
-            window.location.href = "http://127.0.0.1:8000/user/dashboard#home";
+            Swal.fire({
+                title: 'Payment Success',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = "http://127.0.0.1:8000/user/profile";
+            });
             // console.log($("#back").click());
-        };
-
+        }
     });
-
 
     function loadCity() {
         $.ajax({
@@ -231,6 +248,7 @@
             }
         });
     };
+
     function getFilm() {
         $('#movies-container').html("");
         var cinemaId = $("#cinemaDropdown").val();
@@ -263,8 +281,10 @@
                         "<button class='btn btn-primary'>Detail</button>" +
                         "</div>" +
                         "</div>" +
+                        "<div class='box-judul'>" +
                         "<h3>" + film[0].judul + "</h3>" +
                         "<span>" + film[0].name + " | " + film[0].age_cat + "</span>" +
+                        "</div>" +
                         "</form>" +
                         "</div>");
                 })

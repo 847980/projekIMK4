@@ -92,7 +92,7 @@
     </div>
 
     <div class="main">
-        <input type="checkbox" id="check" aria-hidden="true">
+        <input type="checkbox" id="check" aria-hidden="true" checked>
 
         <div class="signup">
             <form method="post" action="{{ route("register.send") }}">
