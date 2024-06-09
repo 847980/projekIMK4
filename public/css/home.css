@@ -103,9 +103,9 @@ header.shadow {
 } */
 
 
-.navbar li.active a {
-    border-bottom: 2px solid var(--main-color);
-    color: var(--main-color);
+.navbar li:has(> a.active) {
+    border-bottom: 3px solid var(--main-color);
+    padding-bottom: 3px;
 }
 
 #menu-icon {

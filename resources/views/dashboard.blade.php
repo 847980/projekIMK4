@@ -26,7 +26,7 @@
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
-            <li><a href="#home" class="home-active">HOME</a></li>
+            <li><a href="#home" class="active">HOME</a></li>
             <li><a href="#movies">MOVIES</a></li>
             <li><a href="#coming">COMING</a></li>
             <li><a href="#newsletter">NEWSLETTER</a></li>
@@ -34,7 +34,7 @@
             <li><a href="{{ route('logout') }}" id="logout">LOGOUT</a></li>
         </ul>
     </header>
-    <section class="home swiper" id="home">
+    <section class="home swiper page" id="home">
         <div class="swiper-wrapper">
             <div class="swiper-slide container">
                 <img src="{{ asset('storage/assets/starwars.jpg') }}">
@@ -103,7 +103,7 @@
     </div>
 
 
-    <section class="movies" id="movies">
+    <section class="movies page" id="movies">
         <h2 class="heading">Playing Now</h2>
         <div class="movies-container" id="movies-container">
             {{-- Playing Now --}}
@@ -111,32 +111,22 @@
     </section>
 
 
-    <section class="coming" id="coming">
+    <section class="coming page" id="coming">
         <h2 class="heading">Coming Soon</h2>
         <div class="movies-container" id="coming-movies-container">
             <div class="box">
                 <div class="box-img">
-                    <img src="{{ asset('storage/assets/film5_potrait.jpg') }}">
+                    <img src="{{ asset('storage/assets/losmen_bu_broto.jpg') }}">
                 </div>
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="{{ asset('storage/assets/film4_potrait.jpg') }}">
+                    <img src="{{ asset('storage/assets/the_architecture_of_love.jpg') }}">
                 </div>
             </div>
             <div class="box">
                 <div class="box-img">
-                    <img src="{{ asset('storage/assets/film3_potrait.jpg') }}">
-                </div>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="{{ asset('storage/assets/film2_potrait.jpg') }}">
-                </div>
-            </div>
-            <div class="box">
-                <div class="box-img">
-                    <img src="{{ asset('storage/assets/film1_potrait.jpg') }}">
+                    <img src="{{ asset('storage/assets/monkey_man.jpg') }}">
                 </div>
             </div>
         </div>
@@ -294,6 +284,12 @@
             }
         });
     }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-scrollspy@3.0.7/dist/vanillajs-scrollspy.min.js"></script>
+<script>
+    // Scrollspy for active navbar
+    VanillaScrollspy({ menu: document.querySelector('.navbar') }).init();
 </script>
 
 </html>

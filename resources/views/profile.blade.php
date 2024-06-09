@@ -38,11 +38,11 @@ foreach ($allSessionData as $key => $value) {
     <header>
         <div id="menu-icon" class='bx bx-menu'></div>
         <ul class="navbar">
-            <li><a href="{{ route('user.dashboard') }}#home" class="home-active">HOME</a></li>
+            <li><a href="{{ route('user.dashboard') }}#home">HOME</a></li>
             <li><a href="{{ route('user.dashboard') }}#movies">MOVIES</a></li>
             <li><a href="{{ route('user.dashboard') }}#coming">COMING</a></li>
             <li><a href="{{ route('user.dashboard') }}#newsletter">NEWSLETTER</a></li>
-            <li><a href="#" id="profile">PROFILE</a></li>
+            <li><a href="#" id="profile" class="active">PROFILE</a></li>
             <li><a href="{{ route('logout') }}" id="logout">LOGOUT</a></li>
         </ul>
     </header>
