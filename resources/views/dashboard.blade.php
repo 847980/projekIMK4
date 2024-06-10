@@ -29,7 +29,7 @@
             <li><a href="#home" class="active">HOME</a></li>
             <li><a href="#movies">MOVIES</a></li>
             <li><a href="#coming">COMING</a></li>
-            <li><a href="#newsletter">NEWSLETTER</a></li>
+            <!-- <li><a href="#newsletter">NEWSLETTER</a></li> -->
             <li><a href="{{ route('user.profile') }}" id="profile">PROFILE</a></li>
             <li><a href="{{ route('logout') }}" id="logout">LOGOUT</a></li>
         </ul>
