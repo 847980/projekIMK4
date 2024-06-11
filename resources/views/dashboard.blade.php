@@ -97,6 +97,7 @@
             <div class="dropdown">
                 <label for="cinemaDropdown">Genre&ensp;</label>
                 <select id="cinemaDropdown" onchange="getFilm()">
+                    <option value="0" selected>All</option>
                 </select>
             </div>
         </div>

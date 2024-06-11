@@ -12,7 +12,15 @@ foreach ($allSessionData as $key => $value) {
         break;
     }
 }
+
+if (! isset($title)) {
+    $title = 'p';
+}
 ?>
+
+<script>
+    var success = "{{ $title }}";
+</script>
 
 
 <!DOCTYPE html>
@@ -29,6 +37,7 @@ foreach ($allSessionData as $key => $value) {
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/profile.js') }}" defer></script>
 </head>
 
@@ -71,6 +80,17 @@ foreach ($allSessionData as $key => $value) {
 </body>
 
 <script>
+    $(document).ready(function () {
+        console.log(success);
+        if (success == "Success") {
+            Swal.fire({
+                title: 'Payment Success',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+
     function buttonSelector() {
         const detailButtons = document.querySelectorAll('.box-ongoing button');
         detailButtons.forEach((button, index) => {

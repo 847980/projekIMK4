@@ -73,12 +73,14 @@ Route::group(['as'=> 'user.', 'prefix' => 'user', 'middleware'=>'auth'], functio
     Route::get('/check-seat/{id}', [FilmUserController::class, 'seatCheck']);
 
     Route::get('/profile', function () {
-        return view('profile');
+        $data['title'] = "profile";
+        return view('profile', $data);
+        // return view('profile');
     })->name('profile');
 
-    Route::get('/profile', function () {
-        return view('profile');
-    })->name('profile');
+    // Route::get('/profile', function () {
+    //     return view('profile');
+    // })->name('profile');
 
     Route::get("/get-ticket",[FilmUserController::class, "getUserTicket"])->name('getTicket');
     Route::post("/detail",[FilmUserController::class, "detail"])->name('detail');

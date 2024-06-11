@@ -45,7 +45,9 @@ class PaypalController extends Controller
         // dd($response);
         if (isset($response['status']) && $response['status']=="COMPLETED") {
             //add to db
-            return redirect()->route('user.profile');
+            $data['title'] = 'Success';
+            // return redirect()->route('user.profile');
+            return view('profile', $data);
         } else {
             return redirect()->route('cancel');
         }
