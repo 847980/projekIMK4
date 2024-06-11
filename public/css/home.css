@@ -146,8 +146,8 @@ header.shadow {
 .btn:hover,
 .btn-mov:hover {
     color: var(--text-color);
-    background-color: var(--main-color);
-    border: 3px solid var(--main-color);
+    background-color: var(--bg-color);
+    border: 3px solid var(--bg-color);
 }
 
 

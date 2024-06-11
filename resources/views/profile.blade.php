@@ -84,7 +84,7 @@ if (! isset($title)) {
         console.log(success);
         if (success == "Success") {
             Swal.fire({
-                title: 'Payment Success',
+                text: 'Payment Success',
                 icon: 'success',
                 confirmButtonText: 'OK'
             });
