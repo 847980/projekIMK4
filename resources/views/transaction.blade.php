@@ -167,7 +167,7 @@
 
     #sign i {
         width: 17px;
-        color: #FFD369;
+        color: var(--text-color);
     }
 
     .text {
@@ -175,7 +175,7 @@
         right: 0%;
         width: 0%;
         opacity: 0;
-        color: #FFD369;
+        color: var(--text-color);
         font-size: 1.2em;
         font-weight: 600;
         transition-duration: .3s;
@@ -211,7 +211,7 @@ foreach ($allSessionData as $key => $value) {
         </button>
     </a>
 
-    <div class="flex-container" id="information-card">
+    <div class="flex-container justify-content-center align-items-center" id="information-card">
         <div class="checkout-title checkout-card">
             <div class="poster">
                 <img id="posterFilm">
@@ -282,7 +282,7 @@ foreach ($allSessionData as $key => $value) {
             <div class="row" style="display: flex; justify-content: center;">
                 <div class="col-12">
                     <button class="pay-btn w-100" onclick="showConfirmation()" data-bs-target="#exampleModalToggle"
-                        data-bs-toggle="modal">BAYAR</button>
+                        data-bs-toggle="modal">Bayar</button>
                 </div>
             </div>
         </div>

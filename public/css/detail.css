@@ -561,7 +561,7 @@ header.shadow {
 }
 
 .sign svg path {
-    fill: #FFD369;
+    fill: var(--text-color);
 }
 
 .text {
@@ -569,7 +569,7 @@ header.shadow {
     right: 0%;
     width: 0%;
     opacity: 0;
-    color: #FFD369;
+    color: var(--text-color);
     font-size: 1.2em;
     font-weight: 600;
     transition-duration: .3s;

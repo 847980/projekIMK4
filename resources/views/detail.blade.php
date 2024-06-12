@@ -29,7 +29,7 @@
         }
         #sign i {
             width: 17px;
-            color: #FFD369;
+            color: var(--text-color);
         }
         .rounded-corners-img {
             border-top-left-radius: 10px;

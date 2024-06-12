@@ -276,10 +276,10 @@ input {
     background: var(--text-color);
 }
 
-.colorBox:hover{
+/* .colorBox:hover{
     background: var(--main-color);
     transition-duration: 0s;
-}
+} */
 
 .backgroundAnim{
     position: absolute;
